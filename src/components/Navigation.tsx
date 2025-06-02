@@ -35,6 +35,9 @@ export default function Navigation() {
     );
   };
 
+  // Cream/eggshell color
+  const cream = '#F8F5F2';
+
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
@@ -48,9 +51,14 @@ export default function Navigation() {
           {/* Logo */}
           <Link
             href="/"
-            className="text-2xl font-bold text-earth-800 hover:text-earth-700 transition-colors"
+            className="relative w-16 h-16 flex items-center hover:opacity-90 transition-opacity"
           >
-            SML
+            <img
+              src="/SML Logo TBG.SVG"
+              alt="SML Logo"
+              style={{ width: '48px', height: '48px', objectFit: 'contain', display: 'block' }}
+              draggable="false"
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -59,9 +67,12 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative text-earth-700 hover:text-earth-800 transition-colors ${
+                className={`relative transition-colors duration-300 ${
                   isActive(link.href) ? 'font-semibold' : ''
                 }`}
+                style={{
+                  color: isScrolled ? '#6B4F27' : cream,
+                }}
               >
                 {link.label}
                 {isActive(link.href) && (
@@ -77,9 +88,9 @@ export default function Navigation() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            <div className="w-6 h-0.5 bg-earth-700 mb-1.5 transition-transform duration-300"></div>
-            <div className="w-6 h-0.5 bg-earth-700 mb-1.5 transition-transform duration-300"></div>
-            <div className="w-6 h-0.5 bg-earth-700 transition-transform duration-300"></div>
+            <div className={`w-6 h-0.5 mb-1.5 transition-transform duration-300 ${isScrolled ? 'bg-earth-700' : ''}`} style={{ background: isScrolled ? '#6B4F27' : cream }}></div>
+            <div className={`w-6 h-0.5 mb-1.5 transition-transform duration-300 ${isScrolled ? 'bg-earth-700' : ''}`} style={{ background: isScrolled ? '#6B4F27' : cream }}></div>
+            <div className={`w-6 h-0.5 transition-transform duration-300 ${isScrolled ? 'bg-earth-700' : ''}`} style={{ background: isScrolled ? '#6B4F27' : cream }}></div>
           </button>
         </div>
 
@@ -94,9 +105,12 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-earth-700 hover:text-earth-800 transition-colors ${
+                className={`transition-colors duration-300 ${
                   isActive(link.href) ? 'font-semibold' : ''
                 }`}
+                style={{
+                  color: isScrolled ? '#6B4F27' : cream,
+                }}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {link.label}

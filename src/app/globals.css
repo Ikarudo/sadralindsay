@@ -1,52 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@400;600&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --color-earth-100: #f5f1e8;
-  --color-earth-200: #e6d9c8;
-  --color-earth-300: #d4c4b0;
-  --color-earth-400: #c2af98;
-  --color-earth-500: #b09a80;
-  --color-earth-600: #9e8568;
-  --color-earth-700: #8c7050;
-  --color-earth-800: #7a5b38;
-  --color-earth-900: #684620;
-  
-  --color-rust-100: #fdf2f0;
-  --color-rust-200: #f9d9d3;
-  --color-rust-300: #f5c0b6;
-  --color-rust-400: #f1a799;
-  --color-rust-500: #ed8e7c;
-  --color-rust-600: #e9755f;
-  --color-rust-700: #e55c42;
-  --color-rust-800: #e14325;
-  --color-rust-900: #dd2a08;
-}
+  --background: #f6f3ee;
+  --foreground: #2a1a0e;
+  --color-earth-100: #f6f3ee; /* Cream */
+  --color-earth-200: #e3c9a6; /* Light tan */
+  --color-earth-300: #cfa97e; /* Warm tan */
+  --color-earth-400: #a86a2d; /* Glazed terracotta brown */
+  --color-earth-500: #7a3e13; /* Deep brown */
+  --color-earth-600: #5a2a0a; /* Espresso brown */
+  --color-earth-700: #3d1a07; /* Very deep brown */
+  --color-earth-800: #2a1205; /* Near black brown */
+  --color-earth-900: #1a0a03; /* Black brown */
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-rust-100: #ffe7d1; /* Light orange */
+  --color-rust-200: #ffb87a; /* Vibrant orange */
+  --color-rust-300: #ff7a1a; /* Punchy orange */
+  --color-rust-400: #e85c00; /* Deep terracotta orange */
+  --color-rust-500: #c1440e; /* Glazed terracotta */
+  --color-rust-600: #a13a0a; /* Burnt orange */
+  --color-rust-700: #7a2a06; /* Dark terracotta */
+  --color-rust-800: #5a1a03; /* Very dark orange */
+  --color-rust-900: #3a0a01; /* Black orange */
+
+  --color-green-100: #e6f2e6; /* Light green */
+  --color-green-200: #a7d7a7; /* Soft green */
+  --color-green-300: #5a8b5d; /* Vibrant green */
+  --color-green-400: #217a2b; /* Deep forest green */
+  --color-green-500: #14521b; /* Rich forest green */
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Nunito', Arial, Helvetica, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1a0a03;
+    --foreground: #f6f3ee;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
 }
-
-/* Replace Tailwind @apply with equivalent CSS if not using Tailwind's build process */
 
 body {
   background-color: var(--color-earth-100);
@@ -54,8 +55,9 @@ body {
 }
 
 .btn-primary {
-  background-color: var(--color-earth-700);
+  background-color: var(--color-rust-500);
   color: #fff;
+  font-family: var(--font-heading);
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 0.5rem;
@@ -65,12 +67,13 @@ body {
   transition-duration: 150ms;
 }
 .btn-primary:hover {
-  background-color: var(--color-earth-800);
+  background-color: var(--color-rust-700);
 }
 
 .btn-secondary {
-  background-color: var(--color-rust-600);
+  background-color: var(--color-green-400);
   color: #fff;
+  font-family: var(--font-heading);
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 0.5rem;
@@ -80,25 +83,27 @@ body {
   transition-duration: 150ms;
 }
 .btn-secondary:hover {
-  background-color: var(--color-rust-700);
+  background-color: var(--color-green-500);
 }
 
 .section-title {
-  font-size: 2.25rem; /* text-4xl */
-  font-weight: 700;   /* font-bold */
-  text-align: center; /* text-center */
-  margin-bottom: 3rem; /* mb-12 */
+  font-size: 2.5rem; /* text-4xl+ */
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 3rem;
   color: var(--color-earth-800);
+  letter-spacing: 0.01em;
 }
 
 .card {
-  background-color: #fff;
-  border-radius: 0.5rem;
-  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  background-color: var(--color-earth-100);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(76, 60, 40, 0.08), 0 4px 6px -4px rgba(76, 60, 40, 0.08);
   overflow: hidden;
   transition-property: transform, box-shadow;
   transition-duration: 300ms;
 }
 .card:hover {
-  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+  box-shadow: 0 20px 25px -5px rgba(76, 60, 40, 0.12), 0 8px 10px -6px rgba(76, 60, 40, 0.12);
 }
