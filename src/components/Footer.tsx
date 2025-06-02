@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-earth-100 border-earth-200 py-8 mt-16">
+    <footer className="w-full bg-earth-100 border-t-[6px] border-earth-200 pt-[16px]">
       <div className="container mx-auto px-4 flex flex-col items-center">
         <div className="flex flex-wrap justify-center gap-10 mb-4">
           <motion.a

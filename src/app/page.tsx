@@ -14,41 +14,43 @@ export default function Home() {
       <Navigation />
       <main className="min-h-screen bg-earth-100">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-earth-200 via-earth-100 to-green-100">
+        <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-rust-200 via-earth-100 to-green-100">
           {/* Background Image */}
-          <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 z-0 ">
             <div className="relative w-full h-full">
               <Image
-                src="/frontpagepic.png"
+                src="/Frontpagepic2.jpg"
                 alt="Hero Background"
                 fill
                 className="object-cover"
                 priority
               />
-              <div className="absolute inset-0 bg-earth-900/40" /> {/* Overlay for better text visibility */}
+              <div className="absolute inset-0 bg-rust-500/60" /> {/* Terracotta overlay for warmth */}
             </div>
           </div>
 
           {/* Hero Content */}
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4 relative z-10 flex flex-col items-start justify-center h-full min-h-[60vh] md:min-h-[70vh]">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-center text-earth-100"
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7 }}
+              className="text-left md:max-w-xl lg:max-w-2xl pt-24 md:pt-0"
             >
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 font-heading text-white drop-shadow-lg">
+              <h1 className="text-5xl md:text-8xl mb-6 font-cursive text-white pl-[66px] drop-shadow-xl tracking-tight ">
                 Sadra Madonna Lindsay
               </h1>
-              <p className="text-xl md:text-2xl mb-8 font-body text-white">
+              <p className="text-xl md:text-2xl lg:text-3xl mb-8 font-body text-white pl-[66px] drop-shadow-lg">
                 Gospel Artist  •  Author  •  Entrepreneur
               </p>
             </motion.div>
           </div>
         </section>
+        {/* Accent Bar */}
+        <div className="w-full h-4 bg-rust-400" />
 
         {/* About Section */}
-        <section id="about" className="py-20 bg-earth-200 border-b-2 border-earth-300">
+        <section id="about" className="py-20 bg-earth-100 border-b-4 border-rust-300">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -57,7 +59,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="max-w-4xl mx-auto"
             >
-              <h2 className="section-title text-earth-700">Learn About Me</h2>
+              <h2 className="section-title text-rust-500">Learn About Me</h2>
               <div className="flex justify-center my-6">
                 <img
                   src="/SML Logo V1.svg"
@@ -73,7 +75,7 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="card p-8 md:p-10 bg-earth-100/90 shadow-xl rounded-xl border border-earth-300"
+                className="card p-8 md:p-10 bg-earth-100/95 shadow-xl rounded-xl border-2 border-rust-200"
               >
                 <p className="text-lg md:text-xl text-center font-medium mb-8 text-earth-800 font-body">
                   Hi Everyone! I'm Sadra Madonna Lindsay. Welcome to my world, where God's grace abounds and every experience is a blessing.
@@ -164,7 +166,7 @@ export default function Home() {
         </section>
 
         {/* Connect Section */}
-        <section id="connect" className="py-20 bg-earth-100 border-t-2 border-green-300">
+        <section id="connect" className="py-20 bg-green-300 border-t-4 border-rust-400">
           <div className="container mx-auto px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -173,16 +175,16 @@ export default function Home() {
               viewport={{ once: true }}
               className="max-w-4xl mx-auto"
             >
-              <h2 className="section-title text-green-700">Connect With Me</h2>
-              <div className="card p-6 bg-green-300 border border-green-200 ">
-                <div className="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto ">
+              <h2 className="section-title text-amber-100">Connect With Me</h2>
+              <div className="card p-6 bg-green-300 border-2 border-rust-300">
+                <div className="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
                   <motion.a
                     href="https://www.youtube.com/@sadramadonna8549"
                     target="_blank"
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, x: 6, color: '#E53E3E' }}
                     whileTap={{ scale: 0.97 }}
-                    className="block text-lg text-earth-700 hover:text-red-600 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
+                    className="block text-lg text-earth-100 hover:text-red-600 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
                   >
                     Listen on YouTube
                   </motion.a>
@@ -192,7 +194,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, x: 6, color: '#1DB954' }}
                     whileTap={{ scale: 0.97 }}
-                    className="block text-lg text-earth-700 hover:text-green-600 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
+                    className="block text-lg text-earth-100 hover:text-green-600 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
                   >
                     Listen on Spotify
                   </motion.a>
@@ -202,7 +204,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, x: 6, color: '#FA57C1' }}
                     whileTap={{ scale: 0.97 }}
-                    className="block text-lg text-earth-700 hover:text-pink-500 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
+                    className="block text-lg text-earth-100 hover:text-pink-500 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
                   >
                     Listen on Apple Music
                   </motion.a>
@@ -212,7 +214,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, x: 6, color: '#FFDD00' }}
                     whileTap={{ scale: 0.97 }}
-                    className="block text-lg text-earth-700 hover:text-yellow-500 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
+                    className="block text-lg text-earth-100 hover:text-yellow-500 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
                   >
                     Listen on Boomplay
                   </motion.a>
@@ -222,7 +224,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, x: 6, color: '#E1306C' }}
                     whileTap={{ scale: 0.97 }}
-                    className="block text-lg text-earth-700 hover:text-pink-600 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
+                    className="block text-lg text-earth-100 hover:text-pink-600 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
                   >
                     Add me on Instagram
                   </motion.a>
@@ -232,7 +234,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, x: 6, color: '#1877F3' }}
                     whileTap={{ scale: 0.97 }}
-                    className="block text-lg text-earth-700 hover:text-blue-700 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
+                    className="block text-lg text-earth-100 hover:text-blue-700 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
                   >
                     Add me on Facebook
                   </motion.a>
@@ -242,7 +244,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, x: 6, color: '#010101' }}
                     whileTap={{ scale: 0.97 }}
-                    className="block text-lg text-earth-700 hover:text-black font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
+                    className="block text-lg text-earth-100 hover:text-black font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
                   >
                     Follow on TikTok
                   </motion.a>
