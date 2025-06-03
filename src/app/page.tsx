@@ -70,6 +70,18 @@ export default function Home() {
                   onError={(e) => { e.currentTarget.src = '/SML Logo V1.png'; }}
                 />
               </div>
+
+              <br /> <br /> <br />
+              <motion.p
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7 }}
+                className="text-lg md:text-xl text-center font-medium mb-8 text-earth-800 font-body"
+              >
+                Hi Everyone! I'm Sadra Madonna Lindsay. Welcome to my world, where God's grace abounds and every experience is a blessing.
+              </motion.p>
+              <br />
+
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -77,9 +89,6 @@ export default function Home() {
                 viewport={{ once: true }}
                 className="card p-8 md:p-10 bg-earth-100/95 shadow-xl rounded-xl border-2 border-rust-200"
               >
-                <p className="text-lg md:text-xl text-center font-medium mb-8 text-earth-800 font-body">
-                  Hi Everyone! I'm Sadra Madonna Lindsay. Welcome to my world, where God's grace abounds and every experience is a blessing.
-                </p>
                 <motion.p
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
@@ -87,7 +96,6 @@ export default function Home() {
                   viewport={{ once: true }}
                   className="text-xl font-semibold text-earth-700 mb-6 text-center"
                 >
-                  <br /> <br />
                   My Career: <span className="font-normal text-earth-800">Gospel Recording Artist, Award Winning Author and Entrepreneur.</span>
                 </motion.p>
                 <div className="space-y-6 mb-8">
@@ -247,6 +255,16 @@ export default function Home() {
                     className="block text-lg text-earth-100 hover:text-black font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
                   >
                     Follow on TikTok
+                  </motion.a>
+                    <motion.a
+                    href="mailto:sadramadonnalindsay@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05, x: 6, color: '#1877F3' }}
+                    whileTap={{ scale: 0.97 }}
+                    className="block text-lg text-earth-100 hover:text-red-600 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer"
+                  >
+                    Send Me an Email
                   </motion.a>
                 </div>
               </div>
