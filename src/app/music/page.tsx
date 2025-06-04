@@ -36,7 +36,7 @@ export default function MusicPage() {
               <h1 className="text-5xl md:text-7xl font-cursive text-white drop-shadow-xl tracking-tight mb-6">
                Check Out My Music!
               </h1>
-              <p className="text-xl md:text-2xl font-body text-white drop-shadow-lg max-w-2xl">
+              <p className="text-xl md:text-2xl font-serif text-white drop-shadow-lg max-w-2xl">
                 Experience the soulful sounds of Sadra Madonna Lindsay's gospel music.
               </p>
             </motion.div>
@@ -55,7 +55,7 @@ export default function MusicPage() {
               viewport={{ once: true }}
               className="flex flex-col items-center"
             >
-              <h2 className="section-title text-green-700 mb-10">Featured Songs</h2>
+              <h2 className="section-title text-green-700 mb-10 font-cursive">Featured Songs</h2>
               <Accordion
                 items={[
                   {
@@ -63,7 +63,7 @@ export default function MusicPage() {
                     videoUrl: 'https://www.youtube.com/embed/n4oBav8yVn4',
                     description:
                       "A song of comfort and hope, reminding us to trust in God's timing and breathe through life's storms.",
-                    bgColor: 'bg-green-50 md:bg-green-200',
+                    bgColor: 'bg-green-300 md:bg-green-300',
                     side: 'left',
                   },
                   {
@@ -71,7 +71,7 @@ export default function MusicPage() {
                     videoUrl: 'https://www.youtube.com/embed/hXDyrCGqMoE',
                     description:
                       'A heartfelt expression of gratitude for blessings received and the journey of faith.',
-                    bgColor: 'bg-rust-50 md:bg-rust-200',
+                    bgColor: 'bg-[#E2725B] md:bg-[#E2725B]',
                     side: 'right',
                   },
                   {
@@ -87,7 +87,7 @@ export default function MusicPage() {
                     videoUrl: 'https://www.youtube.com/embed/thXJSOgEvi4',
                     description:
                       'A moving anthem about stepping out in faith, even when the path is uncertain.',
-                    bgColor: 'bg-earth-50 md:bg-earth-200',
+                    bgColor: 'bg-green-300 md:bg-green-300',
                     side: 'right',
                   },
                 ]}

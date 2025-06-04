@@ -18,7 +18,7 @@ export default function Accordion({ items }: AccordionProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <div className="w-[60vw] max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-2xl bg-white">
+    <div className="w-[60vw] max-w-3xl mx-auto rounded-2xl overflow-hidden shadow-2xl bg-white" >
       {items.map((item, idx) => {
         const isOpen = openIndex === idx;
         return (
@@ -32,7 +32,7 @@ export default function Accordion({ items }: AccordionProps) {
               onClick={() => setOpenIndex(isOpen ? null : idx)}
               aria-expanded={isOpen}
             >
-              <span className="text-2xl md:text-3xl font-cursive text-earth-800 tracking-wide text-left">
+              <span className="text-2xl md:text-3xl font-serif text-earth-800 tracking-wide text-left">
                 {item.title}
               </span>
               <motion.span
@@ -72,7 +72,7 @@ export default function Accordion({ items }: AccordionProps) {
                         </div>
                       </div>
                       <div className="w-full md:w-1/2 text-left">
-                        <p className="text-lg md:text-xl font-body text-earth-900">
+                        <p className="text-lg md:text-xl font-serif border-[2px] p-[10px] text-earth-900">
                           {item.description}
                         </p>
                       </div>
@@ -80,7 +80,7 @@ export default function Accordion({ items }: AccordionProps) {
                   ) : (
                     <>
                       <div className="w-full md:w-1/2 text-left order-2 md:order-1">
-                        <p className="text-lg md:text-xl font-body text-earth-900">
+                        <p className="text-lg md:text-xl font-serif border-[2px] p-[10px] text-earth-900">
                           {item.description}
                         </p>
                       </div>
@@ -89,7 +89,6 @@ export default function Accordion({ items }: AccordionProps) {
                           <iframe
                             src={item.videoUrl}
                             title={item.title}
-                            frameBorder="0"
                             allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                             className="w-full h-full"

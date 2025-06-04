@@ -30,19 +30,16 @@ export default function Home() {
           </div>
 
           {/* Hero Content */}
-          <div className="container mx-auto px-4 relative z-10 flex flex-col items-start justify-center h-full min-h-[60vh] md:min-h-[70vh]">
+          <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center h-full min-h-[60vh] md:min-h-[70vh]">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
-              className="text-left md:max-w-xl lg:max-w-2xl pt-24 md:pt-0"
+              className="w-full flex flex-col items-center justify-center pt-24 md:pt-0"
             >
-              <h1 className="text-5xl md:text-8xl mb-6 font-cursive text-white pl-[66px] drop-shadow-xl tracking-tight ">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-white drop-shadow-xl tracking-tight text-center whitespace-nowrap max-w-full">
                 Sadra Madonna Lindsay
               </h1>
-              <p className="text-xl md:text-2xl lg:text-3xl mb-8 font-body text-white pl-[66px] drop-shadow-lg">
-                Gospel Artist  •  Author  •  Entrepreneur
-              </p>
             </motion.div>
           </div>
         </section>
