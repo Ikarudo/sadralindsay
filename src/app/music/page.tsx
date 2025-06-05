@@ -33,7 +33,7 @@ export default function MusicPage() {
               transition={{ duration: 0.7 }}
               className="text-left pt-24 md:pt-0 pl-0 md:pl-24 lg:pl-32"
             >
-              <h1 className="text-5xl md:text-7xl font-cursive text-white drop-shadow-xl tracking-tight mb-6">
+              <h1 className="text-5xl md:text-7xl font-heading text-white drop-shadow-xl tracking-tight mb-6">
                Check Out My Music!
               </h1>
               <p className="text-xl md:text-2xl font-serif text-white drop-shadow-lg max-w-2xl">
@@ -71,7 +71,7 @@ export default function MusicPage() {
                     videoUrl: 'https://www.youtube.com/embed/hXDyrCGqMoE',
                     description:
                       'A heartfelt expression of gratitude for blessings received and the journey of faith.',
-                    bgColor: 'bg-[#E2725B] md:bg-[#E2725B]',
+                    bgColor: 'bg-[#c23c03] md:bg-[#c23c03]]',
                     side: 'right',
                   },
                   {
@@ -79,7 +79,7 @@ export default function MusicPage() {
                     videoUrl: 'https://www.youtube.com/embed/-q8OXRDh7zU',
                     description:
                       'A soulful rendition of the Lords Prayer, celebrating faith and connection to the divine.',
-                    bgColor: 'bg-orange-50 md:bg-orange-200',
+                    bgColor: 'bg-[#c23c03] md:bg-[#c23c03]',
                     side: 'left',
                   },
                   {
@@ -97,7 +97,7 @@ export default function MusicPage() {
         </section>
 
         {/* Music Career Section with musicpic2.png */}
-        <section className="py-20 bg-[#E2725B] border-t-4 border-rust-400">
+        <section className="py-20 bg-[#c23c03] border-t-4 border-rust-400">
           <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-10 max-w-[1100px]">
             <div className="w-full md:w-1/2 flex justify-center">
               <Image
