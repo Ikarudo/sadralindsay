@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-earth-100 border-t-[6px] border-earth-200 pt-[16px]">
+    <footer className="w-full bg-earth-100 border-t-[6px] border-earth-200 pt-[26px]">
       <div className="container mx-auto px-4 flex flex-col items-center">
         <div className="flex flex-wrap justify-center gap-10 mb-4">
           <motion.a
@@ -76,8 +76,7 @@ export default function Footer() {
             >
               <FaApple size={36} />
             </motion.a>
-            {/* Boomplay icon is not available in react-icons, so you may add a placeholder or custom SVG if needed */}
-            {/* <motion.a ...> ... </motion.a> */}
+            
           </div>
         </div>
         <div className="mt-6 text-xs text-earth-400 text-center">

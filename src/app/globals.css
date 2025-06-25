@@ -2,44 +2,46 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f6f3ee;
-  --foreground: #2a1a0e;
-  --color-earth-100: #f6f3ee; /* Cream */
-  --color-earth-200: #e3c9a6; /* Light tan */
-  --color-earth-300: #cfa97e; /* Warm tan */
-  --color-earth-400: #a86a2d; /* Glazed terracotta brown */
-  --color-earth-500: #7a3e13; /* Deep brown */
-  --color-earth-600: #5a2a0a; /* Espresso brown */
-  --color-earth-700: #3d1a07; /* Very deep brown */
-  --color-earth-800: #2a1205; /* Near black brown */
-  --color-earth-900: #1a0a03; /* Black brown */
+  --background: #F5E2C4; /* Creamy beige from poster */
+  --foreground: #222222; /* Rich black from poster */
 
-  --color-rust-100: #ffe7d1; /* Light orange */
-  --color-rust-200: #ffb87a; /* Vibrant orange */
-  --color-rust-300: #ff7a1a; /* Punchy orange */
-  --color-rust-400: #e85c00; /* Deep terracotta orange */
-  --color-rust-500: #c1440e; /* Glazed terracotta */
-  --color-rust-600: #a13a0a; /* Burnt orange */
-  --color-rust-700: #7a2a06; /* Dark terracotta */
-  --color-rust-800: #5a1a03; /* Very dark orange */
-  --color-rust-900: #3a0a01; /* Black orange */
+  --color-earth-100: #F5E2C4; /* Creamy beige */
+  --color-earth-200: #EFCBA9; /* Light tan (harmonizes with beige) */
+  --color-earth-300: #E3B07A; /* Warm tan */
+  --color-earth-400: #E97B4A; /* Terracotta/Orange (main accent) */
+  --color-earth-500: #B71C1C; /* Deep Red (LIVE banner) */
+  --color-earth-600: #D4A24C; /* Accent Gold */
+  --color-earth-700: #222222; /* Rich black */
+  --color-earth-800: #FFFFFF; /* White */
+  --color-earth-900: #B71C1C; /* Deep Red (for strong accents) */
+
+  --color-rust-100: #FFE7D1; /* Light orange */
+  --color-rust-200: #E97B4A; /* Terracotta/Orange */
+  --color-rust-300: #B71C1C; /* Deep Red */
+  --color-rust-400: #D4A24C; /* Gold accent */
+  --color-rust-500: #222222; /* Black for text */
+  --color-rust-600: #FFFFFF; /* White for text */
+  --color-rust-700: #E3B07A; /* Warm tan */
+  --color-rust-800: #EFCBA9; /* Light tan */
+  --color-rust-900: #F5E2C4; /* Creamy beige */
+
+  --color-gold: #D4A24C; /* Accent gold */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Nunito', Arial, Helvetica, sans-serif;
 
   --color-green-100: #e6f2e6; /* Light green */
   --color-green-200: #a7d7a7; /* Soft green */
   --color-green-300: #5a8b5d; /* Vibrant green */
   --color-green-400: #217a2b; /* Deep forest green */
   --color-green-500: #14521b; /* Rich forest green */
-
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-heading: 'Playfair Display', serif;
-  --font-body: 'Nunito', Arial, Helvetica, sans-serif;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #1a0a03;
-    --foreground: #f6f3ee;
+    --background: #222222;
+    --foreground: #F5E2C4;
   }
 }
 
@@ -51,7 +53,7 @@ body {
 
 body {
   background-color: var(--color-earth-100);
-  color: var(--color-earth-900);
+  color: var(--color-earth-700);
 }
 
 .btn-primary {

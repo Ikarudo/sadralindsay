@@ -71,7 +71,7 @@ export default function Navigation() {
                   isActive(link.href) ? 'font-semibold' : ''
                 }`}
                 style={{
-                  color: isScrolled ? '#6B4F27' : cream,
+                  color: isScrolled ? 'white' : cream,
                 }}
               >
                 {link.label}

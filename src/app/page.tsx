@@ -30,14 +30,14 @@ export default function Home() {
           </div>
 
           {/* Hero Content */}
-          <div className="container mx-auto px-4 relative z-10 flex flex-col items-center justify-center h-full min-h-[60vh] md:min-h-[70vh]">
+          <div className="container mx-auto px-2 sm:px-4 relative z-10 flex flex-col items-center justify-center h-full min-h-[60vh] md:min-h-[70vh]">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
-              className="w-full flex flex-col items-center justify-center pt-24 md:pt-0"
+              className="w-full flex flex-col items-center justify-center pt-16 md:pt-0"
             >
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-white drop-shadow-xl tracking-tight text-center whitespace-nowrap max-w-full">
+              <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-white drop-shadow-xl tracking-tight text-center break-words max-w-full">
                 Sadra Madonna Lindsay
               </h1>
             </motion.div>
@@ -47,8 +47,8 @@ export default function Home() {
         <div className="w-full h-4 bg-rust-400" />
 
         {/* About Section */}
-        <section id="about" className="py-20 bg-earth-100 border-b-4 border-rust-300">
-          <div className="container mx-auto px-4">
+        <section id="about" className="py-10 md:py-20 bg-earth-100 border-b-4 border-rust-300">
+          <div className="container mx-auto px-2 sm:px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -56,12 +56,12 @@ export default function Home() {
               viewport={{ once: true }}
               className="max-w-4xl mx-auto"
             >
-              <h2 className="section-title text-rust-500">Learn About Me</h2>
+              <h2 className="section-title !text-black">Learn About Me</h2>
               <div className="flex justify-center my-6">
                 <img
                   src="/SML Logo V1.svg"
                   alt="SML Logo V1"
-                  style={{ width: '300px', height: '300px', objectFit: 'contain' }}
+                  style={{ width: '180px', height: '180px', objectFit: 'contain' }}
                   className="rounded mx-auto drop-shadow-lg border-4 border-earth-300 bg-earth-100"
                   draggable="false"
                   onError={(e) => { e.currentTarget.src = '/SML Logo V1.png'; }}
@@ -73,7 +73,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7 }}
-                className="text-lg md:text-xl text-center font-medium mb-8 text-earth-800 font-body"
+                className="text-base sm:text-lg md:text-xl text-center font-medium mb-8 text-earth-800 font-body"
               >
                 Hi Everyone! I'm Sadra Madonna Lindsay. Welcome to my world, where God's grace abounds and every experience is a blessing.
               </motion.p>
@@ -84,14 +84,14 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.2 }}
                 viewport={{ once: true }}
-                className="card p-8 md:p-10 bg-earth-100/95 shadow-xl rounded-xl border-2 border-rust-200"
+                className="card p-4 sm:p-8 md:p-10 bg-earth-100/95 shadow-xl rounded-xl border-2 border-rust-200"
               >
                 <motion.p
                   initial={{ opacity: 0, x: -30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.7, delay: 0.3 }}
                   viewport={{ once: true }}
-                  className="text-xl font-semibold text-earth-700 mb-6 text-center"
+                  className="text-base sm:text-xl font-semibold text-earth-700 mb-6 text-center"
                 >
                   My Career: <span className="font-normal text-earth-800">Gospel Recording Artist, Award Winning Author and Entrepreneur.</span>
                 </motion.p>
@@ -156,8 +156,8 @@ export default function Home() {
 
                   <br /> <br />
 
-                  <h3 className="text-[28px] font-semibold text-earth-700 mb-2 text-center">Who I Am</h3>
-                  <p className="text-earth-600 leading-relaxed">
+                  <h3 className="text-xl sm:text-2xl md:text-[28px] font-semibold text-earth-700 mb-2 text-center">Who I Am</h3>
+                  <p className="text-earth-600 leading-relaxed text-base sm:text-lg">
                     Sadra Madonna Linday is a Minister of the Gospel, an Award Winning Gospel Recording Artist and Author, she is a wife, mother, entrepreneur, motivational speaker, Worship Leader, a student of Theology and a student of Law. 
                     She is an enthusiastic creative who believes in using her talents and gifts for the furthering of the Gospel. She is married to Pastor Sherwayen Lindsay, and together they serve as Ministers within The Assemblies of the First Born Church International Jamaica. 
                     She is the mother of two sons, Micah and Joshua. She stands firmly by the scripture, as written in Matt. 14:28 "Lord bid me to come and I will walk upon water". She holds a Bachelor of Arts Degree in Literatures in English and Philosophy, a Bachelor of Laws Degree, 
@@ -171,8 +171,8 @@ export default function Home() {
         </section>
 
         {/* Connect Section */}
-        <section id="connect" className="py-20 bg-green-300 border-t-4 border-rust-400">
-          <div className="container mx-auto px-4">
+        <section id="connect" className="py-10 md:py-20 bg-green-300 border-t-4 border-rust-400">
+          <div className="container mx-auto px-2 sm:px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -180,9 +180,9 @@ export default function Home() {
               viewport={{ once: true }}
               className="max-w-4xl mx-auto"
             >
-              <h2 className="section-title text-amber-100">Connect With Me</h2>
-              <div className="card p-6 bg-green-300 border-2 border-rust-300">
-                <div className="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-6 mx-auto">
+              <h2 className="section-title !text-black">Connect With Me</h2>
+              <div className="card p-4 sm:p-6 border-2 border-rust-300">
+                <div className="w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 mx-auto">
                   <motion.a
                     href="https://www.youtube.com/@sadramadonna8549"
                     target="_blank"
