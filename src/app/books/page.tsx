@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import BookCard from '@/components/BookCard';
 import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
 import Navigation from '@/components/Navigation';
@@ -13,11 +12,27 @@ import Image from 'next/image';
 const sampleBooks = [
   {
     id: '1',
-    title: 'Book Title 1',
+    title: 'Biblically Guided Planner',
     author: 'Sadra Madonna Lindsay',
-    coverImage: '/book1.jpg',
-    price: 19.99,
-    description: 'A captivating story that will keep you engaged from start to finish.',
+    coverImage: '/GuidedPlanner.jpg',
+    price: 60.00,
+    description: 'The Faith-Based Strategic Planner helps individuals plan purposefully by blending biblical wisdom with practical strategies. Guided by scripture, it provides a blueprint for success in business and life, featuring planning strategies, an annual performance review guide, a monthly bill organizer for budgeting, and a vision boarding section for goal setting.',
+  },
+  {
+    id: '2',
+    title: 'Biblically Guided Journal',
+    author: 'Sadra Madonna Lindsay',
+    coverImage: '/guidedjournal.png',
+    price: 35.00,
+    description: 'This teaching tool fosters purposeful living by highlighting gratitude\'s role in life outcomes and encouraging reflection on life\'s moments. Guided by grace, it explores unique aspects of personal journaling, promotes acceptance of all life stages, and encourages a balanced view of experiences, with spaces for journaling and expressing insights.',
+  },
+  {
+    id: '3',
+    title: 'An Inspired Poetic Memoir',
+    author: 'Sadra Madonna Lindsay',
+    coverImage: '/PoeticMemoir.png',
+    price: 15.00,
+    description: 'The Life Guiding Tool focuses on five key areas of life, promoting reflection and appreciation of life\'s moments while encouraging acceptance and appreciation of all life stages.',
   },
   // Add more books here
 ];
@@ -79,7 +94,7 @@ function BooksPageContent() {
                 <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
                   <div className="w-full md:w-1/2">
                     <Image
-                      src="/aboutbookspic2.png"
+                      src="/aboutbookspic2.jpg"
                       alt="About Books"
                       width={500}
                       height={300}
@@ -117,17 +132,18 @@ function BooksPageContent() {
               </div>
             </motion.div>
           </div>
+          <br /> <br /> <br /> <br /> <br />
         </section>
+    
 
         {/* Books Grid Section */}
-        <section className="py-10 md:py-20 bg-earth-100 border-b-4 border-rust-300">
-          <div className="container mx-auto px-2 sm:px-4">
+        <section className="py-10 md:py-20 bg-green-300">
+          <div className="w-full max-w-6xl mx-auto px-2 sm:px-4">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="max-w-6xl mx-auto"
             >
               <h2 className="section-title !text-black">All Books</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-8 md:mt-10">
@@ -149,15 +165,16 @@ function BooksPageContent() {
                     />
                     <h3 className="text-lg md:text-xl font-bold text-earth-800 mb-2">{book.title}</h3>
                     <p className="text-earth-700 mb-4 text-base md:text-lg">{book.description}</p>
+                    <div className="text-[24px] md:text-[24px] font-extrabold text-black mb-4">${book.price.toFixed(2)} USD</div>
                     <motion.a
                       href={`https://www.amazon.com/dp/${book.id}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="inline-block px-4 py-2 bg-rust-500 text-white rounded-lg font-medium hover:bg-rust-600 transition-colors duration-200 text-sm md:text-base"
+                      className="block w-full max-w-[220px] mx-auto px-8 py-4 bg-[#b2121e] text-black border-2 border-black rounded-full font-bold text-lg md:text-xl text-center shadow-lg hover:bg-[#8e0e17] transition-colors duration-200 mt-2 mb-1"
                     >
-                      Buy on Amazon
+                      Buy Now
                     </motion.a>
                   </motion.div>
                 ))}

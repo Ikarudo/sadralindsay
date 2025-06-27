@@ -99,7 +99,7 @@ export default function MusicPage() {
         <br /> <br /> <br /> <br /> <br />
 
         {/* Music Career Section with musicpic2.png */}
-        <section className="py-20 bg-[#b2121e] border-t-4 border-rust-400">
+        <section className="py-20 bg-green-300 border-t-4 border-rust-400">
           <div className="container mx-auto px-4 flex flex-col md:flex-row items-center gap-10 max-w-[1100px]">
             <div className="w-full md:w-1/2 flex justify-center">
               <Image
@@ -110,25 +110,29 @@ export default function MusicPage() {
                 className="rounded-xl shadow-lg border-4 border-black bg-earth-100 object-cover"
               />
             </div>
-            <div className="w-full md:w-1/2 border-white border-[2px] p-[38px] pb-[60px] text-center">
-              <motion.h3
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                viewport={{ once: true }}
-                className="text-3xl font-heading text-white mb-4 text-center md:text-left"
-              >
-                A Life in Gospel Music
-              </motion.h3>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="text-lg text-white font-body text-center md:text-left"
-              >
-                Sadra Madonna Lindsay has touched countless lives through her powerful voice and heartfelt lyrics. Her journey as a gospel singer is marked by faith, resilience, and a passion for sharing the message of hope and love. Each song is a testament to her devotion and her desire to uplift and inspire listeners around the world.
-              </motion.p>
+            <div className="w-full md:w-1/2 flex justify-center">
+              <div className="card p-6 sm:p-8 md:p-10 border-2 border-rust-300 bg-earth-100 w-full text-left">
+                <motion.h3
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true }}
+                  className="text-3xl font-heading text-black mb-4 text-left"
+                >
+                  A Life in Gospel Music
+                </motion.h3>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="text-lg text-black font-body text-left"
+                >
+                  Sadra Madonna Lindsay has touched countless lives through her powerful voice and heartfelt lyrics.
+                   Her journey as a gospel singer is marked by faith, resilience, and a passion for sharing the message of hope and love. 
+                   Each song is a testament to her devotion and her desire to uplift and inspire listeners around the world.
+                </motion.p>
+              </div>
             </div>
           </div>
         </section>

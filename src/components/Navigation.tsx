@@ -42,7 +42,7 @@ export default function Navigation() {
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-green-300/90 backdrop-blur-sm shadow-lg'
+          ? 'bg-[#ee8e5a] backdrop-blur-sm shadow-lg'
           : 'bg-transparent'
       }`}
     >
@@ -88,9 +88,9 @@ export default function Navigation() {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            <div className={`w-6 h-0.5 mb-1.5 transition-transform duration-300 ${isScrolled ? 'bg-earth-700' : ''}`} style={{ background: isScrolled ? '#6B4F27' : cream }}></div>
-            <div className={`w-6 h-0.5 mb-1.5 transition-transform duration-300 ${isScrolled ? 'bg-earth-700' : ''}`} style={{ background: isScrolled ? '#6B4F27' : cream }}></div>
-            <div className={`w-6 h-0.5 transition-transform duration-300 ${isScrolled ? 'bg-earth-700' : ''}`} style={{ background: isScrolled ? '#6B4F27' : cream }}></div>
+            <div className={`w-6 h-0.5 mb-1.5 transition-transform duration-300 ${isScrolled ? 'bg-earth-700' : ''}`} style={{ background: isScrolled ? 'white' : cream }}></div>
+            <div className={`w-6 h-0.5 mb-1.5 transition-transform duration-300 ${isScrolled ? 'bg-earth-700' : ''}`} style={{ background: isScrolled ? 'white' : cream }}></div>
+            <div className={`w-6 h-0.5 transition-transform duration-300 ${isScrolled ? 'bg-earth-700' : ''}`} style={{ background: isScrolled ? 'white' : cream }}></div>
           </button>
         </div>
 
@@ -109,7 +109,7 @@ export default function Navigation() {
                   isActive(link.href) ? 'font-semibold' : ''
                 }`}
                 style={{
-                  color: isScrolled ? '#6B4F27' : cream,
+                  color: isScrolled ? 'white' : cream,
                 }}
                 onClick={() => setIsMenuOpen(false)}
               >
