@@ -3,23 +3,23 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
-interface BookCardProps {
+interface ProductCardProps {
   title: string;
-  author: string;
+  category: string;
   coverImage: string;
   price: number;
   description: string | string[];
   onAddToCart: (quantity: number) => void;
 }
 
-export default function BookCard({
+export default function ProductCard({
   title,
-  author,
+  category,
   coverImage,
   price,
   description,
   onAddToCart,
-}: BookCardProps) {
+}: ProductCardProps) {
   const [isHovered, setIsHovered] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
@@ -60,7 +60,7 @@ export default function BookCard({
         className="rounded-lg shadow-lg mb-4 w-full h-auto max-w-xs md:max-w-full"
       />
       <h3 className="text-lg md:text-xl font-bold text-earth-800 mb-2 font-serif">{title}</h3>
-      <p className="text-earth-700 mb-2 text-base md:text-lg font-sans">by {author}</p>
+      <p className="text-earth-700 mb-2 text-base md:text-lg font-sans capitalize">{category}</p>
       {renderDescription()}
       <div className="flex items-center mb-4">
         <label htmlFor="quantity" className="mr-2 font-semibold text-earth-900">Qty:</label>

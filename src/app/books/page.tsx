@@ -17,7 +17,11 @@ const sampleBooks = [
     author: 'Sadra Madonna Lindsay',
     coverImage: '/GuidedPlanner.jpg',
     price: 60.00,
-    description: 'The Faith-Based Strategic Planner helps individuals plan purposefully by blending biblical wisdom with practical strategies. Guided by scripture, it provides a blueprint for success in business and life, featuring planning strategies, an annual performance review guide, a monthly bill organizer for budgeting, and a vision boarding section for goal setting.',
+    description: [
+      'A faith-based strategic planner that helps individuals redeem time and plan purposefully, blending biblical wisdom with practical strategies and offering a scriptural blueprint for success in business and life.',
+      'Educational resource with sound planning strategies, including an annual performance review guide.',
+      'Features a monthly bill organizer for budgeting and a vision boarding section for goal setting.',
+    ],
   },
   {
     id: '2',
@@ -25,7 +29,11 @@ const sampleBooks = [
     author: 'Sadra Madonna Lindsay',
     coverImage: '/guidedjournal.png',
     price: 35.00,
-    description: 'This teaching tool fosters purposeful living by highlighting gratitude\'s role in life outcomes and encouraging reflection on life\'s moments. Guided by grace, it explores unique aspects of personal journaling, promotes acceptance of all life stages, and encourages a balanced view of experiences, with spaces for journaling and expressing insights.',
+    description: [
+      'A teaching tool for purposeful living, emphasizing gratitude\'s impact on life outcomes and promoting reflection, acceptance, and appreciation of all life stages with a balanced perspective.',
+      'Guides readers to approach life with grace, addressing underexplored aspects of personal journaling.',
+      'Provides dedicated spaces for journaling and expressing insights on covered areas.',
+    ],
   },
   {
     id: '3',
@@ -33,7 +41,11 @@ const sampleBooks = [
     author: 'Sadra Madonna Lindsay',
     coverImage: '/PoeticMemoir.png',
     price: 15.00,
-    description: 'The Life Guiding Tool focuses on five key areas of life, promoting reflection and appreciation of life\'s moments while encouraging acceptance and appreciation of all life stages.',
+    description: [
+      'A Life guiding tool which focuses on five specific areas of life and living',
+      'Focuses on reflection and appreciating life\'s moments',
+      'Promotes acceptance and appreciation of all life stages'
+    ],
   },
   // Add more books here
 ];

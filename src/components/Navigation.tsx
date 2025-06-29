@@ -26,6 +26,7 @@ export default function Navigation() {
     { href: '/', label: 'Home' },
     { href: '/music', label: 'Music' },
     { href: '/books', label: 'Books' },
+    { href: '/store', label: 'Store' },
     { href: '/cart', label: 'Cart', icon: <FaShoppingCart className="inline-block mb-1 mr-1" /> },
     { href: '/#about', label: 'About' },
     { href: '/#connect', label: 'Connect' },
@@ -36,7 +37,8 @@ export default function Navigation() {
     return (
       (href === '/' && pathname === '/') ||
       (href === '/music' && pathname === '/music') ||
-      (href === '/books' && pathname === '/books')
+      (href === '/books' && pathname === '/books') ||
+      (href === '/store' && pathname === '/store')
     );
   };
 
