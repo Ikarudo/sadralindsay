@@ -7,6 +7,7 @@ import Navigation from '@/components/Navigation';
 import { CartProvider } from '@/context/CartContext';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
+import BookCard from '@/components/BookCard';
 
 // Sample book data - replace with actual data from your database
 const sampleBooks = [
@@ -69,14 +70,26 @@ function BooksPageContent() {
               transition={{ duration: 0.7 }}
               className="w-full flex flex-col items-center justify-center pt-16 md:pt-0"
             >
-              <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-white drop-shadow-xl tracking-tight text-center break-words max-w-full">
-                My Books
+              <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-white drop-shadow-xl tracking-tight text-center break-words max-w-full"
+
+              >
+                Books
               </h1>
             </motion.div>
           </div>
         </section>
         {/* Accent Bar */}
         <div className="w-full h-4 bg-rust-400" />
+
+        {/* SML Books Logo */}
+        <div className="flex justify-center items-center mt-[65px] my-8">
+          <img
+            src="/SMLBooksLogo.jpg"
+            alt="SML Books Logo"
+            className="w-[280px] md:w-[360px] border-[3px] border-earth-700 rounded-lg shadow-sm bg-white"
+            style={{ maxWidth: '80vw', height: 'auto' }}
+          />
+        </div>
 
         {/* Intro/Overview Section */}
         <section className="py-10 md:py-20 bg-earth-100 border-b-4 border-rust-300">
@@ -146,37 +159,24 @@ function BooksPageContent() {
               viewport={{ once: true }}
             >
               <h2 className="section-title !text-black">All Books</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-8 md:mt-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {sampleBooks.map((book) => (
-                  <motion.div
+                  <BookCard
                     key={book.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: true }}
-                    className="card p-4 md:p-6 bg-earth-100/95 shadow-xl rounded-xl border-2 border-rust-200"
-                  >
-                    <Image
-                      src={book.coverImage}
-                      alt={book.title}
-                      width={300}
-                      height={400}
-                      className="rounded-lg shadow-lg mb-4 w-full h-auto max-w-xs md:max-w-full"
-                    />
-                    <h3 className="text-lg md:text-xl font-bold text-earth-800 mb-2">{book.title}</h3>
-                    <p className="text-earth-700 mb-4 text-base md:text-lg">{book.description}</p>
-                    <div className="text-[24px] md:text-[24px] font-extrabold text-black mb-4">${book.price.toFixed(2)} USD</div>
-                    <motion.a
-                      href={`https://www.amazon.com/dp/${book.id}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="block w-full max-w-[220px] mx-auto px-8 py-4 bg-[#b2121e] text-black border-2 border-black rounded-full font-bold text-lg md:text-xl text-center shadow-lg hover:bg-[#8e0e17] transition-colors duration-200 mt-2 mb-1"
-                    >
-                      Buy Now
-                    </motion.a>
-                  </motion.div>
+                    title={book.title}
+                    author={book.author}
+                    coverImage={book.coverImage}
+                    price={book.price}
+                    description={book.description}
+                    onAddToCart={(quantity) => {
+                      addItem({
+                        id: book.id,
+                        title: book.title,
+                        price: book.price,
+                        coverImage: book.coverImage,
+                      }, quantity);
+                    }}
+                  />
                 ))}
               </div>
             </motion.div>
@@ -188,10 +188,4 @@ function BooksPageContent() {
   );
 }
 
-export default function BooksPage() {
-  return (
-    <CartProvider>
-      <BooksPageContent />
-    </CartProvider>
-  );
-} 
+export default BooksPageContent; 

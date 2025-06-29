@@ -9,7 +9,7 @@ interface BookCardProps {
   coverImage: string;
   price: number;
   description: string;
-  onAddToCart: () => void;
+  onAddToCart: (quantity: number) => void;
 }
 
 export default function BookCard({
@@ -21,34 +21,48 @@ export default function BookCard({
   onAddToCart,
 }: BookCardProps) {
   const [isHovered, setIsHovered] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+
+  const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = Math.max(1, parseInt(e.target.value) || 1);
+    setQuantity(value);
+  };
 
   return (
     <div
-      className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:shadow-xl"
+      className="card p-4 md:p-6 bg-earth-100/95 shadow-xl rounded-xl border-2 border-rust-200 flex flex-col h-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative h-64 w-full">
-        <Image
-          src={coverImage}
-          alt={title}
-          fill
-          className="object-cover"
+      <Image
+        src={coverImage}
+        alt={title}
+        width={300}
+        height={400}
+        className="rounded-lg shadow-lg mb-4 w-full h-auto max-w-xs md:max-w-full"
+      />
+      <h3 className="text-lg md:text-xl font-bold text-earth-800 mb-2 font-serif">{title}</h3>
+      <p className="text-earth-700 mb-2 text-base md:text-lg font-sans">by {author}</p>
+      <p className="text-earth-800 mb-4 text-base md:text-lg font-sans line-clamp-3">{description}</p>
+      <div className="flex items-center mb-4">
+        <label htmlFor="quantity" className="mr-2 font-semibold text-earth-900">Qty:</label>
+        <input
+          id="quantity"
+          type="number"
+          min={1}
+          value={quantity}
+          onChange={handleQuantityChange}
+          className="w-16 px-2 py-1 border border-rust-300 rounded focus:outline-none focus:ring-2 focus:ring-rust-400 text-center bg-white font-bold"
         />
       </div>
-      <div className="p-6">
-        <h3 className="text-xl font-semibold text-amber-900 mb-2">{title}</h3>
-        <p className="text-gray-600 mb-2">by {author}</p>
-        <p className="text-gray-700 mb-4 line-clamp-3">{description}</p>
-        <div className="flex justify-between items-center">
-          <span className="text-lg font-bold text-amber-800">${price.toFixed(2)}</span>
-          <button
-            onClick={onAddToCart}
-            className="bg-amber-600 text-white px-4 py-2 rounded-full hover:bg-amber-700 transition-colors"
-          >
-            Add to Cart
-          </button>
-        </div>
+      <div className="flex flex-col gap-2 mt-auto">
+        <div className="text-[24px] md:text-[24px] font-extrabold text-black mb-2">${price.toFixed(2)} USD</div>
+        <button
+          onClick={() => onAddToCart(quantity)}
+          className="block w-full px-8 py-3 bg-[#ee8d5a] text-black border-2 border-black rounded-full font-bold text-lg md:text-xl text-center shadow-lg hover:bg-green-700 transition-colors duration-200 mt-2 mb-1"
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );

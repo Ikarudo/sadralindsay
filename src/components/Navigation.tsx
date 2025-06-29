@@ -3,11 +3,15 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { FaShoppingCart } from 'react-icons/fa';
+import { useCart } from '@/context/CartContext';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const { items } = useCart ? useCart() : { items: [] };
+  const cartCount = items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +26,7 @@ export default function Navigation() {
     { href: '/', label: 'Home' },
     { href: '/music', label: 'Music' },
     { href: '/books', label: 'Books' },
+    { href: '/cart', label: 'Cart', icon: <FaShoppingCart className="inline-block mb-1 mr-1" /> },
     { href: '/#about', label: 'About' },
     { href: '/#connect', label: 'Connect' },
   ];
@@ -69,12 +74,18 @@ export default function Navigation() {
                 href={link.href}
                 className={`relative transition-colors duration-300 ${
                   isActive(link.href) ? 'font-semibold' : ''
-                }`}
+                } drop-shadow-[0_1.5px_0_rgba(0,0,0,0.85)]`}
                 style={{
                   color: isScrolled ? 'white' : cream,
+                  WebkitTextStroke: '0.5px #2d1a0b',
+                  textShadow: '0 2px 8px rgba(0,0,0,0.25)',
                 }}
               >
+                {link.icon}
                 {link.label}
+                {link.href === '/cart' && cartCount > 0 && (
+                  <span className="absolute -top-2 -right-3 bg-amber-600 text-white text-xs rounded-full px-2 py-0.5 font-bold shadow-lg">{cartCount}</span>
+                )}
                 {isActive(link.href) && (
                   <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-earth-700 transform origin-left transition-transform duration-300" />
                 )}
@@ -107,13 +118,19 @@ export default function Navigation() {
                 href={link.href}
                 className={`transition-colors duration-300 ${
                   isActive(link.href) ? 'font-semibold' : ''
-                }`}
+                } drop-shadow-[0_1.5px_0_rgba(0,0,0,0.85)]`}
                 style={{
                   color: isScrolled ? 'white' : cream,
+                  WebkitTextStroke: '0.5px #2d1a0b',
+                  textShadow: '0 2px 8px rgba(0,0,0,0.25)',
                 }}
                 onClick={() => setIsMenuOpen(false)}
               >
+                {link.icon}
                 {link.label}
+                {link.href === '/cart' && cartCount > 0 && (
+                  <span className="ml-2 bg-amber-600 text-white text-xs rounded-full px-2 py-0.5 font-bold shadow-lg">{cartCount}</span>
+                )}
               </Link>
             ))}
           </div>

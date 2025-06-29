@@ -91,7 +91,7 @@ export default function Carousel({ items }: CarouselProps) {
               </div>
               <div className="w-full md:w-1/2 text-left flex flex-col justify-center">
                 <h3 className="text-3xl md:text-4xl font-heading mb-6 text-earth-900">{item.title}</h3>
-                <p className="text-base md:text-xl font-serif border-[2px] p-[18px] text-earth-900 bg-white/70 rounded-lg shadow-md">
+                <p className="text-base md:text-xl font-serif border-2 border-earth-200 p-[18px] text-earth-900 bg-earth-100/95 rounded-xl shadow-xl">
                   {description}
                 </p>
               </div>
@@ -100,7 +100,7 @@ export default function Carousel({ items }: CarouselProps) {
             <>
               <div className="w-full md:w-1/2 text-left order-2 md:order-1 flex flex-col justify-center">
                 <h3 className="text-3xl md:text-4xl font-heading mb-6 text-earth-900">{item.title}</h3>
-                <p className="text-base md:text-xl font-serif border-[2px] p-[18px] text-earth-900 bg-white/70 rounded-lg shadow-md">
+                <p className="text-base md:text-xl font-serif border-2 border-earth-200 p-[18px] text-earth-900 bg-earth-100/95 rounded-xl shadow-xl">
                   {description}
                 </p>
               </div>
