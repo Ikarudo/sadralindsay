@@ -49,11 +49,73 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
   background-color: var(--color-earth-100);
   color: var(--color-earth-700);
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 640px) {
+  body {
+    font-size: 16px; /* Prevent zoom on iOS */
+    line-height: 1.6;
+  }
+  
+  /* Ensure minimum touch target size */
+  button, a, input, select, textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve text readability on mobile */
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  
+  /* Better spacing for mobile */
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Optimize images for mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Tablet improvements */
+@media (min-width: 641px) and (max-width: 1024px) {
+  body {
+    font-size: 18px;
+    line-height: 1.7;
+  }
+  
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Desktop improvements */
+@media (min-width: 1025px) {
+  body {
+    font-size: 18px;
+    line-height: 1.8;
+  }
+  
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
 }
 
 .btn-primary {
@@ -67,6 +129,10 @@ body {
   border-radius: 9999px;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-duration: 150ms;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .btn-primary:hover {
   background-color: var(--color-rust-700);
@@ -83,19 +149,39 @@ body {
   border-radius: 9999px;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-duration: 150ms;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 .btn-secondary:hover {
   background-color: var(--color-green-500);
 }
 
 .section-title {
-  font-size: 2.5rem; /* text-4xl+ */
+  font-size: 2rem; /* Mobile first */
   font-family: var(--font-heading);
   font-weight: 700;
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   color: var(--color-earth-800);
   letter-spacing: 0.01em;
+  line-height: 1.2;
+}
+
+/* Responsive section title */
+@media (min-width: 640px) {
+  .section-title {
+    font-size: 2.25rem;
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
 }
 
 .card {
@@ -112,4 +198,55 @@ body {
 
 .font-cursive {
   font-family: 'Great Vibes', cursive;
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 640px) {
+  /* Improve form elements on mobile */
+  input, textarea, select {
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+  }
+  
+  /* Better button spacing on mobile */
+  button {
+    padding: 0.75rem 1rem;
+    font-size: 16px;
+  }
+  
+  /* Improve card spacing on mobile */
+  .card {
+    margin-bottom: 1rem;
+  }
+  
+  /* Better image handling */
+  .object-contain {
+    object-fit: contain;
+  }
+  
+  .object-cover {
+    object-fit: cover;
+  }
+}
+
+/* Smooth scrolling for better mobile experience */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improve focus states for accessibility */
+button:focus,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid var(--color-rust-400);
+  outline-offset: 2px;
+}
+
+/* Better text selection */
+::selection {
+  background-color: var(--color-rust-200);
+  color: var(--color-earth-700);
 }

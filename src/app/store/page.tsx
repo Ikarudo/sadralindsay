@@ -78,14 +78,14 @@ function StorePageContent() {
             </div>
           </div>
           {/* Hero Content */}
-          <div className="container mx-auto px-2 sm:px-4 relative z-10 flex flex-col items-center justify-center h-full min-h-[60vh] md:min-h-[70vh]">
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 flex flex-col items-center justify-center h-full min-h-[60vh] md:min-h-[70vh]">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7 }}
-              className="w-full flex flex-col items-center justify-center pt-16 md:pt-0"
+              className="w-full flex flex-col items-center justify-center pt-20 md:pt-0 px-4"
             >
-              <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-heading font-bold text-white drop-shadow-xl tracking-tight text-center break-words max-w-full">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-bold text-white drop-shadow-xl tracking-tight text-center break-words max-w-full leading-tight">
                 Store
               </h1>
             </motion.div>
@@ -95,27 +95,26 @@ function StorePageContent() {
         <div className="w-full h-4 bg-rust-400" />
 
         {/* Garden Gold Logo */}
-        <div className="flex justify-center items-center mt-[65px] my-8">
+        <div className="flex justify-center items-center mt-8 sm:mt-12 md:mt-16 my-6 sm:my-8 px-4">
           <img
             src="/GardenGoldLogo.jpg"
             alt="Garden Gold Logo"
-            className="w-[280px] md:w-[360px] border-[3px] border-earth-700 rounded-lg shadow-sm bg-white"
-            style={{ maxWidth: '80vw', height: 'auto' }}
+            className="w-64 sm:w-72 md:w-80 lg:w-96 border-[3px] border-earth-700 rounded-lg shadow-sm bg-white"
+            style={{ maxWidth: '90vw', height: 'auto' }}
           />
         </div>
 
-
         {/* Products Grid Section */}
-        <section className="py-10 md:py-20 bg-green-300">
-          <div className="w-full max-w-6xl mx-auto px-2 sm:px-4">
+        <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-green-300">
+          <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="section-title !text-black">All Products</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <h2 className="section-title !text-black text-center mb-8 sm:mb-10">All Products</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 {sampleProducts.map((product) => (
                   <ProductCard
                     key={product.id}
