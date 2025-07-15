@@ -66,7 +66,7 @@ export default function Home() {
                 <img
                   src="/SML Logo v1.svg"
                   alt="SML Logo"
-                  className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto max-w-full"
+                  className="w-48 sm:w-56 md:w-64 border-2 lg:w-72 h-auto max-w-full"
                 />
               </div>
               

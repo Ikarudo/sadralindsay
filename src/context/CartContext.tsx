@@ -3,7 +3,10 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 import { db } from '@/lib/firebase';
 import { useEffect } from 'react';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
+import { useUser } from './UserContext';
+import { collection, addDoc } from 'firebase/firestore';
+import { useRef } from 'react';
 
 interface CartItem {
   id: string;
@@ -40,28 +43,103 @@ export function useSessionId() {
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
   const sessionId = getSessionId();
+  const { user } = useUser();
+  const debounceRef = useRef<NodeJS.Timeout | null>(null);
+  const unsubscribeRef = useRef<(() => void) | null>(null);
 
-  // Load cart from Firestore on mount
+  // Real-time cart sync with Firestore (onSnapshot)
   useEffect(() => {
-    async function loadCart() {
-      if (!sessionId) return;
-      const cartRef = doc(db, 'carts', sessionId);
-      const cartSnap = await getDoc(cartRef);
-      if (cartSnap.exists()) {
-        setItems(cartSnap.data().items || []);
+    if (unsubscribeRef.current) {
+      unsubscribeRef.current();
+      unsubscribeRef.current = null;
+    }
+    let cartRef;
+    if (user) {
+      cartRef = doc(db, 'users', user.uid, 'cart', 'current');
+    } else {
+      cartRef = doc(db, 'carts', sessionId);
+    }
+    // Subscribe to real-time updates
+    unsubscribeRef.current = onSnapshot(
+      cartRef,
+      (cartSnap) => {
+        if (cartSnap.exists()) {
+          const data = cartSnap.data();
+          setItems(data.items || []);
+          setHasLoaded(true);
+          console.log('[Cart] Loaded from Firestore:', data);
+        } else {
+          setItems([]);
+          setHasLoaded(true);
+          console.log('[Cart] No cart found in Firestore, set to empty.');
+        }
+      },
+      (error) => {
+        console.error('[Cart] Firestore onSnapshot error:', error);
+      }
+    );
+    return () => {
+      if (unsubscribeRef.current) unsubscribeRef.current();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user, sessionId]);
+
+  // Migrate session cart to user cart on login
+  useEffect(() => {
+    async function migrateCart() {
+      if (user && sessionId) {
+        try {
+          const sessionCartRef = doc(db, 'carts', sessionId);
+          const sessionCartSnap = await getDoc(sessionCartRef);
+          if (sessionCartSnap.exists()) {
+            const sessionItems = sessionCartSnap.data().items || [];
+            if (sessionItems.length > 0) {
+              const userCartRef = doc(db, 'users', user.uid, 'cart', 'current');
+              await setDoc(userCartRef, { items: sessionItems, total: sessionItems.reduce((sum: number, item: any) => sum + item.price * item.quantity, 0) });
+              setItems(sessionItems);
+              await setDoc(sessionCartRef, { items: [] }); // Clear session cart
+              console.log('[Cart] Migrated session cart to user cart:', sessionItems);
+            }
+          }
+        } catch (err) {
+          console.error('[Cart] Error migrating cart:', err);
+        }
       }
     }
-    loadCart();
+    migrateCart();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sessionId]);
+  }, [user]);
 
-  // Save cart to Firestore on change
+  // Debounced save cart to Firestore on change
   useEffect(() => {
-    if (!sessionId) return;
-    const cartRef = doc(db, 'carts', sessionId);
-    setDoc(cartRef, { items }, { merge: true });
-  }, [items, sessionId]);
+    if (!hasLoaded) return;
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(async () => {
+      try {
+        // Save all properties needed for CartItem
+        const cartData = {
+          items: items.map(({ id, title, price, quantity, coverImage }) => ({ id, title, price, quantity, coverImage })),
+          total: items.reduce((sum, item) => sum + item.price * item.quantity, 0),
+        };
+        if (user) {
+          const cartRef = doc(db, 'users', user.uid, 'cart', 'current');
+          await setDoc(cartRef, cartData, { merge: true });
+          console.log('[Cart] Saved to Firestore (user):', cartData);
+        } else if (sessionId) {
+          const cartRef = doc(db, 'carts', sessionId);
+          await setDoc(cartRef, cartData, { merge: true });
+          console.log('[Cart] Saved to Firestore (session):', cartData);
+        }
+      } catch (err) {
+        console.error('[Cart] Error saving cart to Firestore:', err);
+      }
+    }, 300);
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, [items, user, sessionId, hasLoaded]);
 
   const addItem = (item: Omit<CartItem, 'quantity'>, quantity: number = 1) => {
     setItems((currentItems) => {

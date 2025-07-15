@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useCart } from '@/context/CartContext';
+import { useUser } from '@/context/UserContext';
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +13,7 @@ export default function Navigation() {
   const pathname = usePathname();
   const { items } = useCart ? useCart() : { items: [] };
   const cartCount = items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
+  const { user, signOut, loading: userLoading } = useUser();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,12 +24,21 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleSignOut = async () => {
+    await signOut();
+    if (window && window.dispatchEvent) {
+      window.dispatchEvent(new CustomEvent('show-toast', { detail: { message: 'Signed Out' } }));
+    }
+  };
+
   const navLinks = [
     { href: '/', label: 'Home' },
     { href: '/music', label: 'Music' },
     { href: '/books', label: 'Books' },
     { href: '/store', label: 'Store' },
     { href: '/cart', label: 'Cart', icon: <FaShoppingCart className="inline-block mb-1 mr-1" /> },
+    // Insert Checkout link if user is logged in
+    ...(user ? [{ href: '/checkout', label: 'Checkout' }] : []),
     { href: '/#about', label: 'About' },
     { href: '/#connect', label: 'Connect' },
   ];
@@ -69,18 +80,16 @@ export default function Navigation() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex space-x-6 xl:space-x-8">
+          <div className="hidden lg:flex gap-4.5 items-center">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative transition-colors duration-300 text-sm xl:text-base ${
-                  isActive(link.href) ? 'font-semibold' : ''
-                } drop-shadow-[0_1.5px_0_rgba(0,0,0,0.85)]`}
+                className={`relative transition-colors duration-300 px-4 py-2 rounded-lg font-semibold text-white bg-transparent hover:bg-earth-400 hover:text-white border border-transparent text-lg xl:text-xl ${
+                  isActive(link.href) ? 'bg-earth-400 text-white border-earth-300' : 'text-earth-700'
+                }`}
                 style={{
-                  color: isScrolled ? 'white' : cream,
-                  WebkitTextStroke: '0.5px #2d1a0b',
-                  textShadow: '0 2px 8px rgba(0,0,0,0.25)',
+                  color: isActive(link.href) ? 'white' : (isScrolled ? 'white' : cream),
                 }}
               >
                 {link.icon}
@@ -93,6 +102,22 @@ export default function Navigation() {
                 )}
               </Link>
             ))}
+            {/* User Auth Button */}
+            {!userLoading && user ? (
+              <Link
+                href="/profile"
+                className="ml-2 px-4 py-2 rounded-lg font-semibold text-white bg-earth-400 hover:bg-earth-500 transition-colors duration-200 border border-earth-300 text-lg xl:text-xl"
+              >
+                Profile
+              </Link>
+            ) : (
+              <Link
+                href="/signin"
+                className="ml-2 px-4 py-2 rounded-lg font-semibold text-white bg-earth-400 hover:bg-earth-500 transition-colors duration-200 border border-earth-300 text-lg xl:text-xl"
+              >
+                Sign In
+              </Link>
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -113,18 +138,16 @@ export default function Navigation() {
             isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           } overflow-hidden`}
         >
-          <div className="flex flex-col space-y-3 sm:space-y-4 py-4 sm:py-6">
+          <div className="flex flex-col space-y-2 py-4 sm:py-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`transition-colors duration-300 text-base sm:text-lg ${
-                  isActive(link.href) ? 'font-semibold' : ''
-                } drop-shadow-[0_1.5px_0_rgba(0,0,0,0.85)]`}
+                className={`transition-colors duration-300 px-4 py-2 rounded-lg font-semibold text-white bg-transparent hover:bg-earth-400 hover:text-white border border-transparent text-lg xl:text-xl ${
+                  isActive(link.href) ? 'bg-earth-400 text-white border-earth-300' : 'text-earth-700'
+                }`}
                 style={{
-                  color: isScrolled ? 'white' : cream,
-                  WebkitTextStroke: '0.5px #2d1a0b',
-                  textShadow: '0 2px 8px rgba(0,0,0,0.25)',
+                  color: isActive(link.href) ? 'white' : (isScrolled ? 'white' : cream),
                 }}
                 onClick={() => setIsMenuOpen(false)}
               >
@@ -135,6 +158,24 @@ export default function Navigation() {
                 )}
               </Link>
             ))}
+            {/* User Auth Button for mobile */}
+            {!userLoading && user ? (
+              <Link
+                href="/profile"
+                onClick={() => setIsMenuOpen(false)}
+                className="mt-2 px-4 py-2 rounded-lg font-semibold text-white bg-earth-400 hover:bg-earth-500 transition-colors duration-200 border border-earth-300 text-lg xl:text-xl"
+              >
+                Profile
+              </Link>
+            ) : (
+              <Link
+                href="/signin"
+                onClick={() => setIsMenuOpen(false)}
+                className="mt-2 px-4 py-2 rounded-lg font-semibold text-white bg-earth-400 hover:bg-earth-500 transition-colors duration-200 border border-earth-300 text-lg xl:text-xl"
+              >
+                Sign In
+              </Link>
+            )}
           </div>
         </div>
       </div>

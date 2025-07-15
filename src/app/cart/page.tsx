@@ -30,7 +30,7 @@ export default function CartPage() {
                   <div className="text-base sm:text-lg text-earth-600 mb-6">Your cart is empty.</div>
                   <Link href="/books">
                     <button className="block w-full px-6 sm:px-8 py-3 bg-[#ee8d5a] text-black border-2 border-black rounded-full font-bold text-base sm:text-lg md:text-xl text-center shadow-lg hover:bg-green-700 transition-colors duration-200">
-                      Back to Books
+                      Back to Shop
                     </button>
                   </Link>
                 </div>
