@@ -50,107 +50,134 @@ export default function Carousel({ items }: CarouselProps) {
   const description = extendedDescriptions[item.title] || item.description;
 
   return (
-    <div
-      className={twMerge(
-        'relative w-[95vw] sm:w-[90vw] max-w-5xl min-h-[60vh] sm:min-h-[75vh] mx-auto rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center',
-        item.bgColor
-      )}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
-      tabIndex={0}
-    >
-      {/* Carousel Card */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={item.title}
-          initial={{ opacity: 0, x: 60 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -60 }}
-          transition={{ duration: 0.5 }}
-          className={twMerge(
-            'flex flex-col lg:flex-row gap-4 sm:gap-6 md:gap-8 items-center w-full h-full px-3 sm:px-6 md:px-8 lg:px-12 py-6 sm:py-8',
-            // Remove bg from here, it's on the parent
-            ''
-          )}
+    <div className="relative w-full max-w-6xl mx-auto">
+      {/* Main carousel container */}
+      <div
+        className="relative h-[600px] sm:h-[700px] md:h-[800px] overflow-hidden"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocus={() => setPaused(true)}
+        onBlur={() => setPaused(false)}
+        tabIndex={0}
+      >
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={item.title}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            className="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-8 p-8"
+          >
+            {/* Video Section */}
+            <div className={twMerge(
+              "relative flex items-center justify-center",
+              item.side === 'right' ? 'lg:order-2' : 'lg:order-1'
+            )}>
+              <div className="relative w-full">
+                {/* Decorative background shapes */}
+                <div className="absolute -inset-8 bg-rust-400 transform rotate-3 opacity-30" />
+                <div className="absolute -inset-6 bg-green-300 transform -rotate-2 opacity-20" />
+                <div className="absolute -inset-4 bg-earth-100 transform rotate-1" />
+                
+                <div className="relative aspect-video bg-black border-4 border-rust-400 transform hover:rotate-1 transition-transform duration-300">
+                  <iframe
+                    src={item.videoUrl}
+                    title={item.title}
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full"
+                    style={{ border: 'none' }}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Content Section */}
+            <div className={twMerge(
+              "relative flex flex-col justify-center space-y-6",
+              item.side === 'right' ? 'lg:order-1' : 'lg:order-2'
+            )}>
+              {/* Title */}
+              <div className="relative">
+                <h3 className="text-4xl sm:text-5xl md:text-6xl font-heading text-rust-400 leading-tight transform hover:-rotate-1 transition-transform duration-300">
+                  {item.title}
+                </h3>
+                <div className="w-24 h-1 bg-rust-400 mt-4" />
+              </div>
+
+              {/* Description */}
+              <div className="relative">
+                <div className="absolute -inset-6 bg-green-300 transform rotate-2" />
+                <div className="absolute -inset-4 bg-rust-300 transform -rotate-1" />
+                <div className="relative bg-earth-100 p-6 border-4 border-rust-400 transform rotate-1">
+                  <p className="text-lg sm:text-xl font-serif text-rust-500 leading-relaxed">
+                    {description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Decorative elements */}
+              <div className="flex items-center space-x-4 mt-6">
+                <div className="w-16 h-2 bg-rust-400 rounded-full" />
+                <div className="w-6 h-6 bg-green-300 rounded-full" />
+                <div className="w-10 h-2 bg-rust-400 rounded-full" />
+              </div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Navigation Controls */}
+      <div className="absolute top-1/2 -translate-y-1/2 left-4 z-20">
+        <button
+          onClick={goToPrev}
+          aria-label="Previous song"
+          className="relative group"
         >
-          {item.side === 'left' ? (
-            <>
-              <div className="w-full lg:basis-1/2 flex justify-center items-center order-2 lg:order-1">
-                <div className="w-full h-[50vw] sm:h-[45vw] md:h-[40vw] lg:h-[480px] max-h-[400px] sm:max-h-[450px] md:max-h-[520px] min-h-[200px] sm:min-h-[220px] rounded-xl overflow-hidden shadow-lg border-2 border-earth-200 flex bg-black/80">
-                  <iframe
-                    src={item.videoUrl}
-                    title={item.title}
-                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full min-h-[200px] sm:min-h-[220px]"
-                    style={{ border: 'none' }}
-                  ></iframe>
-                </div>
-              </div>
-              <div className="w-full lg:w-1/2 text-center lg:text-left order-1 lg:order-2 flex flex-col justify-center">
-                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading mb-4 sm:mb-6 text-earth-900 leading-tight">{item.title}</h3>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl font-serif border-2 border-earth-200 p-3 sm:p-4 md:p-[18px] text-earth-900 bg-earth-100/95 rounded-xl shadow-xl leading-relaxed">
-                  {description}
-                </p>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="w-full lg:w-1/2 text-center lg:text-left order-2 lg:order-1 flex flex-col justify-center">
-                <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-heading mb-4 sm:mb-6 text-earth-900 leading-tight">{item.title}</h3>
-                <p className="text-sm sm:text-base md:text-lg lg:text-xl font-serif border-2 border-earth-200 p-3 sm:p-4 md:p-[18px] text-earth-900 bg-earth-100/95 rounded-xl shadow-xl leading-relaxed">
-                  {description}
-                </p>
-              </div>
-              <div className="w-full lg:basis-1/2 flex justify-center items-center order-1 lg:order-2">
-                <div className="w-full h-[50vw] sm:h-[45vw] md:h-[40vw] lg:h-[480px] max-h-[400px] sm:max-h-[450px] md:max-h-[520px] min-h-[200px] sm:min-h-[220px] rounded-xl overflow-hidden shadow-lg border-2 border-earth-200 flex bg-black/80">
-                  <iframe
-                    src={item.videoUrl}
-                    title={item.title}
-                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="w-full h-full min-h-[200px] sm:min-h-[220px]"
-                    style={{ border: 'none' }}
-                  ></iframe>
-                </div>
-              </div>
-            </>
-          )}
-        </motion.div>
-      </AnimatePresence>
-      
-      {/* Navigation Arrows */}
-      <button
-        onClick={goToPrev}
-        aria-label="Previous song"
-        className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 bg-earth-200 hover:bg-earth-400 text-earth-900 rounded-full p-2 sm:p-3 shadow-lg z-10 transition-colors"
-      >
-        &#8592;
-      </button>
-      <button
-        onClick={goToNext}
-        aria-label="Next song"
-        className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 bg-earth-200 hover:bg-earth-400 text-earth-900 rounded-full p-2 sm:p-3 shadow-lg z-10 transition-colors"
-      >
-        &#8594;
-      </button>
-      
-      {/* Dots */}
-      <div className="absolute bottom-2 sm:bottom-4 left-1/2 -translate-x-1/2 flex gap-1 sm:gap-2">
+          <div className="absolute inset-0 bg-rust-400 transform rotate-45 group-hover:rotate-90 transition-transform duration-300" />
+          <div className="relative bg-earth-100 border-4 border-rust-400 w-12 h-12 flex items-center justify-center transform group-hover:-rotate-12 transition-transform duration-300">
+            <span className="text-rust-400 text-xl font-bold">←</span>
+          </div>
+        </button>
+      </div>
+
+      <div className="absolute top-1/2 -translate-y-1/2 right-4 z-20">
+        <button
+          onClick={goToNext}
+          aria-label="Next song"
+          className="relative group"
+        >
+          <div className="absolute inset-0 bg-rust-400 transform rotate-45 group-hover:rotate-90 transition-transform duration-300" />
+          <div className="relative bg-earth-100 border-4 border-rust-400 w-12 h-12 flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+            <span className="text-rust-400 text-xl font-bold">→</span>
+          </div>
+        </button>
+      </div>
+
+      {/* Dots Indicator */}
+      <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex items-center space-x-4">
         {items.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrent(idx)}
             className={twMerge(
-              'w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all',
-              idx === current ? 'bg-rust-400 scale-125' : 'bg-earth-300 opacity-60'
+              'relative group transition-all duration-300',
+              idx === current ? 'scale-125' : 'scale-100'
             )}
             aria-label={`Go to song ${idx + 1}`}
-          />
+          >
+            <div className={twMerge(
+              'absolute inset-0 transform rotate-45 transition-all duration-300',
+              idx === current ? 'bg-rust-400' : 'bg-earth-200'
+            )} />
+            <div className={twMerge(
+              'relative w-4 h-4 border-2 transition-all duration-300',
+              idx === current ? 'border-rust-400 bg-green-300' : 'border-earth-200 bg-earth-100'
+            )} />
+          </button>
         ))}
       </div>
     </div>
   );
-} 
+}

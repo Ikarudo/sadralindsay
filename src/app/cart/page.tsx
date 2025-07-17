@@ -5,12 +5,14 @@ import Footer from '@/components/Footer';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import { useRouter } from 'next/navigation';
 
 export default function CartPage() {
   const { items, updateQuantity, removeItem, total } = useCart();
   const shippingCharge = 15.00;
   const subtotal = total;
   const finalTotal = subtotal + shippingCharge;
+  const router = useRouter();
 
   return (
     <>
@@ -109,7 +111,11 @@ export default function CartPage() {
                       </div>
                     </div>
                   </div>
-                  <button className="w-full px-6 sm:px-8 py-3 bg-[#ee8d5a] text-black border-2 border-black rounded-full text-base sm:text-lg md:text-xl font-bold hover:bg-green-700 transition-colors duration-200 shadow-lg">
+                  <button
+                    className="w-full px-6 sm:px-8 py-3 bg-[#ee8d5a] text-black border-2 border-black rounded-full text-base sm:text-lg md:text-xl font-bold hover:bg-green-700 transition-colors duration-200 shadow-lg"
+                    onClick={() => router.push('/checkout')}
+                    disabled={items.length === 0}
+                  >
                     Proceed to Checkout
                   </button>
                 </motion.div>
