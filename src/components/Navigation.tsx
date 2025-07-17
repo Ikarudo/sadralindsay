@@ -37,8 +37,7 @@ export default function Navigation() {
     { href: '/books', label: 'Books' },
     { href: '/store', label: 'Store' },
     { href: '/cart', label: 'Cart', icon: <FaShoppingCart className="inline-block mb-1 mr-1" /> },
-    // Insert Checkout link if user is logged in
-    ...(user ? [{ href: '/checkout', label: 'Checkout' }] : []),
+    // Checkout link removed from navbar
     { href: '/#about', label: 'About' },
     { href: '/#connect', label: 'Connect' },
   ];
@@ -134,9 +133,9 @@ export default function Navigation() {
 
         {/* Mobile Navigation */}
         <div
-          className={`lg:hidden transition-all duration-300 ease-in-out ${
-            isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          } overflow-hidden`}
+          className={`lg:hidden z-50 bg-[#ee8e5a] bg-opacity-95 transition-all duration-300 ease-in-out ${
+            isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+          } overflow-hidden fixed top-0 left-0 w-full`}
         >
           <div className="flex flex-col space-y-2 py-4 sm:py-6">
             {navLinks.map((link) => (

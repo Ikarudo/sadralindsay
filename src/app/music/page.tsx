@@ -12,10 +12,9 @@ export default function MusicPage() {
       <Navigation />
       <main className="min-h-screen bg-earth-100">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-rust-200 via-earth-100 to-green-100 border-b-4 border-rust-400">
-          {/* Background Image */}
+        <section className="relative min-h-screen flex items-center justify-center">
           <div className="absolute inset-0 z-0">
-            <div className="absolute w-full h-full min-h-screen">
+            <div className="absolute w-full h-full">
               <Image
                 src="/musicpic1.png"
                 alt="Music Hero Background"
@@ -23,116 +22,180 @@ export default function MusicPage() {
                 className="object-cover object-top"
                 priority
               />
+              <div className="absolute inset-0 bg-gradient-to-tr from-rust-400/60 via-transparent to-green-300/40" />
             </div>
           </div>
-          {/* Hero Content */}
-          <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 flex flex-col items-center justify-center h-full min-h-[40vh]">
-            <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7 }}
-              className="w-full flex flex-col items-center justify-center pt-20 md:pt-0 px-4"
-            >
-              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-heading text-white drop-shadow-xl tracking-tight mb-4 text-center break-words max-w-full leading-tight">
-                Check Out My Music!
-              </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-serif text-white drop-shadow-lg max-w-2xl text-center leading-relaxed">
-                Experience the soulful sounds of Sadra Madonna Lindsay's gospel music.
-              </p>
-            </motion.div>
+          
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen">
+              {/* Left side - Title */}
+              <motion.div
+                initial={{ opacity: 0, x: -100 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 1, ease: "easeOut" }}
+                className="flex flex-col justify-center space-y-8"
+              >
+                <div  className="relative ml-[80px]">
+                  <h1 className="text-[100px] font-heading mb-[4px] text-white leading-none">
+                    CHECK
+                  </h1>
+                  <h1 className="text-[100px] font-heading mb-[15px] text-white leading-none -mt-4">
+                    OUT
+                  </h1>
+                  <h1 className="text-[120px] font-cursive  text-white leading-none -mt-8 transform -rotate-2">
+                    My Music!
+                  </h1>
+                </div>
+                
+                <div className="w-32 h-1 bg-rust-400 rounded-full" />
+              </motion.div>
+            </div>
           </div>
         </section>
-        {/* Accent Bar */}
-        <div className="w-full h-4 bg-rust-400" />
 
-        {/* Music Videos Section - Carousel */}
-        <section className="flex items-center justify-center min-h-[75vh] py-8 sm:py-12 md:py-16 bg-earth-100">
+        {/* Divider */}
+        <div className="relative">
+          <div className="absolute inset-0 bg-rust-400 transform -skew-y-1" />
+          <div className="relative h-16 bg-earth-100" />
+        </div>
+
+        {/* Featured Songs Section */}
+        <section className="py-20 bg-earth-100 relative">
           <div className="container mx-auto px-4 sm:px-6 md:px-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-              className="flex flex-col items-center w-full"
-            >
-              <h2 className="section-title !text-black mb-6 sm:mb-8 font-cursive text-center">Featured Songs</h2>
-              <Carousel
-                items={[
-                  {
-                    title: "Breathe It's Gonna Be Okay",
-                    videoUrl: 'https://www.youtube.com/embed/n4oBav8yVn4',
-                    description:
-                      "A song of comfort and hope, reminding us to trust in God's timing and breathe through life's storms.",
-                    bgColor: 'bg-green-300 md:bg-[#ef8d5c]',
-                    side: 'left',
-                  },
-                  {
-                    title: 'Thank you',
-                    videoUrl: 'https://www.youtube.com/embed/hXDyrCGqMoE',
-                    description:
-                      'A heartfelt expression of gratitude for blessings received and the journey of faith.',
-                    bgColor: 'bg-[#c23c03] md:bg-green-300',
-                    side: 'right',
-                  },
-                  {
-                    title: 'Our Father',
-                    videoUrl: 'https://www.youtube.com/embed/-q8OXRDh7zU',
-                    description:
-                      'A soulful rendition of the Lords Prayer, celebrating faith and connection to the divine.',
-                    bgColor: 'bg-[#c23c03] md:bg-[#ef8d5c]',
-                    side: 'left',
-                  },
-                  {
-                    title: 'Oceans Where My Feet Fall',
-                    videoUrl: 'https://www.youtube.com/embed/thXJSOgEvi4',
-                    description:
-                      'A moving anthem about stepping out in faith, even when the path is uncertain.',
-                    bgColor: 'bg-green-300 md:bg-green-300',
-                    side: 'right',
-                  },
-                ]}
-              />
-            </motion.div>
+            {/* Section Header */}
+            <div className="text-center">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="inline-block"
+              >
+                <h2 className="text-6xl sm:text-7xl md:text-8xl font-cursive text-rust-400 mb-4 transform -rotate-1">
+                  Featured
+                </h2>
+                <h2 className="text-5xl sm:text-6xl md:text-7xl font-heading text-green-300 -mt-6 transform rotate-1">
+                  SONGS
+                </h2>
+              </motion.div>
+              
+              {/* Decorative elements */}
+              <div className="flex justify-center items-center mt-8 space-x-6">
+                <div className="w-16 h-2 bg-rust-400 rounded-full" />
+                <div className="w-8 h-8 bg-green-300 rounded-full" />
+                <div className="w-16 h-2 bg-rust-400 rounded-full" />
+              </div>
+            </div>
+            
+            <Carousel
+              items={[
+                {
+                  title: "Breathe It's Gonna Be Okay",
+                  videoUrl: 'https://www.youtube.com/embed/n4oBav8yVn4',
+                  description:
+                    "A song of comfort and hope, reminding us to trust in God's timing and breathe through life's storms.",
+                  bgColor: 'bg-green-300 md:bg-[#ef8d5c]',
+                  side: 'left',
+                },
+                {
+                  title: 'Thank you',
+                  videoUrl: 'https://www.youtube.com/embed/hXDyrCGqMoE',
+                  description:
+                    'A heartfelt expression of gratitude for blessings received and the journey of faith.',
+                  bgColor: 'bg-[#c23c03] md:bg-green-300',
+                  side: 'right',
+                },
+                {
+                  title: 'Our Father',
+                  videoUrl: 'https://www.youtube.com/embed/-q8OXRDh7zU',
+                  description:
+                    'A soulful rendition of the Lords Prayer, celebrating faith and connection to the divine.',
+                  bgColor: 'bg-[#c23c03] md:bg-[#ef8d5c]',
+                  side: 'left',
+                },
+                {
+                  title: 'Oceans Where My Feet Fall',
+                  videoUrl: 'https://www.youtube.com/embed/thXJSOgEvi4',
+                  description:
+                    'A moving anthem about stepping out in faith, even when the path is uncertain.',
+                  bgColor: 'bg-green-300 md:bg-green-300',
+                  side: 'right',
+                },
+              ]}
+            />
           </div>
         </section>
 
-        {/* Music Career Section with musicpic2.png */}
-        <section className="py-12 sm:py-16 md:py-20 bg-green-300 border-t-4 border-rust-400">
-          <div className="container mx-auto px-4 sm:px-6 md:px-8 flex flex-col lg:flex-row items-center gap-8 sm:gap-10 max-w-[1100px]">
-            <div className="w-full lg:w-1/2 flex justify-center">
-              <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg">
-                <Image
-                  src="/musicpic2.png"
-                  alt="Sadra singing"
-                  width={400}
-                  height={400}
-                  className="rounded-xl shadow-lg border-4 border-black bg-earth-100 object-cover w-full h-auto"
-                />
-              </div>
-            </div>
-            <div className="w-full lg:w-1/2 flex justify-center">
-              <div className="card p-4 sm:p-6 md:p-8 lg:p-10 border-2 border-rust-300 bg-earth-100 w-full text-left">
-                <motion.h3
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                  className="text-2xl sm:text-3xl font-heading text-black mb-4 text-left"
-                >
-                  A Life in Gospel Music
-                </motion.h3>
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.7, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className="text-base sm:text-lg text-black font-body text-left leading-relaxed"
-                >
-                  Sadra Madonna Lindsay has touched countless lives through her powerful voice and heartfelt lyrics.
-                   Her journey as a gospel singer is marked by faith, resilience, and a passion for sharing the message of hope and love. 
-                   Each song is a testament to her devotion and her desire to uplift and inspire listeners around the world.
-                </motion.p>
-              </div>
+        {/* Music Career Section */}
+        <section className=" rounded-t-[60px] relative py-20 bg-green-300">
+          {/* Background geometric shapes */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-10 -left-10 w-40 h-40 bg-rust-400 rounded-full opacity-20" />
+            <div className="absolute top-1/2 -right-20 w-60 h-60 bg-earth-100 opacity-20" />
+            <div className="absolute -bottom-20 left-1/3 w-80 h-40 bg-rust-300 opacity-20 transform rotate-45" />
+          </div>
+          
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
+              {/* Image Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+                className="lg:col-span-2 relative"
+              >
+                <div className="relative">
+                  {/* Decorative frame */}
+                  <div className="absolute -inset-6 bg-rust-400 transform rotate-3" />
+                  <div className="absolute -inset-4 bg-earth-100 transform -rotate-2" />
+                  
+                  <div className="relative">
+                    <Image
+                      src="/musicpic2.png"
+                      alt="Sadra singing"
+                      width={400}
+                      height={400}
+                      className="w-full h-auto object-cover border-8 border-rust-400"
+                    />
+                  </div>
+                </div>
+              </motion.div>
+              
+              {/* Content Section */}
+              <motion.div
+                initial={{ opacity: 0, x: 100 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="lg:col-span-3 space-y-8"
+              >
+                <div className="space-y-4">
+                  <h3 className="text-5xl sm:text-6xl md:text-7xl font-heading text-rust-400 leading-tight">
+                    A LIFE IN
+                  </h3>
+                  <h3 className="text-6xl sm:text-7xl md:text-8xl font-cursive text-rust-300 -mt-4 transform rotate-1">
+                    Gospel Music
+                  </h3>
+                  
+                  <div className="flex items-center space-x-4 mt-6">
+                    <div className="w-20 h-1 bg-rust-400" />
+                    <div className="w-4 h-4 bg-rust-400 rounded-full" />
+                    <div className="w-12 h-1 bg-rust-400" />
+                  </div>
+                </div>
+                
+                <div className="relative">
+                  <div className="absolute -inset-4 bg-earth-100 transform rotate-1" />
+                  <div className="relative bg-earth-100 p-8 border-4 border-rust-400 transform -rotate-1">
+                    <p className="text-lg sm:text-xl text-rust-500 font-body leading-relaxed">
+                      Sadra Madonna Lindsay has touched countless lives through her powerful voice and heartfelt lyrics.
+                      Her journey as a gospel singer is marked by faith, resilience, and a passion for sharing the message of hope and love.
+                      Each song is a testament to her devotion and her desire to uplift and inspire listeners around the world.
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>

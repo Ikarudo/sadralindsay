@@ -15,39 +15,101 @@ const sampleProducts = [
     id: 'soap1',
     title: 'Pink Himalayan Salt Soap',
     category: 'soap',
-    coverImage: '/PinkHimalyanSalt.jpg', // You'll need to add this image
+    coverImage: '/PinkHimalyanSalt.jpg', 
     price: 9.00,
     description: [
-      'Handcrafted with natural lavender essential oils',
-      'Gentle on skin with moisturizing properties',
-      'Perfect for daily use and relaxation',
-      'Made with organic ingredients and sustainable packaging'
+      'Pink Himalayan Salt Luxurious body bar is the newest kid on the block and boy dies she shine ✨ A gentle exfoliant is proven to hydrate while cleaning the skin scented with pachouli and sandalwood is an aromatic feast, while still being gentle on the senses.',
+      'Rejuvinates, Replenishes and gives a youthful glow',
+      'Sooths and detoxifies skin',
+      'Made with 100% organic and natural ingredients.'
     ],
   },
     {
     id: 'soap2',
     title: 'Aloe Leaf of Life Soap',
     category: 'soap',
-    coverImage: '/AloeLeafofLife.jpg', // You'll need to add this image
+    coverImage: '/AloeLeafofLife.jpg', 
     price: 9.00,
     description: [
-      'Handcrafted with natural lavender essential oils',
-      'Gentle on skin with moisturizing properties',
-      'Perfect for daily use and relaxation',
-      'Made with organic ingredients and sustainable packaging'
+      'Aloe Leaf of Life Luxurious body bar was introduced in 2022 and she has not looked back since…',
+      'Rejuvinates and Replenishes',
+      'Soothing and Moisturizing',
+      'Cleans Skin Gently',
+      'Perect for Daily Use',
+      '100% Natural Ingredients'
     ],
   },
     {
     id: 'soap3',
     title: 'Tumeric and Aloe Soap',
     category: 'soap',
-    coverImage: '/TumericandAloe.jpg', // You'll need to add this image
+    coverImage: '/TumericandAloe.jpg', 
     price: 9.00,
     description: [
-      'Handcrafted with natural lavender essential oils',
+      'Turmeric and Aloe Luxurious body bar was introduced in 2022 She is a personal favorite of many and continues to dominate our soap market on the shelves… ',
       'Gentle on skin with moisturizing properties',
-      'Perfect for daily use and relaxation',
-      'Made with organic ingredients and sustainable packaging'
+      'Clears dark spots and blotches',
+      'Lightens and brightens skin',
+      '100% Natural Ingredients'
+    ],
+  },
+
+      {
+    id: 'Shampoo1',
+    title: 'Aloe Blend Leaf of Life Infused Shampoo',
+    category: 'Shampoo',
+    coverImage: '/Aloe Leaf of Life Shampoo.jpg', 
+    price: 18.00,
+    description: [
+      'Rapid Hair Growth ',
+      'Cleanses, Moisturizes and Detangles',
+      'No Parabens.',
+      'No Sulfates',
+      'No Mineral Oils',
+      'No Petroleum',
+    ],
+  },
+        {
+    id: 'Serum1',
+    title: 'Leaf of Life Serum',
+    category: 'Serum',
+    coverImage: '/Leaf of life Serum.jpg', 
+    price: 17.99,
+    description: [
+      'Sooths, hHydrates, and plumps the skin',
+      'Treats Hyperpigmentation',
+      'Reduce Fine Lines and Wrinkles',
+      'Provides a protective barrier For the skin',
+      'Naturally healing Antioxidant',
+      'Promotes Collagen Production',
+    ],
+  },
+          {
+    id: 'Oil1',
+    title: 'Aloe Oil Blend',
+    category: 'Oil',
+    coverImage: '/Aloe Oil Blend.jpg', 
+    price: 15.99,
+    description: [
+      'Promotes Super Fast Hair Growth',
+      'Hair and Scalp treatment. ',
+      'Care for Split Ends',
+      'Moisture Retention',
+      'Improves Blood Circulation'
+    ],
+  },
+          {
+    id: 'Oil2',
+    title: 'Rosemary Oil Blend',
+    category: 'Oil',
+    coverImage: '/Rosemary Oil Blend.jpg', 
+    price: 17.99,
+    description: [
+      'Promotes Super Fast Hair Growth',
+      'Thickens Hair',
+      'Prevents Dry Itchy Scalp',
+      'Prevents Hair Loss',
+      'Stimulates Growth on Bald Spots'
     ],
   },
   // Add more products here
