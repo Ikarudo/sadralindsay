@@ -55,11 +55,11 @@ const sampleProducts = [
   },
 
       {
-    id: 'Shampoo1',
-    title: 'Aloe Blend Leaf of Life Infused Shampoo',
+    id: 'ShampooSML',
+    title: 'Aloe Blend Leaf of Life Infused Shampoo 8oz',
     category: 'Shampoo',
-    coverImage: '/Aloe Leaf of Life Shampoo.jpg', 
-    price: 18.00,
+    coverImage: '/Aloe Leaf of Life Shampoo 8OZ.jpg', 
+    price: 12.00,
     description: [
       'Rapid Hair Growth ',
       'Cleanses, Moisturizes and Detangles',
@@ -69,7 +69,39 @@ const sampleProducts = [
       'No Petroleum',
     ],
   },
+  
         {
+    id: 'ShampooLRG',
+    title: 'Aloe Blend Leaf of Life Infused Shampoo 16oz',
+    category: 'Shampoo',
+    coverImage: '/Aloe Leaf of Life Shampoo 16OZ.jpg', 
+    price: 17.99,
+    description: [
+      'Rapid Hair Growth ',
+      'Cleanses, Moisturizes and Detangles',
+      'No Parabens.',
+      'No Sulfates',
+      'No Mineral Oils',
+      'No Petroleum',
+    ],
+  },
+
+        {
+    id: 'Conditioner',
+    title: 'Aloe Blend Conditioner',
+    category: 'Conditioner',
+    coverImage: '/Aloe Blend Conditioner.jpg', 
+    price: 17.99,
+    description: [
+      'Cleanses, Moisturizes and Stimulates Hair Growth',
+      'No Parabens.',
+      'No Sulfates',
+      'No Mineral Oils',
+      'No Petroleum',
+    ],
+  },
+
+    {
     id: 'Serum1',
     title: 'Leaf of Life Serum',
     category: 'Serum',
@@ -110,6 +142,50 @@ const sampleProducts = [
       'Prevents Dry Itchy Scalp',
       'Prevents Hair Loss',
       'Stimulates Growth on Bald Spots'
+    ],
+  },
+
+      {
+    id: 'Moisturizer1',
+    title: 'Aloe Blend Leave-in Moisturizer',
+    category: 'Moisterizer',
+    coverImage: '/Aloe Blend Moisteurizer 8oz.jpg', 
+    price: 17.99,
+    description: [
+      'Stimulates Hair Growth',
+      'No Parabens.',
+      'No Sulfates',
+      'No Mineral Oils',
+      'No Petroleum',
+      '100% Natural'
+    ],
+  },
+
+            {
+    id: 'ComboSML',
+    title: 'Aloe Blend Combo Small',
+    category: 'Combo',
+    coverImage: '/Aloe Blend Combo Small.jpg', 
+    price: 65.00,
+    description: [
+      'Aloe Blend Leaf of Life Infused Moisturizing Shampoo (8oz)',
+      'Intensive Care Conditioner (12oz)',
+      'Leave-In Moisturizer (4oz)',
+      'Aloe Blend Oil (2oz)',
+    ],
+  },
+
+    {
+    id: 'ComboLRG',
+    title: 'Aloe Blend Combo Large',
+    category: 'Combo',
+    coverImage: '/Aloe Blend Combo Small.jpg', 
+    price: 85.00,
+    description: [
+      'Aloe Blend (Leaf of Life Infused Moisturizing Shampoo (16oz)',
+      'Intensive Care Conditioner (12oz)',
+      'Leave-In Moisturizer (4oz)',
+      'Aloe Blend Oil (4oz)',
     ],
   },
   // Add more products here
@@ -159,12 +235,13 @@ function StorePageContent() {
         {/* Garden Gold Logo */}
         <div className="flex justify-center items-center mt-8 sm:mt-12 md:mt-16 my-6 sm:my-8 px-4">
           <img
-            src="/GardenGoldLogo.jpg"
+            src="/GardenGoldLogo.png"
             alt="Garden Gold Logo"
-            className="w-64 sm:w-72 md:w-80 lg:w-96 border-[3px] border-earth-700 rounded-lg shadow-sm bg-white"
+            className="w-64 sm:w-72 md:w-80 lg:w-96 border-[4px] border-earth-700 rounded-full m-0 shadow-sm"
             style={{ maxWidth: '90vw', height: 'auto' }}
           />
         </div>
+        <br />
 
         {/* Products Grid Section */}
         <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-green-300">
