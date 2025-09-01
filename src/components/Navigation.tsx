@@ -84,9 +84,10 @@ export default function Navigation() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative transition-colors duration-300 px-4 py-2 rounded-lg font-semibold text-white bg-transparent hover:bg-earth-400 hover:text-white border border-transparent text-lg xl:text-xl ${
-                  isActive(link.href) ? 'bg-earth-400 text-white border-earth-300' : 'text-earth-700'
-                }`}
+                className={`relative transition-colors duration-300 px-4 py-2 rounded-lg font-semibold text-white bg-transparent hover:bg-earth-400 hover:text-white border border-transparent text-lg xl:text-xl
+                  ${isActive(link.href) ? 'bg-earth-400 text-white border-earth-300' : 'text-earth-700'}
+                  ${!isScrolled ? 'text-border' : ''}
+                `}
                 style={{
                   color: isActive(link.href) ? 'white' : (isScrolled ? 'white' : cream),
                 }}
