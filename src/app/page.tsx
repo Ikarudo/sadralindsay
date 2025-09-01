@@ -121,7 +121,7 @@ export default function Home() {
         </section>
 
         {/* Connect Section */}
-        <section id="connect" className="py-8 sm:py-12 md:py-16 lg:py-20 bg-green-300 border-t-4 border-rust-400">
+        <section id="connect" className="py-8 sm:py-12 md:py-16 lg:py-20 bg-green-300 border-{1px] border-rust-400">
           <div className="container mx-auto px-4 sm:px-6 md:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

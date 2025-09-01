@@ -61,14 +61,14 @@ export default function SignInPage() {
   return (
     <>
       <Navigation />
-      <main className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100 py-12 px-4 relative overflow-hidden">
+      <main className="min-h-screen flex flex-col items-center justify-center bg-earth-100 py-12 px-4 relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(251,146,60,0.1),transparent_70%)] pointer-events-none"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(249,115,22,0.08),transparent_70%)] pointer-events-none"></div>
         
         <div className="w-full max-w-md relative z-10">
           {/* Logo/Brand section */}
-          <div className="text-center mb-8">
+          <div className="text-center mb-8 mt-15">
               <div className="flex justify-center items-center mb-8 sm:mb-12">
                 <img
                   src="/SML Logo v1.svg"

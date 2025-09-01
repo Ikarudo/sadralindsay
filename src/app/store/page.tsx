@@ -148,7 +148,7 @@ const sampleProducts = [
       {
     id: 'Moisturizer1',
     title: 'Aloe Blend Leave-in Moisturizer',
-    category: 'Moisterizer',
+    category: 'Moisturizer',
     coverImage: '/Aloe Blend Moisteurizer 8oz.jpg', 
     price: 17.99,
     description: [

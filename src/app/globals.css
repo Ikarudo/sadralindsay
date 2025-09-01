@@ -250,3 +250,7 @@ textarea:focus {
   background-color: var(--color-rust-200);
   color: var(--color-earth-700);
 }
+
+.text-border {
+  -webkit-text-stroke: 0.4px rgba(0, 0, 0, 0.8);
+}
