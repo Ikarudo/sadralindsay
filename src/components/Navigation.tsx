@@ -67,7 +67,7 @@ export default function Navigation() {
             className="relative w-12 h-12 sm:w-16 sm:h-16 flex items-center hover:opacity-90 transition-opacity"
           >
             <Image
-              src="/SML Logo TBG.SVG"
+              src="./SML Logo TBG.SVG"
               alt="SML Logo"
               fill
               className="object-contain"

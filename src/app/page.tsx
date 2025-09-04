@@ -16,7 +16,7 @@ export default function Home() {
           <div className="absolute inset-0 z-0 ">
             <div className="relative w-full h-full">
               <Image
-                src="/Frontpagepic2.png"
+                src="./Frontpagepic2.png"
                 alt="Hero Background"
                 fill
                 className="object-cover"

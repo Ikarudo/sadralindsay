@@ -61,7 +61,7 @@ function BooksPageContent() {
           <div className="absolute inset-0 z-0">
             <div className="absolute w-full h-full">
               <Image
-                src="/aboutbookspic.jpg"
+                src="./aboutbookspic.jpg"
                 alt="Bookstore Background"
                 fill
                 className="object-cover object-top"
