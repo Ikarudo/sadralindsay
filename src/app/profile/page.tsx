@@ -45,6 +45,7 @@ export default function ProfilePage() {
       <Navigation />
       <main className="min-h-screen bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100 py-8 sm:py-12 px-2 sm:px-4 relative overflow-hidden">
         {/* Background decoration */}
+        <br /> <br />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(238,142,90,0.1),transparent_70%)] pointer-events-none"></div>
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(238,142,90,0.08),transparent_70%)] pointer-events-none"></div>
         
