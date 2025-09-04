@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+// removed unused useState import
 import Image from 'next/image';
 
 interface CartItem {

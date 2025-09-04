@@ -6,12 +6,17 @@ import { useUser } from '@/context/UserContext';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { db } from '@/lib/firebase';
-import { doc, getDoc, collection, getDocs, orderBy, query } from 'firebase/firestore';
+import { doc, getDoc, collection, getDocs, orderBy, query, DocumentData, Timestamp } from 'firebase/firestore';
+
+interface UserProfile {
+  username?: string;
+  email?: string;
+}
 
 export default function ProfilePage() {
   const { user, loading, signOut } = useUser();
-  const [profile, setProfile] = useState<any>(null);
-  const [orders, setOrders] = useState<any[]>([]);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [orders, setOrders] = useState<Array<{ id: string; total?: number; createdAt?: Timestamp; items?: Array<{ title: string; quantity: number }> }>>([]);
   const [loadingProfile, setLoadingProfile] = useState(true);
   const router = useRouter();
 
@@ -26,12 +31,12 @@ export default function ProfilePage() {
       if (user) {
         const userRef = doc(db, 'users', user.uid);
         const userSnap = await getDoc(userRef);
-        setProfile(userSnap.exists() ? userSnap.data() : null);
+        setProfile(userSnap.exists() ? (userSnap.data() as UserProfile) : null);
         // Fetch order history
         const ordersRef = collection(db, 'users', user.uid, 'orders');
         const q = query(ordersRef, orderBy('createdAt', 'desc'));
         const ordersSnap = await getDocs(q);
-        setOrders(ordersSnap.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+        setOrders(ordersSnap.docs.map((d) => ({ id: d.id, ...(d.data() as DocumentData) })) as Array<{ id: string; total?: number; createdAt?: Timestamp; items?: Array<{ title: string; quantity: number }> }>);
         setLoadingProfile(false);
       }
     }
@@ -166,7 +171,7 @@ export default function ProfilePage() {
                           <div className="space-y-1 sm:space-y-2">
                             <h4 className="font-medium text-gray-700 text-xs sm:text-sm">Items:</h4>
                             <div className="grid grid-cols-1 gap-1 sm:gap-2">
-                              {order.items.map((item: any, index: number) => (
+                              {order.items.map((item, index: number) => (
                                 <div key={index} className="flex justify-between items-center py-1 px-2 sm:py-2 sm:px-3 bg-gray-50 rounded-lg">
                                   <span className="text-gray-800 font-medium text-xs sm:text-base">{item.title}</span>
                                   <span className="text-gray-600 text-xs sm:text-sm">x{item.quantity}</span>

@@ -11,9 +11,9 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
-  const { items } = useCart ? useCart() : { items: [] };
+  const { items } = useCart();
   const cartCount = items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
-  const { user, signOut, loading: userLoading } = useUser();
+  const { user, loading: userLoading } = useUser();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,12 +24,7 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleSignOut = async () => {
-    await signOut();
-    if (window && window.dispatchEvent) {
-      window.dispatchEvent(new CustomEvent('show-toast', { detail: { message: 'Signed Out' } }));
-    }
-  };
+  // remove unused handler
 
   const navLinks = [
     { href: '/', label: 'Home' },
@@ -74,7 +69,7 @@ export default function Navigation() {
               src="/SML Logo TBG.SVG"
               alt="SML Logo"
               style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
-              draggable="false"
+              draggable={false}
             />
           </Link>
 

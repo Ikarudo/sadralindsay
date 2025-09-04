@@ -30,7 +30,7 @@ export interface OrderData {
     tax: string;
     total: string;
   };
-  [key: string]: any; // Add index signature for EmailJS compatibility
+  [key: string]: unknown; // Add index signature for EmailJS compatibility
 }
 
 export const sendOrderConfirmationEmails = async (
@@ -122,20 +122,20 @@ export const sendOrderConfirmationEmails = async (
     };
 
     // Send email to customer
-    let customerEmailResult;
+    // Send to customer (ignore response object)
     try {
       // First try with alternative parameter names
-      customerEmailResult = await emailjs.send(
+      await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         alternativeTemplateParams,
         EMAILJS_PUBLIC_KEY
       );
-    } catch (firstError) {
+    } catch {
       // try fallback with original params
       try {
         // Fallback to original template parameters
-        customerEmailResult = await emailjs.send(
+        await emailjs.send(
           EMAILJS_SERVICE_ID,
           EMAILJS_TEMPLATE_ID,
           templateParams,
@@ -148,7 +148,6 @@ export const sendOrderConfirmationEmails = async (
     }
 
     // Send email to business
-    let businessEmailResult;
     try {
       const businessTemplateParams = {
         ...alternativeTemplateParams, // Use alternative parameters
@@ -158,13 +157,13 @@ export const sendOrderConfirmationEmails = async (
 
       try {
         // First try with alternative parameter names
-        businessEmailResult = await emailjs.send(
+        await emailjs.send(
           EMAILJS_SERVICE_ID,
           EMAILJS_TEMPLATE_ID,
           businessTemplateParams,
           EMAILJS_PUBLIC_KEY
         );
-      } catch (firstError) {
+      } catch {
         // try fallback with original params
         try {
           // Fallback to original template parameters
@@ -173,7 +172,7 @@ export const sendOrderConfirmationEmails = async (
             customer_email: BUSINESS_EMAIL,
             is_business_copy: true
           };
-          businessEmailResult = await emailjs.send(
+          await emailjs.send(
             EMAILJS_SERVICE_ID,
             EMAILJS_TEMPLATE_ID,
             fallbackBusinessParams,
@@ -189,7 +188,7 @@ export const sendOrderConfirmationEmails = async (
     }
 
     return true;
-  } catch (error) {
+  } catch {
     return false;
   }
 };
