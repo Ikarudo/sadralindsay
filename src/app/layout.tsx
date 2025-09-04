@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from '@/context/CartContext';
 import { UserProvider } from '@/context/UserContext';
+import EmailJSInitializer from '@/components/EmailJSInitializer';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-earth-100 text-earth-700`}>
         <UserProvider>
           <CartProvider>
+            <EmailJSInitializer />
             {children}
           </CartProvider>
         </UserProvider>

@@ -8,6 +8,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import { db } from '@/lib/firebase';
 import { collection, addDoc, Timestamp } from 'firebase/firestore';
+import { sendOrderConfirmationEmails } from '@/services/emailService';
 
 // Toast component
 function Toast({ message, onClose }: { message: string; onClose: () => void }) {
@@ -27,6 +28,7 @@ export default function CheckoutPage() {
   const { items, total, clearCart } = useCart();
   const [toast, setToast] = useState('');
   const [processing, setProcessing] = useState(false);
+  const [emailStatus, setEmailStatus] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle');
   const router = useRouter();
   const shippingCharge = 15.0;
   const subtotal = total;
@@ -42,24 +44,54 @@ export default function CheckoutPage() {
     if (!user || items.length === 0) return;
     setProcessing(true);
     try {
+      // Create order object for Firebase
       const order = {
-        items: items.map(({ id, title, quantity }) => ({ id, title, quantity })),
+        items: items.map(({ id, title, quantity, price }) => ({ id, title, quantity, price })),
         subtotal,
         shipping: shippingCharge,
         total: finalTotal,
         createdAt: Timestamp.now(),
       };
+      
+      // Save order to Firebase
       const ordersRef = collection(db, 'users', user.uid, 'orders');
-      await addDoc(ordersRef, order);
-      setToast('Order placed successfully!');
+      const orderDoc = await addDoc(ordersRef, order);
+      
+      // Send confirmation emails via EmailJS
+      setEmailStatus('sending');
+      
+      const orderDateStr = new Date().toLocaleDateString('en-US', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+      
+      const emailSuccess = await sendOrderConfirmationEmails(
+        user.email || '',
+        user.displayName || user.email?.split('@')[0] || 'Customer',
+        items,
+        subtotal,
+        shippingCharge,
+        finalTotal,
+        orderDoc.id,
+        orderDateStr
+      );
+      
+      if (emailSuccess) {
+        setEmailStatus('sent');
+        setToast('Order placed successfully! Confirmation emails sent.');
+      } else {
+        setEmailStatus('failed');
+        setToast('Order placed successfully! Email delivery may be delayed.');
+      }
+      
       clearCart();
       setTimeout(() => {
         setToast('');
         router.push('/');
-      }, 2000);
+      }, 3000);
     } catch (err) {
-      setToast('Failed to place order.');
-      setTimeout(() => setToast(''), 2000);
+      console.error('Checkout error:', err);
+      setToast('Failed to place order. Please try again.');
+      setTimeout(() => setToast(''), 3000);
     } finally {
       setProcessing(false);
     }
@@ -165,6 +197,22 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
+                {/* Email Confirmation Note */}
+                <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <div className="flex items-start space-x-3">
+                    <svg className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <div>
+                      <h3 className="text-sm font-semibold text-blue-900 mb-1">Email Confirmation</h3>
+                      <p className="text-sm text-blue-700">
+                        After placing your order, you'll receive a confirmation email with payment instructions. 
+                        A copy will also be sent to our business team for processing.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
                 {/* Checkout Button */}
                 <button
                   onClick={handleCheckout}
@@ -186,7 +234,9 @@ export default function CheckoutPage() {
                           d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
                         />
                       </svg>
-                      <span>Processing...</span>
+                      <span>
+                        {emailStatus === 'sending' ? 'Sending Confirmation Emails...' : 'Processing...'}
+                      </span>
                     </>
                   ) : (
                     <>
@@ -207,6 +257,32 @@ export default function CheckoutPage() {
                     </>
                   )}
                 </button>
+
+                {/* Email Status Indicator */}
+                {emailStatus === 'sending' && (
+                  <div className="mt-4 text-center text-sm text-blue-600">
+                    <svg className="animate-spin w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                    </svg>
+                    Sending confirmation emails...
+                  </div>
+                )}
+                {emailStatus === 'sent' && (
+                  <div className="mt-4 text-center text-sm text-green-600">
+                    <svg className="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Confirmation emails sent successfully!
+                  </div>
+                )}
+                {emailStatus === 'failed' && (
+                  <div className="mt-4 text-center text-sm text-orange-600">
+                    <svg className="w-4 h-4 inline-block mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                    </svg>
+                    Order placed but email delivery may be delayed
+                  </div>
+                )}
 
                 {/* Security Note */}
                 <div className="mt-4 text-center text-sm text-gray-600">
