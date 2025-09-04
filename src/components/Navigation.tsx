@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useCart } from '@/context/CartContext';
 import { useUser } from '@/context/UserContext';
@@ -65,11 +66,12 @@ export default function Navigation() {
             href="/"
             className="relative w-12 h-12 sm:w-16 sm:h-16 flex items-center hover:opacity-90 transition-opacity"
           >
-            <img
+            <Image
               src="/SML Logo TBG.SVG"
               alt="SML Logo"
-              style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
-              draggable={false}
+              fill
+              className="object-contain"
+              priority
             />
           </Link>
 

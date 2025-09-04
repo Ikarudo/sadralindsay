@@ -120,7 +120,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
     migrateCart();
     
-  }, [user]);
+  }, [user, sessionId]);
 
   // Debounced save cart to Firestore on change
   useEffect(() => {
