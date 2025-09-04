@@ -1,10 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
 import Navigation from '@/components/Navigation';
-import { CartProvider } from '@/context/CartContext';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import BookCard from '@/components/BookCard';
@@ -52,9 +50,6 @@ const sampleBooks = [
 
 function BooksPageContent() {
   const { addItem } = useCart();
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
-  const categories = ['all', 'fiction', 'non-fiction', 'gospel'];
 
   return (
     <>
@@ -93,11 +88,13 @@ function BooksPageContent() {
 
         {/* SML Books Logo */}
         <div className="flex justify-center items-center mt-8 sm:mt-12 md:mt-16 my-6 sm:my-8 px-4">
-          <img
+          <Image
             src="/SMLBooksLogo.jpg"
             alt="SML Books Logo"
-            className="w-64 sm:w-72 md:w-80 lg:w-96 border-[3px] border-earth-700 rounded-lg shadow-sm bg-white"
-            style={{ maxWidth: '90vw', height: 'auto' }}
+            width={384}
+            height={384}
+            className="w-64 sm:w-72 md:w-80 lg:w-96 border-[3px] border-earth-700 rounded-lg shadow-sm bg-white h-auto"
+            priority
           />
         </div>
 
@@ -129,7 +126,7 @@ function BooksPageContent() {
                   <div className="w-full lg:w-1/2 border border-black p-4 sm:p-6 md:p-8 bg-cream">
                     <p className="text-sm sm:text-base md:text-lg text-earth-800 leading-relaxed">
                       To This Day Let Me Write:         
-                      When I am writing on paper, in a planner or in a journal, I feel like I am peeling from the walls of my soul. There is this sense of pulling from a part of me that could only manifest if I sit down to write. Somehow, words tend to flow differently when I write things down. The written word transcends into a greater more defined revelation to the meaning of life and existence. Consequently I am allowed greater understanding of many of life's mysteries and can in-turn enlighten someone else.
+                      When I am writing on paper, in a planner or in a journal, I feel like I am peeling from the walls of my soul. There is this sense of pulling from a part of me that could only manifest if I sit down to write. Somehow, words tend to flow differently when I write things down. The written word transcends into a greater more defined revelation to the meaning of life and existence. Consequently I am allowed greater understanding of many of life&apos;s mysteries and can in-turn enlighten someone else.
                       Written words, unlike the spoken, gives the added benefit of peace and calm as you sit to quietly to go over what was before-written, not just by yourself, but by many others. Those who would have likewise pulled from their soul and left words on paper that you could touch, feel and appreciate the intimacy of the author alone with himself, alone with his maker.
                     </p>
                   </div>

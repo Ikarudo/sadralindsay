@@ -3,9 +3,6 @@
 import { motion } from 'framer-motion';
 import Navigation from '@/components/Navigation';
 import Image from 'next/image';
-import { FaInstagram, FaYoutube, FaTiktok, FaFacebook, FaSpotify, FaApple } from 'react-icons/fa';
-// import { SiBoomplay } from 'react-icons/si'; // SiBoomplay does not exist
-import { SiJoomla } from 'react-icons/si'; // Example replacement, or remove if not needed
 import Footer from '@/components/Footer';
 
 export default function Home() {
@@ -63,10 +60,12 @@ export default function Home() {
               
               {/* Logo Section - Centered on all devices */}
               <div className="flex justify-center items-center mb-8 sm:mb-12">
-                <img
+                <Image
                   src="/SML Logo v1.svg"
                   alt="SML Logo"
-                  className="w-48 sm:w-56 md:w-64 border-2 lg:w-72 h-auto max-w-full"
+                  width={256}
+                  height={256}
+                  className="w-48 sm:w-56 md:w-64 lg:w-72 h-auto max-w-full"
                 />
               </div>
               
@@ -88,7 +87,7 @@ export default function Home() {
                 <div className="flex-1 w-full lg:w-1/2 text-left order-1 lg:order-2">
                   <p className="text-xl sm:text-2xl font-bold text-pink-700 mb-4 sm:mb-6">Hi Everyone!</p>
                   <p className="text-sm sm:text-base md:text-lg lg:text-xl text-earth-800 mb-4 sm:mb-6 leading-relaxed">
-                    I'm Sadra Madonna Lindsay. Welcome to my world, where God's grace abounds and every experience is a blessing.
+                    I&apos;m Sadra Madonna Lindsay. Welcome to my world, where God&apos;s grace abounds and every experience is a blessing.
                   </p>
                   <p className="text-sm sm:text-base md:text-lg lg:text-xl text-earth-800 mb-4 sm:mb-6 leading-relaxed">
                     My Career: <span className="font-normal text-earth-800">Gospel Recording Artist, Award Winning Author and Entrepreneur.</span>
@@ -113,8 +112,8 @@ export default function Home() {
             <p className="text-earth-600 leading-relaxed text-sm sm:text-base md:text-lg text-center sm:text-left">
               Sadra Madonna Lindsay is a Minister of the Gospel, an Award Winning Gospel Recording Artist and Author, she is a wife, mother, entrepreneur, motivational speaker, Worship Leader, a student of Theology and a student of Law. 
               She is an enthusiastic creative who believes in using her talents and gifts for the furthering of the Gospel. She is married to Pastor Sherwayen Lindsay, and together they serve as Ministers within The Assemblies of the First Born Church International Jamaica. 
-              She is the mother of two sons, Micah and Joshua. She stands firmly by the scripture, as written in Matt. 14:28 "Lord bid me to come and I will walk upon water". She holds a Bachelor of Arts Degree in Literatures in English and Philosophy, a Bachelor of Laws Degree, 
-              a Certificate in Business Administration, a Certificate in Entrepreneurship and Personal Initiative as well a Certificate in Theology. It is her desire to be a beacon to God's people, young and old. Her hope is that her works will leave an indelible mark in the hearts 
+              She is the mother of two sons, Micah and Joshua. She stands firmly by the scripture, as written in Matt. 14:28 &quot;Lord bid me to come and I will walk upon water&quot;. She holds a Bachelor of Arts Degree in Literatures in English and Philosophy, a Bachelor of Laws Degree, 
+              a Certificate in Business Administration, a Certificate in Entrepreneurship and Personal Initiative as well a Certificate in Theology. It is her desire to be a beacon to God&apos;s people, young and old. Her hope is that her works will leave an indelible mark in the hearts 
               and minds of those it reaches for generations to come.
             </p>
           </div>

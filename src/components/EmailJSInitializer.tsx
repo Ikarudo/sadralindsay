@@ -17,13 +17,13 @@ export default function EmailJSInitializer() {
       console.log('EmailJS initialized successfully');
       
       // Test if initialization worked
-      setTimeout(() => {
-        if (emailjs.send) {
-          console.log('EmailJS send function available');
-        } else {
-          console.error('EmailJS send function not available after init');
-        }
-      }, 100);
+      // setTimeout(() => {
+      //   if (emailjs.send) {
+      //     console.log('EmailJS send function available');
+      //   } else {
+      //     console.error('EmailJS send function not available after init');
+      //   }
+      // }, 100);
       
     } catch (error) {
       console.error('Failed to initialize EmailJS:', error);

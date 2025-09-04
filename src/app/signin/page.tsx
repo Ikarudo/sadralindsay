@@ -7,7 +7,7 @@ import { auth } from '@/lib/firebase';
 import Link from 'next/link';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { useUser } from '@/context/UserContext';
+// removed unused useUser import
 import { useEffect } from 'react';
 
 function Toast({ message, onClose }: { message: string; onClose: () => void }) {
@@ -41,8 +41,9 @@ export default function SignInPage() {
         setToast('');
         router.push('/');
       }, 2000);
-    } catch (err: any) {
-      setError(err.message || 'Failed to sign in.');
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Failed to sign in.';
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -50,12 +51,12 @@ export default function SignInPage() {
 
   // Listen for global toasts (e.g., sign out)
   useEffect(() => {
-    const handler = (e: any) => {
+    const handler = (e: CustomEvent<{ message?: string }>) => {
       if (e.detail && e.detail.message) setToast(e.detail.message);
       setTimeout(() => setToast(''), 2000);
     };
-    window.addEventListener('show-toast', handler);
-    return () => window.removeEventListener('show-toast', handler);
+    window.addEventListener('show-toast', handler as EventListener);
+    return () => window.removeEventListener('show-toast', handler as EventListener);
   }, []);
 
   return (

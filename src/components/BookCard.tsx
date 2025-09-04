@@ -20,7 +20,7 @@ export default function BookCard({
   description,
   onAddToCart,
 }: BookCardProps) {
-  const [isHovered, setIsHovered] = useState(false);
+  // removed unused hover state
   const [quantity, setQuantity] = useState(1);
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -49,8 +49,6 @@ export default function BookCard({
   return (
     <div
       className="card p-3 sm:p-4 md:p-6 bg-earth-100/95 shadow-xl rounded-xl border-2 border-rust-200 flex flex-col h-full"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image Container - Centered on all devices */}
       <div className="flex justify-center items-center mb-3 sm:mb-4">

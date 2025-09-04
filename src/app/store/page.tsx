@@ -1,10 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import { useCart } from '@/context/CartContext';
 import Navigation from '@/components/Navigation';
-import { CartProvider } from '@/context/CartContext';
 import Footer from '@/components/Footer';
 import Image from 'next/image';
 import ProductCard from '@/components/ProductCard';
@@ -193,9 +191,6 @@ const sampleProducts = [
 
 function StorePageContent() {
   const { addItem } = useCart();
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
-  const categories = ['all', 'soap', 'candles', 'accessories'];
 
   return (
     <>
@@ -234,11 +229,13 @@ function StorePageContent() {
 
         {/* Garden Gold Logo */}
         <div className="flex justify-center items-center mt-8 sm:mt-12 md:mt-16 my-6 sm:my-8 px-4">
-          <img
+          <Image
             src="/GardenGoldLogo.png"
             alt="Garden Gold Logo"
-            className="w-64 sm:w-72 md:w-80 lg:w-96 border-[4px] border-earth-700 rounded-full m-0 shadow-sm"
-            style={{ maxWidth: '90vw', height: 'auto' }}
+            width={384}
+            height={384}
+            className="w-64 sm:w-72 md:w-80 lg:w-96 border-[4px] border-earth-700 rounded-full m-0 shadow-sm h-auto"
+            priority
           />
         </div>
         <br />

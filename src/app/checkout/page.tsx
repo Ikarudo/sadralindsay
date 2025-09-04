@@ -206,7 +206,7 @@ export default function CheckoutPage() {
                     <div>
                       <h3 className="text-sm font-semibold text-blue-900 mb-1">Email Confirmation</h3>
                       <p className="text-sm text-blue-700">
-                        After placing your order, you'll receive a confirmation email with payment instructions. 
+                        After placing your order, you&apos;ll receive a confirmation email with payment instructions. 
                         A copy will also be sent to our business team for processing.
                       </p>
                     </div>

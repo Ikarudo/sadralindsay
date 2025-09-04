@@ -5,7 +5,7 @@ import { db } from '@/lib/firebase';
 import { useEffect } from 'react';
 import { doc, getDoc, setDoc, onSnapshot } from 'firebase/firestore';
 import { useUser } from './UserContext';
-import { collection, addDoc } from 'firebase/firestore';
+// removed unused collection/addDoc imports
 import { useRef } from 'react';
 
 interface CartItem {
@@ -83,7 +83,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     return () => {
       if (unsubscribeRef.current) unsubscribeRef.current();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [user, sessionId]);
 
   // Migrate session cart to user cart on login
@@ -97,7 +97,17 @@ export function CartProvider({ children }: { children: ReactNode }) {
             const sessionItems = sessionCartSnap.data().items || [];
             if (sessionItems.length > 0) {
               const userCartRef = doc(db, 'users', user.uid, 'cart', 'current');
-              await setDoc(userCartRef, { items: sessionItems, total: sessionItems.reduce((sum: number, item: any) => sum + item.price * item.quantity, 0) });
+              await setDoc(
+                userCartRef,
+                {
+                  items: sessionItems,
+                  total: sessionItems.reduce(
+                    (sum: number, item: { price: number; quantity: number }) =>
+                      sum + item.price * item.quantity,
+                    0
+                  ),
+                }
+              );
               setItems(sessionItems);
               await setDoc(sessionCartRef, { items: [] }); // Clear session cart
               console.log('[Cart] Migrated session cart to user cart:', sessionItems);
@@ -109,7 +119,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       }
     }
     migrateCart();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    
   }, [user]);
 
   // Debounced save cart to Firestore on change
