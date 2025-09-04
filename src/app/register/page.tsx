@@ -11,6 +11,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 // removed unused useUser import
 import { useEffect } from 'react';
+import Image from 'next/image';
 
 function Toast({ message, onClose }: { message: string; onClose: () => void }) {
   useEffect(() => {
@@ -92,11 +93,16 @@ export default function RegisterPage() {
           {/* Logo/Brand section */}
           <div className="text-center mb-8 mt-15">
               <div className="flex justify-center items-center mb-8 sm:mb-12">
-                <img
-                  src="/SML Logo v1.svg"
-                  alt="SML Logo"
-                  className="w-48 sm:w-56 md:w-64 lg:w-72 border-2 h-auto max-w-full"
-                />
+                <span className="block w-48 sm:w-56 md:w-64 lg:w-72">
+                  <Image
+                    src="/SML Logo v1.svg"
+                    alt="SML Logo"
+                    width={288}
+                    height={288}
+                    className="border-2 h-auto max-w-full"
+                    priority
+                  />
+                </span>
               </div>
             <h1 className="text-3xl font-bold text-gray-800 mb-2">Create Account</h1>
             <p className="text-gray-600">Join us and start your journey</p>
