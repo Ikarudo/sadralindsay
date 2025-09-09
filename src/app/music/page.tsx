@@ -16,7 +16,7 @@ export default function MusicPage() {
           <div className="absolute inset-0 z-0">
             <div className="absolute w-full h-full">
               <Image
-                src="/musicpic1.png"
+                src="./musicpic1.png"
                 alt="Music Hero Background"
                 fill
                 className="object-cover object-top"
@@ -152,7 +152,7 @@ export default function MusicPage() {
                   
                   <div className="relative">
                     <Image
-                      src="/musicpic2.png"
+                      src="./musicpic2.png"
                       alt="Sadra singing"
                       width={400}
                       height={400}

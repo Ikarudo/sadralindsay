@@ -13,7 +13,7 @@ const sampleBooks = [
     id: '1',
     title: 'Biblically Guided Planner',
     author: 'Sadra Madonna Lindsay',
-    coverImage: '/GuidedPlanner.jpg',
+    coverImage: './GuidedPlanner.jpg',
     price: 60.00,
     description: [
       'A faith-based strategic planner that helps individuals redeem time and plan purposefully, blending biblical wisdom with practical strategies and offering a scriptural blueprint for success in business and life.',
@@ -25,7 +25,7 @@ const sampleBooks = [
     id: '2',
     title: 'Biblically Guided Journal',
     author: 'Sadra Madonna Lindsay',
-    coverImage: '/guidedjournal.png',
+    coverImage: './guidedjournal.png',
     price: 35.00,
     description: [
       'A teaching tool for purposeful living, emphasizing gratitude\'s impact on life outcomes and promoting reflection, acceptance, and appreciation of all life stages with a balanced perspective.',
@@ -37,7 +37,7 @@ const sampleBooks = [
     id: '3',
     title: 'An Inspired Poetic Memoir',
     author: 'Sadra Madonna Lindsay',
-    coverImage: '/PoeticMemoir.png',
+    coverImage: './PoeticMemoir.png',
     price: 15.00,
     description: [
       'A Life guiding tool which focuses on five specific areas of life and living',
@@ -89,7 +89,7 @@ function BooksPageContent() {
         {/* SML Books Logo */}
         <div className="flex justify-center items-center mt-8 sm:mt-12 md:mt-16 my-6 sm:my-8 px-4">
           <Image
-            src="/SMLBooksLogo.jpg"
+            src="./SMLBooksLogo.jpg"
             alt="SML Books Logo"
             width={384}
             height={384}
@@ -115,7 +115,7 @@ function BooksPageContent() {
                   <div className="w-full lg:w-1/2 flex justify-center">
                     <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg">
                       <Image
-                        src="/aboutbookspic2.jpg"
+                        src="./aboutbookspic2.jpg"
                         alt="About Books"
                         width={500}
                         height={300}
@@ -136,7 +136,7 @@ function BooksPageContent() {
                   <div className="w-full lg:w-1/2 flex justify-center">
                     <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg">
                       <Image
-                        src="/bookstorebg.png"
+                        src="./bookstorebg.png"
                         alt="About Books 2"
                         width={500}
                         height={300}
