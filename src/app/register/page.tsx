@@ -95,7 +95,7 @@ export default function RegisterPage() {
               <div className="flex justify-center items-center mb-8 sm:mb-12">
                 <span className="block w-48 sm:w-56 md:w-64 lg:w-72">
                   <Image
-                    src="/SML Logo v1.svg"
+                    src="./SML Logo v1.svg"
                     alt="SML Logo"
                     width={288}
                     height={288}

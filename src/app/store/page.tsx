@@ -13,7 +13,7 @@ const sampleProducts = [
     id: 'soap1',
     title: 'Pink Himalayan Salt Soap',
     category: 'soap',
-    coverImage: '/PinkHimalyanSalt.jpg', 
+    coverImage: './PinkHimalyanSalt.jpg', 
     price: 9.00,
     description: [
       'Pink Himalayan Salt Luxurious body bar is the newest kid on the block and boy dies she shine ✨ A gentle exfoliant is proven to hydrate while cleaning the skin scented with pachouli and sandalwood is an aromatic feast, while still being gentle on the senses.',
@@ -26,7 +26,7 @@ const sampleProducts = [
     id: 'soap2',
     title: 'Aloe Leaf of Life Soap',
     category: 'soap',
-    coverImage: '/AloeLeafofLife.jpg', 
+    coverImage: './AloeLeafofLife.jpg', 
     price: 9.00,
     description: [
       'Aloe Leaf of Life Luxurious body bar was introduced in 2022 and she has not looked back since…',
@@ -41,7 +41,7 @@ const sampleProducts = [
     id: 'soap3',
     title: 'Tumeric and Aloe Soap',
     category: 'soap',
-    coverImage: '/TumericandAloe.jpg', 
+    coverImage: './TumericandAloe.jpg', 
     price: 9.00,
     description: [
       'Turmeric and Aloe Luxurious body bar was introduced in 2022 She is a personal favorite of many and continues to dominate our soap market on the shelves… ',
@@ -56,7 +56,7 @@ const sampleProducts = [
     id: 'ShampooSML',
     title: 'Aloe Blend Leaf of Life Infused Shampoo 8oz',
     category: 'Shampoo',
-    coverImage: '/Aloe Leaf of Life Shampoo 8OZ.jpg', 
+    coverImage: './Aloe Leaf of Life Shampoo 8OZ.jpg', 
     price: 12.00,
     description: [
       'Rapid Hair Growth ',
@@ -72,7 +72,7 @@ const sampleProducts = [
     id: 'ShampooLRG',
     title: 'Aloe Blend Leaf of Life Infused Shampoo 16oz',
     category: 'Shampoo',
-    coverImage: '/Aloe Leaf of Life Shampoo 16OZ.jpg', 
+    coverImage: './Aloe Leaf of Life Shampoo 16OZ.jpg', 
     price: 17.99,
     description: [
       'Rapid Hair Growth ',
@@ -88,7 +88,7 @@ const sampleProducts = [
     id: 'Conditioner',
     title: 'Aloe Blend Conditioner',
     category: 'Conditioner',
-    coverImage: '/Aloe Blend Conditioner.jpg', 
+    coverImage: './Aloe Blend Conditioner.jpg', 
     price: 17.99,
     description: [
       'Cleanses, Moisturizes and Stimulates Hair Growth',
@@ -103,7 +103,7 @@ const sampleProducts = [
     id: 'Serum1',
     title: 'Leaf of Life Serum',
     category: 'Serum',
-    coverImage: '/Leaf of life Serum.jpg', 
+    coverImage: './Leaf of life Serum.jpg', 
     price: 17.99,
     description: [
       'Sooths, hHydrates, and plumps the skin',
@@ -118,7 +118,7 @@ const sampleProducts = [
     id: 'Oil1',
     title: 'Aloe Oil Blend',
     category: 'Oil',
-    coverImage: '/Aloe Oil Blend.jpg', 
+    coverImage: './Aloe Oil Blend.jpg', 
     price: 15.99,
     description: [
       'Promotes Super Fast Hair Growth',
@@ -132,7 +132,7 @@ const sampleProducts = [
     id: 'Oil2',
     title: 'Rosemary Oil Blend',
     category: 'Oil',
-    coverImage: '/Rosemary Oil Blend.jpg', 
+    coverImage: './Rosemary Oil Blend.jpg', 
     price: 17.99,
     description: [
       'Promotes Super Fast Hair Growth',
@@ -147,7 +147,7 @@ const sampleProducts = [
     id: 'Moisturizer1',
     title: 'Aloe Blend Leave-in Moisturizer',
     category: 'Moisturizer',
-    coverImage: '/Aloe Blend Moisteurizer 8oz.jpg', 
+    coverImage: './Aloe Blend Moisteurizer 8oz.jpg', 
     price: 17.99,
     description: [
       'Stimulates Hair Growth',
@@ -163,7 +163,7 @@ const sampleProducts = [
     id: 'ComboSML',
     title: 'Aloe Blend Combo Small',
     category: 'Combo',
-    coverImage: '/Aloe Blend Combo Small.jpg', 
+    coverImage: './Aloe Blend Combo Small.jpg', 
     price: 65.00,
     description: [
       'Aloe Blend Leaf of Life Infused Moisturizing Shampoo (8oz)',
@@ -177,7 +177,7 @@ const sampleProducts = [
     id: 'ComboLRG',
     title: 'Aloe Blend Combo Large',
     category: 'Combo',
-    coverImage: '/Aloe Blend Combo Small.jpg', 
+    coverImage: './Aloe Blend Combo Small.jpg', 
     price: 85.00,
     description: [
       'Aloe Blend (Leaf of Life Infused Moisturizing Shampoo (16oz)',
@@ -202,7 +202,7 @@ function StorePageContent() {
           <div className="absolute inset-0 z-0">
             <div className="absolute w-full h-full">
               <Image
-                src="/StoreBGPic.jpg"
+                src="./StoreBGPic.jpg"
                 alt="Store Background"
                 fill
                 className="object-cover object-top"
@@ -230,7 +230,7 @@ function StorePageContent() {
         {/* Garden Gold Logo */}
         <div className="flex justify-center items-center mt-8 sm:mt-12 md:mt-16 my-6 sm:my-8 px-4">
           <Image
-            src="/GardenGoldLogo.png"
+            src="./GardenGoldLogo.png"
             alt="Garden Gold Logo"
             width={384}
             height={384}

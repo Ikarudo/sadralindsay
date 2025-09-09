@@ -61,7 +61,7 @@ export default function Home() {
               {/* Logo Section - Centered on all devices */}
               <div className="flex justify-center items-center mb-8 sm:mb-12">
                 <Image
-                  src="/SML Logo v1.svg"
+                  src="./SML Logo v1.svg"
                   alt="SML Logo"
                   width={256}
                   height={256}
@@ -74,7 +74,7 @@ export default function Home() {
                 <div className="flex-1 w-full lg:w-1/2 flex justify-center items-center order-2 lg:order-1">
                   <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg">
                     <Image
-                      src="/AboutMePic.png"
+                      src="./AboutMePic.png"
                       alt="About Me"
                       width={420}
                       height={600}
