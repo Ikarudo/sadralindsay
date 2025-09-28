@@ -34,8 +34,8 @@ export default function Navigation() {
     { href: '/store', label: 'Store' },
     { href: '/cart', label: 'Cart', icon: <FaShoppingCart className="inline-block mb-1 mr-1" /> },
     // Checkout link removed from navbar
-    { href: '/#about', label: 'About' },
-    { href: '/#connect', label: 'Connect' },
+    { href: './#about', label: 'About' },
+    { href: './#connect', label: 'Connect' },
   ];
 
   // Only highlight as active for main pages, not hash links
@@ -67,7 +67,7 @@ export default function Navigation() {
             className="relative w-12 h-12 sm:w-16 sm:h-16 flex items-center hover:opacity-90 transition-opacity"
           >
             <Image
-              src="/SML Logo TBG.svg"
+              src="./SML Logo TBG.svg"
               alt="SML Logo"
               fill
               className="object-contain"
