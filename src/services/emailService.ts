@@ -4,7 +4,6 @@ import * as emailjs from '@emailjs/browser';
 const EMAILJS_PUBLIC_KEY = 'REDACTED_EMAILJS_PUBLIC_KEY';
 const EMAILJS_SERVICE_ID = 'Invoices';
 const EMAILJS_TEMPLATE_ID = 'InvoiceTemplate';
-const BUSINESS_EMAIL = 'REDACTED_BUSINESS_EMAIL';
 
 export interface OrderItem {
   id: string;
@@ -147,45 +146,6 @@ export const sendOrderConfirmationEmails = async (
       }
     }
 
-    // Send email to business
-    try {
-      const businessTemplateParams = {
-        ...alternativeTemplateParams, // Use alternative parameters
-        customer_email: BUSINESS_EMAIL, // Override for business email
-        is_business_copy: true
-      };
-
-      try {
-        // First try with alternative parameter names
-        await emailjs.send(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_ID,
-          businessTemplateParams,
-          EMAILJS_PUBLIC_KEY
-        );
-      } catch {
-        // try fallback with original params
-        try {
-          // Fallback to original template parameters
-          const fallbackBusinessParams = {
-            ...templateParams,
-            customer_email: BUSINESS_EMAIL,
-            is_business_copy: true
-          };
-          await emailjs.send(
-            EMAILJS_SERVICE_ID,
-            EMAILJS_TEMPLATE_ID,
-            fallbackBusinessParams,
-            EMAILJS_PUBLIC_KEY
-          );
-        } catch (fallbackError) {
-          // propagate error
-          throw fallbackError;
-        }
-      }
-    } catch (businessError) {
-      throw businessError;
-    }
 
     return true;
   } catch {

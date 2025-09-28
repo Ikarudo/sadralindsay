@@ -32,4 +32,7 @@ export default function RootLayout({
       </body>
     </html>
   );
+  <center><div>
+
+  </div></center>
 }
