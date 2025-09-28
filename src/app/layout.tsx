@@ -23,7 +23,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="./SML Favicon.svg" type="image/svg+xml" />
       </head>
-      <body className={`${inter.className} bg-earth-100 text-earth-700`}>
+      <body className={`${inter.className} bg-earth-100 text-earth-700`} suppressHydrationWarning={true}>
         <UserProvider>
           <CartProvider>
             <EmailJSInitializer />

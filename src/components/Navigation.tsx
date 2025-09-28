@@ -34,8 +34,8 @@ export default function Navigation() {
     { href: '/store', label: 'Store' },
     { href: '/cart', label: 'Cart', icon: <FaShoppingCart className="inline-block mb-1 mr-1" /> },
     // Checkout link removed from navbar
-    { href: './#about', label: 'About' },
-    { href: './#connect', label: 'Connect' },
+    { href: '/#about', label: 'About' },
+    { href: '/#connect', label: 'Connect' },
   ];
 
   // Only highlight as active for main pages, not hash links
