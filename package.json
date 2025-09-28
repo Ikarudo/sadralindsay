@@ -7,7 +7,8 @@
   "scripts": {
     "predeploy": "npm run build",
     "build": "next build",
-    "deploy": "next build && gh-pages -d out",
+    "build:github": "GITHUB_PAGES=true next build",
+    "deploy": "GITHUB_PAGES=true next build && gh-pages -d out",
     "dev": "next dev --turbopack",
     "start": "next start",
     "lint": "next lint"
@@ -19,6 +20,7 @@
     "next": "^15.4.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.6.0",
     "react-icons": "^5.5.0",
     "tailwind-merge": "^3.3.0"
   },

@@ -4,8 +4,49 @@ import { motion } from 'framer-motion';
 import Navigation from '@/components/Navigation';
 import Image from 'next/image';
 import Footer from '@/components/Footer';
+import { useUser } from '@/context/UserContext';
+import { useRouter } from 'next/navigation';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
+import { toast } from 'react-hot-toast';
+import { useState } from 'react';
 
 export default function Home() {
+  const { user } = useUser();
+  const router = useRouter();
+  const [isSubscribing, setIsSubscribing] = useState(false);
+
+  const handleMailingListSubscribe = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    
+    // Check if user is logged in
+    if (!user) {
+      router.push('/signin');
+      return;
+    }
+
+    setIsSubscribing(true);
+
+    try {
+      // Add user to mailing list collection
+      await addDoc(collection(db, 'Mailing List'), {
+        email: user.email,
+        username: user.displayName || 'User', // Use displayName as username, fallback to 'User'
+        subscribedAt: serverTimestamp(),
+        userId: user.uid
+      });
+
+      toast.success('🎉 Successfully subscribed to mailing list! Thank you for joining!', {
+        duration: 5000,
+      });
+    } catch (error) {
+      console.error('Error subscribing to mailing list:', error);
+      toast.error('Failed to subscribe to mailing list. Please try again.');
+    } finally {
+      setIsSubscribing(false);
+    }
+  };
+
   return (
     <>
       <Navigation />
@@ -15,13 +56,13 @@ export default function Home() {
           {/* Background Image */}
           <div className="absolute inset-0 z-0 ">
             <div className="relative w-full h-full">
-              <Image
-                src="./Frontpagepic2.png"
+        <Image
+                src="/Frontpagepic2.png"
                 alt="Hero Background"
                 fill
                 className="object-cover"
-                priority
-              />
+          priority
+        />
               <div className="absolute inset-0 bg-rust-500/60" /> {/* Terracotta overlay for warmth */}
             </div>
           </div>
@@ -61,7 +102,7 @@ export default function Home() {
               {/* Logo Section - Centered on all devices */}
               <div className="flex justify-center items-center mb-8 sm:mb-12">
                 <Image
-                  src="./SML Logo v1.svg"
+                  src="/SML Logo v1.svg"
                   alt="SML Logo"
                   width={256}
                   height={256}
@@ -74,7 +115,7 @@ export default function Home() {
                 <div className="flex-1 w-full lg:w-1/2 flex justify-center items-center order-2 lg:order-1">
                   <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg">
                     <Image
-                      src="./AboutMePic.png"
+                      src="/AboutMePic.png"
                       alt="About Me"
                       width={420}
                       height={600}
@@ -154,8 +195,8 @@ export default function Home() {
                   </motion.a>
                   <motion.a
                     href="https://music.apple.com/ru/artist/sadra-madonna-lindsay/1017438133"
-                    target="_blank"
-                    rel="noopener noreferrer"
+            target="_blank"
+            rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, x: 6, color: '#FA57C1' }}
                     whileTap={{ scale: 0.97 }}
                     className="block text-base sm:text-lg text-earth-100 hover:text-pink-500 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer text-center"
@@ -164,8 +205,8 @@ export default function Home() {
                   </motion.a>
                   <motion.a
                     href="https://www.boomplay.com/share/artist/2463934"
-                    target="_blank"
-                    rel="noopener noreferrer"
+            target="_blank"
+            rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, x: 6, color: '#FFDD00' }}
                     whileTap={{ scale: 0.97 }}
                     className="block text-base sm:text-lg text-earth-100 hover:text-yellow-500 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer text-center"
@@ -174,8 +215,8 @@ export default function Home() {
                   </motion.a>
                   <motion.a
                     href="https://www.instagram.com/sadramadonna/?hl=en"
-                    target="_blank"
-                    rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, x: 6, color: '#E1306C' }}
                     whileTap={{ scale: 0.97 }}
                     className="block text-base sm:text-lg text-earth-100 hover:text-pink-600 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer text-center"
@@ -184,8 +225,8 @@ export default function Home() {
                   </motion.a>
                   <motion.a
                     href="https://www.facebook.com/SadraMadonna/"
-                    target="_blank"
-                    rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, x: 6, color: '#1877F3' }}
                     whileTap={{ scale: 0.97 }}
                     className="block text-base sm:text-lg text-earth-100 hover:text-blue-700 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer text-center"
@@ -194,8 +235,8 @@ export default function Home() {
                   </motion.a>
                   <motion.a
                     href="https://www.tiktok.com/@sadramadonna"
-                    target="_blank"
-                    rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
                     whileHover={{ scale: 1.05, x: 6, color: '#010101' }}
                     whileTap={{ scale: 0.97 }}
                     className="block text-base sm:text-lg text-earth-100 hover:text-black font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer text-center"
@@ -203,19 +244,22 @@ export default function Home() {
                     Follow on TikTok
                   </motion.a>
                   <motion.a
-                    href="mailto:sadramadonnalindsay@gmail.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#"
+                    onClick={handleMailingListSubscribe}
                     whileHover={{ scale: 1.05, x: 6, color: '#1877F3' }}
                     whileTap={{ scale: 0.97 }}
-                    className="block text-base sm:text-lg text-earth-100 hover:text-red-600 font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer text-center"
+                    className={`block text-base sm:text-lg font-medium py-2 px-3 rounded transition-colors duration-200 cursor-pointer text-center ${
+                      isSubscribing 
+                        ? 'text-yellow-400 bg-green-800/20' 
+                        : 'text-earth-100 hover:text-red-600'
+                    }`}
                   >
-                    Send Me an Email
+                    {isSubscribing ? 'Subscribing...' : 'Subscribe to my mailing list'}
                   </motion.a>
                 </div>
               </div>
             </motion.div>
-          </div>
+    </div>
         </section>
       </main>
       <Footer />

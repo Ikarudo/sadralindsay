@@ -61,7 +61,7 @@ function BooksPageContent() {
           <div className="absolute inset-0 z-0">
             <div className="absolute w-full h-full">
               <Image
-                src="./aboutbookspic.jpg"
+                src="/aboutbookspic.jpg"
                 alt="Bookstore Background"
                 fill
                 className="object-cover object-top"
@@ -89,7 +89,7 @@ function BooksPageContent() {
         {/* SML Books Logo */}
         <div className="flex justify-center items-center mt-8 sm:mt-12 md:mt-16 my-6 sm:my-8 px-4">
           <Image
-            src="./SMLBooksLogo.jpg"
+            src="/SMLBooksLogo.jpg"
             alt="SML Books Logo"
             width={384}
             height={384}
@@ -115,7 +115,7 @@ function BooksPageContent() {
                   <div className="w-full lg:w-1/2 flex justify-center">
                     <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg">
                       <Image
-                        src="./aboutbookspic2.jpg"
+                        src="/aboutbookspic2.jpg"
                         alt="About Books"
                         width={500}
                         height={300}
@@ -136,7 +136,7 @@ function BooksPageContent() {
                   <div className="w-full lg:w-1/2 flex justify-center">
                     <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg">
                       <Image
-                        src="./bookstorebg.png"
+                        src="/bookstorebg.png"
                         alt="About Books 2"
                         width={500}
                         height={300}

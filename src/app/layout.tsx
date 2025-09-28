@@ -4,6 +4,7 @@ import "./globals.css";
 import { CartProvider } from '@/context/CartContext';
 import { UserProvider } from '@/context/UserContext';
 import EmailJSInitializer from '@/components/EmailJSInitializer';
+import { Toaster } from 'react-hot-toast';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -27,12 +28,33 @@ export default function RootLayout({
           <CartProvider>
             <EmailJSInitializer />
             {children}
+            <Toaster 
+              position="top-right"
+              toastOptions={{
+                duration: 4000,
+                style: {
+                  background: '#363636',
+                  color: '#fff',
+                },
+                success: {
+                  duration: 4000,
+                  iconTheme: {
+                    primary: '#4ade80',
+                    secondary: '#fff',
+                  },
+                },
+                error: {
+                  duration: 4000,
+                  iconTheme: {
+                    primary: '#ef4444',
+                    secondary: '#fff',
+                  },
+                },
+              }}
+            />
           </CartProvider>
         </UserProvider>
       </body>
     </html>
   );
-  <center><div>
-
-  </div></center>
 }

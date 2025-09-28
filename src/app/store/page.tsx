@@ -202,7 +202,7 @@ function StorePageContent() {
           <div className="absolute inset-0 z-0">
             <div className="absolute w-full h-full">
               <Image
-                src="./StoreBGPic.jpg"
+                src="/StoreBGPic.jpg"
                 alt="Store Background"
                 fill
                 className="object-cover object-top"
@@ -230,7 +230,7 @@ function StorePageContent() {
         {/* Garden Gold Logo */}
         <div className="flex justify-center items-center mt-8 sm:mt-12 md:mt-16 my-6 sm:my-8 px-4">
           <Image
-            src="./GardenGoldLogo.png"
+            src="/GardenGoldLogo.png"
             alt="Garden Gold Logo"
             width={384}
             height={384}
