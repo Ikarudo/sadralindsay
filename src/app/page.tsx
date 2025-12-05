@@ -29,7 +29,7 @@ export default function Home() {
 
     try {
       // Add user to mailing list collection
-      await addDoc(collection(db, 'Mailing List'), {
+      await addDoc(collection(db, 'mailingList'), {
         email: user.email,
         username: user.displayName || 'User', // Use displayName as username, fallback to 'User'
         subscribedAt: serverTimestamp(),
