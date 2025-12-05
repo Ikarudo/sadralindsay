@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
   // Only use basePath and assetPrefix for GitHub Pages deployment
   ...(isGithubPages ? {
     basePath: '/sadralindsay',
-    assetPrefix: '/sadralindsay',
+  assetPrefix: '/sadralindsay',
   } : {}),
   images: {
     unoptimized: true

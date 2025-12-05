@@ -27,7 +27,7 @@ export default function RootLayout({
         <UserProvider>
           <CartProvider>
             <EmailJSInitializer />
-            {children}
+        {children}
             <Toaster 
               position="top-right"
               toastOptions={{
