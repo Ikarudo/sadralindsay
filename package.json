@@ -9,6 +9,7 @@
     "build": "next build",
     "build:github": "GITHUB_PAGES=true next build",
     "deploy": "GITHUB_PAGES=true next build && gh-pages -d out",
+    "export": "next build && next export",
     "dev": "next dev --turbopack",
     "start": "next start",
     "lint": "next lint"
