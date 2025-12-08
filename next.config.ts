@@ -1,19 +1,22 @@
-import type { NextConfig } from 'next'
+import type { NextConfig } from 'next';
 
-// Check if we're building for GitHub Pages or local development
-const isGithubPages = process.env.GITHUB_PAGES === 'true'
+const isGithubPages = process.env.GITHUB_PAGES === 'true';
+
+// For GitHub Pages: your repo name (change only if you rename the repo)
+const repoName = 'sadralindsay';
 
 const nextConfig: NextConfig = {
-  output: 'export',
-  trailingSlash: true,
-  // Only use basePath and assetPrefix for GitHub Pages deployment
-  ...(isGithubPages ? {
-    basePath: '/sadralindsay',
-  assetPrefix: '/sadralindsay',
-  } : {}),
+  output: 'export',                    // This replaces `next export` → you're good!
+  trailingSlash: true,                 // Ensures clean URLs on GitHub Pages
   images: {
-    unoptimized: true
-  }
-}
+    unoptimized: true,                 // Required for static export (Next Image → regular <img>)
+  },
 
-export default nextConfig
+  // Only apply basePath & assetPrefix when deploying to GitHub Pages
+  ...(isGithubPages && {
+    basePath: `/${repoName}`,
+    assetPrefix: `/${repoName}/`,      // Note the trailing slash!
+  }),
+};
+
+export default nextConfig;
