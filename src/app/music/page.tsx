@@ -11,59 +11,61 @@ export default function MusicPage() {
     <>
       <Navigation />
       <main className="min-h-screen bg-earth-100">
+
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center">
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <div className="absolute w-full h-full">
-              <Image
-                src="./musicpic1.png"
-                alt="Music Hero Background"
-                fill
-                className="object-cover object-top"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-rust-400/60 via-transparent to-green-300/40" />
-            </div>
+            <Image
+              src="/musicpic1.png"
+              alt="Music Hero Background"
+              fill
+              className="object-cover object-top"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-rust-400/60 via-transparent to-green-300/40" />
           </div>
-          
-          <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-screen">
+
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-screen py-20 lg:py-0">
               {/* Left side - Title */}
               <motion.div
-                initial={{ opacity: 0, x: -100 }}
+                initial={{ opacity: 0, x: -80 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1, ease: "easeOut" }}
-                className="flex flex-col justify-center space-y-8"
+                className="flex flex-col justify-center space-y-6 lg:space-y-8 text-center lg:text-left"
               >
-                <div  className="relative ml-[80px]">
-                  <h1 className="text-[100px] font-heading mb-[4px] text-white leading-none">
+                <div className="relative">
+                  {/* Mobile-first responsive typography */}
+                  <h1 className="text-[9vw] xs:text-[70px] sm:text-[90px] lg:text-[100px] font-heading text-white leading-none tracking-tighter">
                     CHECK
                   </h1>
-                  <h1 className="text-[100px] font-heading mb-[15px] text-white leading-none -mt-4">
+                  <h1 className="text-[9vw] xs:text-[70px] sm:text-[90px] lg:text-[100px] font-heading text-white leading-none -mt-2 sm:-mt-4">
                     OUT
                   </h1>
-                  <h1 className="text-[120px] font-cursive  text-white leading-none -mt-8 transform -rotate-2">
+                  <h1 className="text-[11vw] xs:text-[80px] sm:text-[100px] lg:text-[120px] font-cursive text-white leading-none -mt-4 sm:-mt-8 transform -rotate-2">
                     My Music!
                   </h1>
                 </div>
-                
-                <div className="w-32 h-1 bg-rust-400 rounded-full" />
+
+                <div className="w-32 h-1 bg-rust-400 rounded-full mx-auto lg:mx-0" />
               </motion.div>
+
+              {/* Empty right column on mobile - image stays as background */}
+              <div className="hidden lg:block" />
             </div>
           </div>
         </section>
 
-        {/* Divider */}
-        <div className="relative">
-          <div className="absolute inset-0 bg-rust-400 transform -skew-y-1" />
-          <div className="relative h-16 bg-earth-100" />
+        {/* Angled Divider */}
+        <div className="relative h-12 sm:h-16 md:h-20 overflow-hidden">
+          <div className="absolute inset-0 bg-rust-400 transform -skew-y-3 sm:-skew-y-2 scale-x-150" />
         </div>
 
         {/* Featured Songs Section */}
-        <section className="py-20 bg-earth-100 relative">
-          <div className="container mx-auto px-4 sm:px-6 md:px-8">
+        <section className="py-16 sm:py-20 bg-earth-100">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             {/* Section Header */}
-            <div className="text-center">
+            <div className="text-center mb-12">
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -71,53 +73,48 @@ export default function MusicPage() {
                 viewport={{ once: true }}
                 className="inline-block"
               >
-                <h2 className="text-6xl sm:text-7xl md:text-8xl font-cursive text-rust-400 mb-4 transform -rotate-1">
+                <h2 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl font-cursive text-rust-400 mb-2 transform -rotate-2">
                   Featured
                 </h2>
-                <h2 className="text-5xl sm:text-6xl md:text-7xl font-heading text-green-300 -mt-6 transform rotate-1">
+                <h2 className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl font-heading text-green-300 -mt-4 sm:-mt-6 transform rotate-1">
                   SONGS
                 </h2>
               </motion.div>
-              
-              {/* Decorative elements */}
-              <div className="flex justify-center items-center mt-8 space-x-6">
-                <div className="w-16 h-2 bg-rust-400 rounded-full" />
+
+              <div className="flex justify-center items-center mt-8 space-x-4 sm:space-x-6">
+                <div className="w-12 sm:w-16 h-2 bg-rust-400 rounded-full" />
                 <div className="w-8 h-8 bg-green-300 rounded-full" />
-                <div className="w-16 h-2 bg-rust-400 rounded-full" />
+                <div className="w-12 sm:w-16 h-2 bg-rust-400 rounded-full" />
               </div>
             </div>
-            
+
             <Carousel
               items={[
                 {
                   title: "Breathe It's Gonna Be Okay",
                   videoUrl: 'https://www.youtube.com/embed/n4oBav8yVn4',
-                  description:
-                    "A song of comfort and hope, reminding us to trust in God's timing and breathe through life's storms.",
+                  description: "A song of comfort and hope, reminding us to trust in God's timing and breathe through life's storms.",
                   bgColor: 'bg-green-300 md:bg-[#ef8d5c]',
                   side: 'left',
                 },
                 {
                   title: 'Thank you',
                   videoUrl: 'https://www.youtube.com/embed/hXDyrCGqMoE',
-                  description:
-                    'A heartfelt expression of gratitude for blessings received and the journey of faith.',
+                  description: 'A heartfelt expression of gratitude for blessings received and the journey of faith.',
                   bgColor: 'bg-[#c23c03] md:bg-green-300',
                   side: 'right',
                 },
                 {
                   title: 'Our Father',
                   videoUrl: 'https://www.youtube.com/embed/-q8OXRDh7zU',
-                  description:
-                    'A soulful rendition of the Lords Prayer, celebrating faith and connection to the divine.',
+                  description: 'A soulful rendition of the Lords Prayer, celebrating faith and connection to the divine.',
                   bgColor: 'bg-[#c23c03] md:bg-[#ef8d5c]',
                   side: 'left',
                 },
                 {
                   title: 'Oceans Where My Feet Fall',
                   videoUrl: 'https://www.youtube.com/embed/thXJSOgEvi4',
-                  description:
-                    'A moving anthem about stepping out in faith, even when the path is uncertain.',
+                  description: 'A moving anthem about stepping out in faith, even when the path is uncertain.',
                   bgColor: 'bg-green-300 md:bg-green-300',
                   side: 'right',
                 },
@@ -127,68 +124,66 @@ export default function MusicPage() {
         </section>
 
         {/* Music Career Section */}
-        <section className=" rounded-t-[60px] relative py-20 bg-green-300">
-          {/* Background geometric shapes */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -top-10 -left-10 w-40 h-40 bg-rust-400 rounded-full opacity-20" />
-            <div className="absolute top-1/2 -right-20 w-60 h-60 bg-earth-100 opacity-20" />
-            <div className="absolute -bottom-20 left-1/3 w-80 h-40 bg-rust-300 opacity-20 transform rotate-45" />
+        <section className="relative py-16 sm:py-20 bg-green-300 overflow-hidden">
+          {/* Decorative background shapes */}
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute -top-10 -left-10 w-32 sm:w-40 h-32 sm:h-40 bg-rust-400 rounded-full opacity-20" />
+            <div className="absolute top-1/2 -right-20 w-48 sm:w-60 h-48 sm:h-60 bg-earth-100 opacity-20 rounded-full" />
+            <div className="absolute -bottom-20 left-1/3 w-64 sm:w-80 h-32 sm:h-40 bg-rust-300 opacity-20 transform rotate-45" />
           </div>
-          
-          <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center">
-              {/* Image Section */}
+
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 lg:gap-12 items-center">
+              {/* Image */}
               <motion.div
-                initial={{ opacity: 0, y: 100 }}
+                initial={{ opacity: 0, y: 80 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
                 viewport={{ once: true }}
-                className="lg:col-span-2 relative"
+                className="lg:col-span-2 flex justify-center"
               >
-                <div className="relative">
-                  {/* Decorative frame */}
-                  <div className="absolute -inset-6 bg-rust-400 transform rotate-3" />
-                  <div className="absolute -inset-4 bg-earth-100 transform -rotate-2" />
-                  
+                <div className="relative max-w-sm w-full">
+                  <div className="absolute -inset-4 sm:-inset-6 bg-rust-400 transform rotate-3 rounded-lg" />
+                  <div className="absolute -inset-3 sm:-inset-4 bg-earth-100 transform -rotate-2 rounded-lg" />
                   <div className="relative">
                     <Image
-                      src="./musicpic2.png"
+                      src="/musicpic2.png"
                       alt="Sadra singing"
-                      width={400}
-                      height={400}
-                      className="w-full h-auto object-cover border-8 border-rust-400"
+                      width={500}
+                      height={500}
+                      className="w-full h-auto object-cover border-8 border-rust-400 rounded-lg shadow-2xl"
                     />
                   </div>
                 </div>
               </motion.div>
-              
-              {/* Content Section */}
+
+              {/* Text Content */}
               <motion.div
-                initial={{ opacity: 0, x: 100 }}
+                initial={{ opacity: 0, x: 80 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
                 viewport={{ once: true }}
                 className="lg:col-span-3 space-y-8"
               >
-                <div className="space-y-4">
-                  <h3 className="text-5xl sm:text-6xl md:text-7xl font-heading text-rust-400 leading-tight">
+                <div className="space-y-2 text-center lg:text-left">
+                  <h3 className="text-5xl xs:text-6xl sm:text-7xl md:text-8xl font-heading text-rust-400 leading-none">
                     A LIFE IN
                   </h3>
-                  <h3 className="text-6xl sm:text-7xl md:text-8xl font-cursive text-rust-300 -mt-4 transform rotate-1">
+                  <h3 className="text-6xl xs:text-7xl sm:text-8xl md:text-9xl font-cursive text-rust-300 -mt-4 transform rotate-1">
                     Gospel Music
                   </h3>
-                  
-                  <div className="flex items-center space-x-4 mt-6">
-                    <div className="w-20 h-1 bg-rust-400" />
-                    <div className="w-4 h-4 bg-rust-400 rounded-full" />
-                    <div className="w-12 h-1 bg-rust-400" />
-                  </div>
                 </div>
-                
-                <div className="relative">
-                  <div className="absolute -inset-4 bg-earth-100 transform rotate-1" />
-                  <div className="relative bg-earth-100 p-8 border-4 border-rust-400 transform -rotate-1">
-                    <p className="text-lg sm:text-xl text-rust-500 font-body leading-relaxed">
+
+                <div className="flex justify-center lg:justify-start items-center space-x-4 mt-6">
+                  <div className="w-16 sm:w-20 h-1 bg-rust-400" />
+                  <div className="w-4 h-4 bg-rust-400 rounded-full" />
+                  <div className="w-10 sm:w-12 h-1 bg-rust-400" />
+                </div>
+
+                <div className="relative max-w-2xl mx-auto lg:mx-0">
+                  <div className="absolute -inset-4 bg-earth-100 transform rotate-1 rounded-lg hidden sm:block" />
+                  <div className="relative bg-earth-100 p-6 sm:p-8 border-4 border-rust-400 transform -rotate-1 sm:rotate-0 rounded-lg shadow-xl">
+                    <p className="text-base sm:text-lg lg:text-xl text-rust-600 font-body leading-relaxed">
                       Sadra Madonna Lindsay has touched countless lives through her powerful voice and heartfelt lyrics.
                       Her journey as a gospel singer is marked by faith, resilience, and a passion for sharing the message of hope and love.
                       Each song is a testament to her devotion and her desire to uplift and inspire listeners around the world.
