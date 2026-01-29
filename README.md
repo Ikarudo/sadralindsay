@@ -2,7 +2,7 @@
 
 A production-style marketing + storefront site built with **Next.js App Router** and **Firebase**, deployed as a **static export to GitHub Pages**. It supports browsing content (music, books, products), a cart experience that syncs to Firestore, and a checkout flow that records orders and emails confirmations.
 
-- **Live site**: `https://ikarudo.github.io/sadralindsay/` (GitHub Pages)
+- **Live site**: `https://sadramadonnalindsay.com/` (GitHub Pages with Custom Domain)
 
 ## Why I built this (for employers)
 
