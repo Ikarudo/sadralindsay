@@ -1,9 +1,14 @@
 import * as emailjs from '@emailjs/browser';
+import { getEmailJsConfig } from '@/lib/env';
 
-// EmailJS configuration
-const EMAILJS_PUBLIC_KEY = 'REDACTED_EMAILJS_PUBLIC_KEY';
-const EMAILJS_SERVICE_ID = 'Invoices';
-const EMAILJS_TEMPLATE_ID = 'InvoiceTemplate';
+function getEmailJsConstants() {
+  const { publicKey, serviceId, templateId } = getEmailJsConfig();
+  return {
+    EMAILJS_PUBLIC_KEY: publicKey,
+    EMAILJS_SERVICE_ID: serviceId,
+    EMAILJS_TEMPLATE_ID: templateId,
+  };
+}
 
 export interface OrderItem {
   id: string;
@@ -51,6 +56,9 @@ export const sendOrderConfirmationEmails = async (
 
     // Check if EmailJS is properly initialized
     if (!emailjs.send) return false;
+
+    const { EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID } =
+      getEmailJsConstants();
 
     // Validate EmailJS configuration
     if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) return false;

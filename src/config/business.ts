@@ -1,5 +1,7 @@
+import { getBusinessPublicEmail } from '@/lib/env';
+
 export const BUSINESS_CONFIG = {
-  email: 'REDACTED_BUSINESS_EMAIL',
+  email: getBusinessPublicEmail(),
   phone: '(555) 123-4567', // Update with actual phone number
   paypal: 'your-paypal@email.com', // Update with actual PayPal email
   venmo: '@YourVenmoHandle', // Update with actual Venmo handle

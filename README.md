@@ -49,10 +49,24 @@ I wanted a portfolio project that feels like real work: a client-facing site wit
 
 ```bash
 npm ci
+cp .env.example .env.local   # Windows: copy .env.example .env.local
+```
+
+Fill in `.env.local` with values from the Firebase console (Web app config) and EmailJS dashboard—see `.env.example` for variable names. Then:
+
+```bash
 npm run dev
 ```
 
 Then open `http://localhost:3000`.
+
+### Environment variables
+
+All client-side Firebase and EmailJS settings use `NEXT_PUBLIC_*` variables (inlined at build time). **Do not commit `.env.local`.** A template without secrets is in `.env.example`.
+
+For **GitHub Actions** deploys, add the same variables as [repository secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) (Settings → Secrets and variables → Actions), using names that match `.env.example` exactly (for example `NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`, …). Until those are set, the workflow build step will fail—your last successful Pages deployment will remain live.
+
+See `SECURITY.md` for rotation guidance if keys were ever exposed in Git history.
 
 ## Deploying (GitHub Pages)
 

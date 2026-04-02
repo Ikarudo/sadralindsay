@@ -5,7 +5,7 @@ Your Firestore security rules have been created in `firestore.rules`. You need t
 ## Option 1: Deploy via Firebase Console (Easiest)
 
 1. Go to [Firebase Console](https://console.firebase.google.com/)
-2. Select your project: **REDACTED_FIREBASE_PROJECT_ID**
+2. Select your Firebase project
 3. Click on **Firestore Database** in the left sidebar
 4. Click on the **Rules** tab
 5. Copy the contents of `firestore.rules` file

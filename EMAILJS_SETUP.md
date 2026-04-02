@@ -1,106 +1,71 @@
-# EmailJS Integration Setup
+# EmailJS integration
 
-This document explains how the EmailJS integration is set up for order confirmation emails in the Sadra M. Lindsay website.
+Order confirmation emails are sent from the checkout flow using [EmailJS](https://www.emailjs.com/). Credentials are **not** stored in source code; set them in `.env.local` (local) or GitHub Actions secrets (CI) using the variable names in `.env.example`.
 
 ## Configuration
 
-The EmailJS integration is configured with the following details:
+Set these environment variables (same names as in `.env.example`):
 
-- **Public Key**: `REDACTED_EMAILJS_PUBLIC_KEY_ALT`
-- **Service ID**: `REDACTED_EMAILJS_SERVICE_ID_LEGACY`
-- **Template ID**: `REDACTED_EMAILJS_TEMPLATE_ID_LEGACY`
-- **Business Email**: `REDACTED_BUSINESS_EMAIL`
+- `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` — public key from EmailJS (use the **same** key for runtime initialization and `send()` calls).
+- `NEXT_PUBLIC_EMAILJS_SERVICE_ID` — Email service ID from the EmailJS dashboard.
+- `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` — template ID for your invoice/order email.
 
-## How It Works
+Business contact details shown on the site (for example in `src/config/business.ts`) are separate from EmailJS; update that file for phone, PayPal, Venmo, etc.
 
-### 1. Order Placement
+## How it works
+
+### 1. Order placement
+
 When a user places an order on the checkout page:
-1. The order is saved to Firebase Firestore
-2. EmailJS sends a confirmation email to the customer
-3. EmailJS sends a copy of the confirmation email to the business email
 
-### 2. Email Template Variables
-The email template uses the following variables:
-- `{{customer_name}}` - Customer's name
-- `{{customer_email}}` - Customer's email address
-- `{{order_id}}` - Unique order ID (format: SML-timestamp-randomstring)
-- `{{order_date}}` - Date the order was placed
-- `{{orders}}` - Array of order items with name, units, unit_price, total_price
-- `{{cost.subtotal}}` - Order subtotal
-- `{{cost.shipping}}` - Shipping cost
-- `{{cost.tax}}` - Tax amount
-- `{{cost.total}}` - Total order amount
+1. The order is saved to Firebase Firestore.
+2. EmailJS sends a confirmation email to the customer (and your template can copy the business inbox).
 
-### 3. Files Involved
+### 2. Email template variables
 
-- `src/services/emailService.ts` - Main email service logic
-- `src/components/EmailJSInitializer.tsx` - EmailJS initialization
-- `src/app/checkout/page.tsx` - Checkout page with email integration
-- `src/config/business.ts` - Business contact information
+The template can use variables such as:
+
+- `{{customer_name}}` — Customer name
+- `{{customer_email}}` — Customer email
+- `{{order_id}}` — Firestore document ID for the order
+- `{{order_date}}` — Date string
+- `{{orders}}` — Line items (name, units, prices)
+- `{{cost.subtotal}}`, `{{cost.shipping}}`, `{{cost.tax}}`, `{{cost.total}}`
+
+### 3. Files involved
+
+- `src/lib/env.ts` — reads EmailJS env vars
+- `src/services/emailService.ts` — builds payload and calls EmailJS
+- `src/components/EmailJSInitializer.tsx` — initializes EmailJS with the public key
+- `src/app/checkout/page.tsx` — checkout + order save + email trigger
+- `src/config/business.ts` — business contact information
 
 ## Customization
 
-### Update Business Information
-Edit `src/config/business.ts` to update:
-- Phone number
-- PayPal email
-- Venmo handle
-- Zelle email
-- Business name
-- Website URL
+### Update business information
 
-### Update EmailJS Configuration
-To change EmailJS settings, update the constants in `src/services/emailService.ts`:
-- `EMAILJS_PUBLIC_KEY`
-- `EMAILJS_SERVICE_ID`
-- `EMAILJS_TEMPLATE_ID`
-- `BUSINESS_EMAIL`
+Edit `src/config/business.ts` (phone, PayPal, Venmo, Zelle, business name, website URL).
 
-### Modify Email Template
-The email template is managed through EmailJS dashboard. The current template includes:
-- Order confirmation header
-- Customer information
-- Order details with items and pricing
-- Payment instructions
-- Contact information
-- Next steps
+### Change EmailJS service or template
+
+Update the environment variables (`NEXT_PUBLIC_EMAILJS_*`) and redeploy.
+
+### Modify the email body
+
+Edit the template in the EmailJS dashboard.
 
 ## Testing
 
-To test the email functionality:
-1. Add items to cart
-2. Proceed to checkout
-3. Place an order (while signed in)
-4. Check both customer and business emails
-5. Verify order is saved in Firebase
+1. Configure `.env.local` with valid EmailJS values.
+2. Add items to cart, sign in, checkout.
+3. Confirm the email arrives and the order exists in Firestore.
 
 ## Troubleshooting
 
-### Common Issues
+1. **Emails not sending**: Check the browser console for EmailJS errors; verify service/template IDs and template variable names.
+2. **Build fails with “Missing required environment variable”**: Ensure `.env.local` exists locally and GitHub Actions secrets are set for deploys.
 
-1. **Emails not sending**: Check browser console for EmailJS errors
-2. **Template variables not working**: Verify template ID and variable names in EmailJS dashboard
-3. **Authentication errors**: Ensure EmailJS public key is correct
-4. **Service not found**: Verify service ID exists in EmailJS dashboard
+## Security notes
 
-### Debug Mode
-The email service includes console logging for debugging:
-- Customer email sending status
-- Business email sending status
-- Success/failure results
-
-## Security Notes
-
-- EmailJS public key is safe to expose in client-side code
-- No sensitive information is stored in the frontend
-- All order data is securely stored in Firebase
-- Customer emails are only sent to authenticated users
-
-## Future Enhancements
-
-Potential improvements:
-- Email templates for different order statuses
-- Automated follow-up emails
-- Email delivery tracking
-- Custom email branding
-- Multi-language support
+- EmailJS public keys are intended for client-side use; still avoid committing them in the repo—use env files and CI secrets.
+- Orders are stored in Firebase; keep Firestore rules strict (`DEPLOY_FIRESTORE_RULES.md`).
