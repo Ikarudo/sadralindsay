@@ -11,6 +11,8 @@ Firebase client settings and EmailJS identifiers are loaded from **environment v
 
 Removing them from the latest commit **does not remove them from Git history**. Anyone with a clone may still see old blobs until history is rewritten.
 
+This repository’s history was rewritten with `git filter-repo` to replace known leaked literals with `REDACTED_*` placeholders. **You should still rotate** Firebase / EmailJS credentials and restrict API keys in Google Cloud, because forks, mirrors, or local clones made before the rewrite may still contain old data.
+
 Recommended response:
 
 1. **Treat the values as exposed** and **rotate** where possible:
