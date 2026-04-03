@@ -64,7 +64,16 @@ Then open `http://localhost:3000`.
 
 All client-side Firebase and EmailJS settings use `NEXT_PUBLIC_*` variables (inlined at build time). **Do not commit `.env.local`.** A template without secrets is in `.env.example`.
 
-For **GitHub Actions** deploys, add the same variables as [repository secrets](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions) (Settings → Secrets and variables → Actions), using names that match `.env.example` exactly (for example `NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY`, `NEXT_PUBLIC_BUSINESS_EMAIL`, …). Until those are set, the workflow build step will fail—your last successful Pages deployment will remain live.
+For **GitHub Actions** deploys, add the same variables as secrets using names that match `.env.example` exactly. Put them under **Settings → Secrets and variables → Actions → Secrets**:
+
+- **Repository secrets** (recommended), and/or  
+- **Environment** secrets for the `github-pages` environment  
+
+The build workflow targets the `github-pages` environment so either location works. Values are **only the string** (no `KEY=`). If any are missing, the static export bakes in empty `NEXT_PUBLIC_*` values and the live site throws “Missing required environment variable” in the browser.
+
+Under **Settings → Pages**, **Build and deployment** should use **GitHub Actions**, not an orphaned `gh-pages` branch, or you may be serving an old build.
+
+After changing secrets or env code, push to `master` (or re-run the workflow) so Pages gets a new artifact.
 
 See `SECURITY.md` for rotation guidance if keys were ever exposed in Git history.
 
@@ -92,7 +101,7 @@ That runs a GitHub Pages build and publishes `out/` via `gh-pages`.
 
 ## Firebase + Firestore notes
 
-- **Firestore rules**: see `DEPLOY_FIRESTORE_RULES.md` for deploying the included rules to your Firebase project.
+- **Firestore rules**: deploy your rules from the Firebase Console (Firestore → Rules) or Firebase CLI; keep rules strict for production.
 - **Data model** (simplified):
   - `users/{uid}`
   - `users/{uid}/cart/current`

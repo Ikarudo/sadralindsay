@@ -30,6 +30,10 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
+    # Same environment as deploy so secrets stored under "github-pages" environment are visible here.
+    # Repository-level secrets are also available; add either (or both).
+    environment:
+      name: github-pages
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -75,6 +79,45 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+
+      # NEXT_PUBLIC_* must be non-empty at build time — values are inlined into the static JS for GitHub Pages.
+      # Use *repository* secrets (Settings → Secrets → Actions → New repository secret), not only
+      # "Environment" secrets on github-pages, unless this job also sets `environment:`.
+      - name: Verify NEXT_PUBLIC_* repository secrets are set
+        env:
+          NEXT_PUBLIC_FIREBASE_API_KEY: ${{ secrets.NEXT_PUBLIC_FIREBASE_API_KEY }}
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ secrets.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
+          NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET: ${{ secrets.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET }}
+          NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID }}
+          NEXT_PUBLIC_FIREBASE_APP_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_APP_ID }}
+          NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID: ${{ secrets.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID }}
+          NEXT_PUBLIC_EMAILJS_PUBLIC_KEY: ${{ secrets.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }}
+          NEXT_PUBLIC_EMAILJS_SERVICE_ID: ${{ secrets.NEXT_PUBLIC_EMAILJS_SERVICE_ID }}
+          NEXT_PUBLIC_EMAILJS_TEMPLATE_ID: ${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID }}
+          NEXT_PUBLIC_BUSINESS_EMAIL: ${{ secrets.NEXT_PUBLIC_BUSINESS_EMAIL }}
+        run: |
+          set -euo pipefail
+          fail=0
+          for name in \
+            NEXT_PUBLIC_FIREBASE_API_KEY \
+            NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN \
+            NEXT_PUBLIC_FIREBASE_PROJECT_ID \
+            NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET \
+            NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID \
+            NEXT_PUBLIC_FIREBASE_APP_ID \
+            NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID \
+            NEXT_PUBLIC_EMAILJS_PUBLIC_KEY \
+            NEXT_PUBLIC_EMAILJS_SERVICE_ID \
+            NEXT_PUBLIC_EMAILJS_TEMPLATE_ID \
+            NEXT_PUBLIC_BUSINESS_EMAIL; do
+            val="${!name:-}"
+            if [ -z "$val" ]; then
+              echo "::error::Repository secret '$name' is missing or empty. Add it under Settings → Secrets and variables → Actions (Repository secrets), matching .env.example names exactly."
+              fail=1
+            fi
+          done
+          exit "$fail"
       
       - name: Build and Export with Next.js
         env:
