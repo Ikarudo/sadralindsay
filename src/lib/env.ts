@@ -44,7 +44,7 @@ export function getEmailJsConfig() {
   };
 }
 
-/** Public business contact email shown on the site (not a private API secret, but kept in env to avoid committing PII). */
-export function getBusinessPublicEmail() {
-  return req(process.env.NEXT_PUBLIC_BUSINESS_EMAIL, 'NEXT_PUBLIC_BUSINESS_EMAIL');
+/** Public contact email for BUSINESS_CONFIG; optional so CI does not need a separate “secret” for it. */
+export function getBusinessPublicEmail(): string {
+  return process.env.NEXT_PUBLIC_BUSINESS_EMAIL?.trim() ?? '';
 }
