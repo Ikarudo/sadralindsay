@@ -34,7 +34,6 @@ export default function Carousel({ items }: CarouselProps) {
   const goToPrev = () => setCurrent((prev) => (prev === 0 ? total - 1 : prev - 1));
   const goToNext = () => setCurrent((prev) => (prev === total - 1 ? 0 : prev + 1));
 
-  // Auto-scroll logic
   useEffect(() => {
     if (!paused) {
       intervalRef.current = setInterval(() => {
@@ -63,11 +62,11 @@ export default function Carousel({ items }: CarouselProps) {
         <AnimatePresence mode="wait">
           <motion.div
             key={item.title}
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-8 p-8"
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            className="absolute inset-0 grid grid-cols-1 lg:grid-cols-2 gap-8 p-6 sm:p-8"
           >
             {/* Video Section */}
             <div className={twMerge(
@@ -75,12 +74,7 @@ export default function Carousel({ items }: CarouselProps) {
               item.side === 'right' ? 'lg:order-2' : 'lg:order-1'
             )}>
               <div className="relative w-full">
-                {/* Decorative background shapes */}
-                <div className="absolute -inset-8 bg-rust-400 transform rotate-3 opacity-30" />
-                <div className="absolute -inset-6 bg-green-300 transform -rotate-2 opacity-20" />
-                <div className="absolute -inset-4 bg-earth-100 transform rotate-1" />
-                
-                <div className="relative aspect-video bg-black border-4 border-rust-400 transform hover:rotate-1 transition-transform duration-300">
+                <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg">
                   <iframe
                     src={item.videoUrl}
                     title={item.title}
@@ -99,29 +93,25 @@ export default function Carousel({ items }: CarouselProps) {
               item.side === 'right' ? 'lg:order-1' : 'lg:order-2'
             )}>
               {/* Title */}
-              <div className="relative">
-                <h3 className="text-4xl sm:text-5xl md:text-6xl font-heading text-rust-400 leading-tight transform hover:-rotate-1 transition-transform duration-300">
+              <div>
+                <h3 className="font-['Oswald'] font-bold text-3xl sm:text-4xl md:text-5xl text-[#2d2d2d] uppercase tracking-wide leading-tight">
                   {item.title}
                 </h3>
-                <div className="w-24 h-1 bg-rust-400 mt-4" />
+                <div className="w-20 h-1 bg-[#E97B4A] mt-4 rounded-full" />
               </div>
 
               {/* Description */}
-              <div className="relative">
-                <div className="absolute -inset-6 bg-green-300 transform rotate-2" />
-                <div className="absolute -inset-4 bg-rust-300 transform -rotate-1" />
-                <div className="relative bg-earth-100 p-6 border-4 border-rust-400 transform rotate-1">
-                  <p className="text-lg sm:text-xl font-serif text-rust-500 leading-relaxed">
-                    {description}
-                  </p>
-                </div>
+              <div className="bg-gradient-to-br from-[#217a2b] to-[#1a6622] rounded-2xl p-6 sm:p-8 shadow-md">
+                <p className="text-base sm:text-lg text-white/90 leading-relaxed">
+                  {description}
+                </p>
               </div>
 
-              {/* Decorative elements */}
-              <div className="flex items-center space-x-4 mt-6">
-                <div className="w-16 h-2 bg-rust-400 rounded-full" />
-                <div className="w-6 h-6 bg-green-300 rounded-full" />
-                <div className="w-10 h-2 bg-rust-400 rounded-full" />
+              {/* Decorative dots */}
+              <div className="flex items-center space-x-3 mt-4">
+                <div className="w-12 h-1 bg-[#E97B4A] rounded-full" />
+                <div className="w-3 h-3 bg-[#217a2b] rounded-full" />
+                <div className="w-8 h-1 bg-[#E97B4A] rounded-full" />
               </div>
             </div>
           </motion.div>
@@ -129,53 +119,40 @@ export default function Carousel({ items }: CarouselProps) {
       </div>
 
       {/* Navigation Controls */}
-      <div className="absolute top-1/2 -translate-y-1/2 left-4 z-20">
+      <div className="absolute top-1/2 -translate-y-1/2 left-2 sm:left-4 z-20">
         <button
           onClick={goToPrev}
           aria-label="Previous song"
-          className="relative group"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-md flex items-center justify-center text-[#E97B4A] hover:bg-[#E97B4A] hover:text-white transition-all duration-300"
         >
-          <div className="absolute inset-0 bg-rust-400 transform rotate-45 group-hover:rotate-90 transition-transform duration-300" />
-          <div className="relative bg-earth-100 border-4 border-rust-400 w-12 h-12 flex items-center justify-center transform group-hover:-rotate-12 transition-transform duration-300">
-            <span className="text-rust-400 text-xl font-bold">←</span>
-          </div>
+          <span className="text-xl font-bold">&larr;</span>
         </button>
       </div>
 
-      <div className="absolute top-1/2 -translate-y-1/2 right-4 z-20">
+      <div className="absolute top-1/2 -translate-y-1/2 right-2 sm:right-4 z-20">
         <button
           onClick={goToNext}
           aria-label="Next song"
-          className="relative group"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-md flex items-center justify-center text-[#E97B4A] hover:bg-[#E97B4A] hover:text-white transition-all duration-300"
         >
-          <div className="absolute inset-0 bg-rust-400 transform rotate-45 group-hover:rotate-90 transition-transform duration-300" />
-          <div className="relative bg-earth-100 border-4 border-rust-400 w-12 h-12 flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
-            <span className="text-rust-400 text-xl font-bold">→</span>
-          </div>
+          <span className="text-xl font-bold">&rarr;</span>
         </button>
       </div>
 
       {/* Dots Indicator */}
-      <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 flex items-center space-x-4">
+      <div className="flex justify-center items-center space-x-3 mt-6">
         {items.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setCurrent(idx)}
             className={twMerge(
-              'relative group transition-all duration-300',
-              idx === current ? 'scale-125' : 'scale-100'
+              'rounded-full transition-all duration-300',
+              idx === current
+                ? 'w-8 h-3 bg-[#E97B4A]'
+                : 'w-3 h-3 bg-gray-300 hover:bg-gray-400'
             )}
             aria-label={`Go to song ${idx + 1}`}
-          >
-            <div className={twMerge(
-              'absolute inset-0 transform rotate-45 transition-all duration-300',
-              idx === current ? 'bg-rust-400' : 'bg-earth-200'
-            )} />
-            <div className={twMerge(
-              'relative w-4 h-4 border-2 transition-all duration-300',
-              idx === current ? 'border-rust-400 bg-green-300' : 'border-earth-200 bg-earth-100'
-            )} />
-          </button>
+          />
         ))}
       </div>
     </div>

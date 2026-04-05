@@ -17,68 +17,68 @@ export default function CartPage() {
   return (
     <>
       <Navigation />
-      <main className="min-h-screen bg-earth-100 pt-16 sm:pt-20">
+      <main className="min-h-screen bg-white pt-16 sm:pt-20">
         <div className="container mx-auto px-4 sm:px-6 md:px-8 py-8 sm:py-12 min-h-[60vh]">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-heading mb-6 sm:mb-8 text-earth-900 text-center">Your Cart</h1>
-            
+            <h1 className="font-['Oswald'] font-bold text-[#2d2d2d] uppercase text-3xl sm:text-4xl md:text-5xl tracking-wide mb-8 text-center">Your Cart</h1>
+
             {items.length === 0 ? (
               <div className="text-center py-12 sm:py-16">
-                <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 md:p-12 max-w-md mx-auto border-2 border-rust-200">
-                  <div className="text-base sm:text-lg text-earth-600 mb-6">Your cart is empty.</div>
+                <div className="bg-[#faf8f6] rounded-2xl shadow-sm p-8 sm:p-10 md:p-14 max-w-md mx-auto">
+                  <div className="text-base sm:text-lg text-[#666] mb-8">Your cart is empty.</div>
                   <Link href="/books">
-                    <button className="block w-full px-6 sm:px-8 py-3 bg-[#ee8d5a] text-black border-2 border-black rounded-full font-bold text-base sm:text-lg md:text-xl text-center shadow-lg hover:bg-green-700 transition-colors duration-200">
+                    <button className="w-full px-8 py-3.5 bg-[#E97B4A] text-white rounded-full font-['Oswald'] font-semibold text-base tracking-[0.1em] uppercase hover:bg-[#D4622E] transition-all duration-300 hover:shadow-lg hover:shadow-[#E97B4A]/30">
                       Back to Shop
                     </button>
                   </Link>
                 </div>
               </div>
             ) : (
-              <div className="bg-white rounded-xl shadow-lg p-4 sm:p-6 md:p-10 max-w-4xl mx-auto border-2 border-rust-200">
-                <div className="divide-y divide-earth-200">
+              <div className="bg-[#faf8f6] rounded-2xl shadow-sm p-4 sm:p-6 md:p-10 max-w-4xl mx-auto">
+                <div className="divide-y divide-gray-100">
                   {items.map((item, index) => (
                     <motion.div
                       key={item.id}
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 py-4 sm:py-6"
+                      className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 py-5 sm:py-6"
                     >
                       <div className="relative w-20 h-24 sm:w-24 sm:h-32 flex-shrink-0 mx-auto sm:mx-0">
-                        <Image 
-                          src={item.coverImage} 
-                          alt={item.title} 
-                          fill 
-                          className="object-cover rounded-lg border-2 border-rust-200 shadow-md" 
+                        <Image
+                          src={item.coverImage}
+                          alt={item.title}
+                          fill
+                          className="object-cover rounded-xl shadow-sm"
                         />
                       </div>
                       <div className="flex-1 min-w-0 text-center sm:text-left">
-                        <h2 className="text-base sm:text-lg md:text-xl font-bold text-earth-900 mb-2 font-serif">{item.title}</h2>
-                        <div className="text-lg sm:text-[20px] font-extrabold text-black mb-4">${item.price.toFixed(2)} USD</div>
+                        <h2 className="text-base sm:text-lg md:text-xl font-bold text-[#2d2d2d] mb-1">{item.title}</h2>
+                        <div className="text-lg sm:text-xl font-bold text-[#E97B4A] mb-4">${item.price.toFixed(2)} USD</div>
                         <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4">
                           <div className="flex items-center gap-2">
                             <button
                               onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                              className="px-3 py-1 bg-earth-200 text-earth-900 rounded-lg hover:bg-earth-300 disabled:opacity-50 font-bold border border-earth-300 transition-colors text-sm sm:text-base"
+                              className="w-9 h-9 rounded-full bg-white text-[#2d2d2d] hover:bg-gray-100 font-bold text-lg flex items-center justify-center transition-colors shadow-sm"
                               disabled={item.quantity <= 1}
                             >
                               -
                             </button>
-                            <span className="w-12 text-center font-bold text-base sm:text-lg bg-white border border-earth-300 rounded-lg py-1">{item.quantity}</span>
+                            <span className="w-10 text-center font-bold text-base">{item.quantity}</span>
                             <button
                               onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                              className="px-3 py-1 bg-earth-200 text-earth-900 rounded-lg hover:bg-earth-300 font-bold border border-earth-300 transition-colors text-sm sm:text-base"
+                              className="w-9 h-9 rounded-full bg-white text-[#2d2d2d] hover:bg-gray-100 font-bold text-lg flex items-center justify-center transition-colors shadow-sm"
                             >
                               +
                             </button>
                           </div>
                           <button
                             onClick={() => removeItem(item.id)}
-                            className="text-red-600 hover:text-red-800 font-bold border border-red-300 hover:border-red-500 px-3 sm:px-4 py-1 rounded-lg transition-colors text-sm sm:text-base"
+                            className="text-red-500 hover:text-red-700 font-medium text-sm transition-colors"
                           >
                             Remove
                           </button>
@@ -87,32 +87,31 @@ export default function CartPage() {
                     </motion.div>
                   ))}
                 </div>
-                
+
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: 0.3 }}
-                  className="border-t-2 border-rust-200 pt-4 sm:pt-6 mt-6 sm:mt-8"
+                  className="border-t border-gray-200 pt-6 mt-6"
                 >
-                  {/* Cost Breakdown */}
                   <div className="space-y-3 mb-6">
                     <div className="flex justify-between items-center">
-                      <div className="text-base sm:text-lg text-earth-700">Subtotal:</div>
-                      <div className="text-base sm:text-lg font-bold text-earth-900">${subtotal.toFixed(2)} USD</div>
+                      <div className="text-base text-[#666]">Subtotal:</div>
+                      <div className="text-base font-semibold text-[#2d2d2d]">${subtotal.toFixed(2)} USD</div>
                     </div>
                     <div className="flex justify-between items-center">
-                      <div className="text-base sm:text-lg text-earth-700">Shipping:</div>
-                      <div className="text-base sm:text-lg font-bold text-earth-900">${shippingCharge.toFixed(2)} USD</div>
+                      <div className="text-base text-[#666]">Shipping:</div>
+                      <div className="text-base font-semibold text-[#2d2d2d]">${shippingCharge.toFixed(2)} USD</div>
                     </div>
-                    <div className="border-t border-earth-300 pt-3">
+                    <div className="border-t border-gray-200 pt-3">
                       <div className="flex justify-between items-center">
-                        <div className="text-lg sm:text-xl font-bold text-earth-900">Total:</div>
-                        <div className="text-xl sm:text-2xl font-extrabold text-black">${finalTotal.toFixed(2)} USD</div>
+                        <div className="font-['Oswald'] font-bold text-lg uppercase tracking-wide text-[#2d2d2d]">Total:</div>
+                        <div className="text-xl sm:text-2xl font-bold text-[#E97B4A]">${finalTotal.toFixed(2)} USD</div>
                       </div>
                     </div>
                   </div>
                   <button
-                    className="w-full px-6 sm:px-8 py-3 bg-[#ee8d5a] text-black border-2 border-black rounded-full text-base sm:text-lg md:text-xl font-bold hover:bg-green-700 transition-colors duration-200 shadow-lg"
+                    className="w-full px-8 py-3.5 bg-[#E97B4A] text-white rounded-full font-['Oswald'] font-semibold text-base tracking-[0.1em] uppercase hover:bg-[#D4622E] transition-all duration-300 hover:shadow-lg hover:shadow-[#E97B4A]/30"
                     onClick={() => router.push('/checkout')}
                     disabled={items.length === 0}
                   >
@@ -127,4 +126,4 @@ export default function CartPage() {
       <Footer />
     </>
   );
-} 
+}

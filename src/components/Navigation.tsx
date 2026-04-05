@@ -25,20 +25,15 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // remove unused handler
-
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/music', label: 'Music' },
-    { href: '/books', label: 'Books' },
-    { href: '/store', label: 'Store' },
-    { href: '/cart', label: 'Cart', icon: <FaShoppingCart className="inline-block mb-1 mr-1" /> },
-    // Checkout link removed from navbar
     { href: './#about', label: 'About' },
+    { href: '/books', label: 'Books' },
+    { href: '/music', label: 'Music' },
+    { href: '/store', label: 'Store' },
     { href: './#connect', label: 'Connect' },
   ];
 
-  // Only highlight as active for main pages, not hash links
   const isActive = (href: string) => {
     return (
       (href === '/' && pathname === '/') ||
@@ -48,69 +43,76 @@ export default function Navigation() {
     );
   };
 
-  // Cream/eggshell color
-  const cream = '#F8F5F2';
-
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-[#ee8e5a] backdrop-blur-sm shadow-lg'
+          ? 'bg-white/95 backdrop-blur-md shadow-md'
           : 'bg-transparent'
       }`}
     >
-      <div className="container mx-auto px-4 sm:px-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16 sm:h-20">
           {/* Logo */}
           <Link
             href="/"
-            className="relative w-12 h-12 sm:w-16 sm:h-16 flex items-center hover:opacity-90 transition-opacity"
+            className="relative w-12 h-12 sm:w-14 sm:h-14 flex items-center hover:opacity-90 transition-opacity"
           >
             <Image
-              src="./SML Logo TBG.svg"
+              src="/SML Logo TBG.svg"
               alt="SML Logo"
               fill
-              className="object-contain"
+              className={`object-contain transition-all duration-300 ${isScrolled ? 'brightness-0' : ''}`}
               priority
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex gap-4.5 items-center">
+          <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative transition-colors duration-300 px-4 py-2 rounded-lg font-semibold text-white bg-transparent hover:bg-earth-400 hover:text-white border border-transparent text-lg xl:text-xl
-                  ${isActive(link.href) ? 'bg-earth-400 text-white border-earth-300' : 'text-earth-700'}
-                  ${!isScrolled ? 'text-border' : ''}
+                className={`font-['Oswald'] font-semibold text-sm tracking-[0.15em] uppercase px-4 py-2 transition-all duration-300 relative
+                  ${isScrolled
+                    ? (isActive(link.href) ? 'text-[#E97B4A]' : 'text-[#2d2d2d] hover:text-[#E97B4A]')
+                    : (isActive(link.href) ? 'text-[#E97B4A]' : 'text-white hover:text-[#E97B4A]')
+                  }
                 `}
-                style={{
-                  color: isActive(link.href) ? 'white' : (isScrolled ? 'white' : cream),
-                }}
               >
-                {link.icon}
                 {link.label}
-                {link.href === '/cart' && cartCount > 0 && (
-                  <span className="absolute -top-2 -right-3 bg-amber-600 text-white text-xs rounded-full px-2 py-0.5 font-bold shadow-lg">{cartCount}</span>
-                )}
                 {isActive(link.href) && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-earth-700 transform origin-left transition-transform duration-300" />
+                  <span className="absolute bottom-0 left-4 right-4 h-[2px] bg-[#E97B4A]" />
                 )}
               </Link>
             ))}
-            {/* User Auth Button */}
+
+            {/* Cart */}
+            <Link
+              href="/cart"
+              className={`relative font-['Oswald'] font-semibold text-sm tracking-[0.15em] uppercase px-4 py-2 transition-all duration-300
+                ${isScrolled ? 'text-[#2d2d2d] hover:text-[#E97B4A]' : 'text-white hover:text-[#E97B4A]'}
+              `}
+            >
+              <FaShoppingCart className="inline-block mb-0.5 mr-1" />
+              Cart
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-[#E97B4A] text-white text-[10px] rounded-full w-5 h-5 flex items-center justify-center font-bold">{cartCount}</span>
+              )}
+            </Link>
+
+            {/* CTA Button - Sign In / Profile */}
             {!userLoading && user ? (
               <Link
                 href="/profile"
-                className="ml-2 px-4 py-2 rounded-lg font-semibold text-white bg-earth-400 hover:bg-earth-500 transition-colors duration-200 border border-earth-300 text-lg xl:text-xl"
+                className="ml-3 px-6 py-2.5 rounded-full font-['Oswald'] font-semibold text-sm tracking-[0.15em] uppercase bg-[#E97B4A] text-white hover:bg-[#D4622E] transition-all duration-300 hover:shadow-lg hover:shadow-[#E97B4A]/30"
               >
                 Profile
               </Link>
             ) : (
               <Link
                 href="/signin"
-                className="ml-2 px-4 py-2 rounded-lg font-semibold text-white bg-earth-400 hover:bg-earth-500 transition-colors duration-200 border border-earth-300 text-lg xl:text-xl"
+                className="ml-3 px-6 py-2.5 rounded-full font-['Oswald'] font-semibold text-sm tracking-[0.15em] uppercase bg-[#E97B4A] text-white hover:bg-[#D4622E] transition-all duration-300 hover:shadow-lg hover:shadow-[#E97B4A]/30"
               >
                 Sign In
               </Link>
@@ -119,63 +121,68 @@ export default function Navigation() {
 
           {/* Mobile Menu Button */}
           <button
-            className="lg:hidden p-2"
+            className="lg:hidden p-2 relative w-10 h-10 flex flex-col justify-center items-center"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
-            <div className={`w-6 h-0.5 mb-1.5 transition-transform duration-300 ${isScrolled ? 'bg-earth-700' : ''}`} style={{ background: isScrolled ? 'white' : cream }}></div>
-            <div className={`w-6 h-0.5 mb-1.5 transition-transform duration-300 ${isScrolled ? 'bg-earth-700' : ''}`} style={{ background: isScrolled ? 'white' : cream }}></div>
-            <div className={`w-6 h-0.5 transition-transform duration-300 ${isScrolled ? 'bg-earth-700' : ''}`} style={{ background: isScrolled ? 'white' : cream }}></div>
+            <span className={`block w-6 h-[2px] transition-all duration-300 ${isScrolled ? 'bg-[#2d2d2d]' : 'bg-white'} ${isMenuOpen ? 'rotate-45 translate-y-[3px]' : ''}`} />
+            <span className={`block w-6 h-[2px] mt-1.5 transition-all duration-300 ${isScrolled ? 'bg-[#2d2d2d]' : 'bg-white'} ${isMenuOpen ? 'opacity-0' : ''}`} />
+            <span className={`block w-6 h-[2px] mt-1.5 transition-all duration-300 ${isScrolled ? 'bg-[#2d2d2d]' : 'bg-white'} ${isMenuOpen ? '-rotate-45 -translate-y-[7px]' : ''}`} />
           </button>
         </div>
 
         {/* Mobile Navigation */}
         <div
-          className={`lg:hidden z-50 bg-[#ee8e5a] bg-opacity-95 transition-all duration-300 ease-in-out ${
-            isMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-          } overflow-hidden fixed top-0 left-0 w-full`}
+          className={`lg:hidden transition-all duration-500 ease-in-out overflow-hidden ${
+            isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
         >
-          <div className="flex flex-col space-y-2 py-4 sm:py-6">
+          <div className="bg-white rounded-b-2xl shadow-xl py-4 px-2">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`transition-colors duration-300 px-4 py-2 rounded-lg font-semibold text-white bg-transparent hover:bg-earth-400 hover:text-white border border-transparent text-lg xl:text-xl ${
-                  isActive(link.href) ? 'bg-earth-400 text-white border-earth-300' : 'text-earth-700'
-                }`}
-                style={{
-                  color: isActive(link.href) ? 'white' : (isScrolled ? 'white' : cream),
-                }}
+                className={`block font-['Oswald'] font-semibold text-sm tracking-[0.15em] uppercase px-4 py-3 transition-colors duration-300
+                  ${isActive(link.href) ? 'text-[#E97B4A]' : 'text-[#2d2d2d] hover:text-[#E97B4A]'}
+                `}
                 onClick={() => setIsMenuOpen(false)}
               >
-                {link.icon}
                 {link.label}
-                {link.href === '/cart' && cartCount > 0 && (
-                  <span className="ml-2 bg-amber-600 text-white text-xs rounded-full px-2 py-0.5 font-bold shadow-lg">{cartCount}</span>
-                )}
               </Link>
             ))}
-            {/* User Auth Button for mobile */}
-            {!userLoading && user ? (
-              <Link
-                href="/profile"
-                onClick={() => setIsMenuOpen(false)}
-                className="mt-2 px-4 py-2 rounded-lg font-semibold text-white bg-earth-400 hover:bg-earth-500 transition-colors duration-200 border border-earth-300 text-lg xl:text-xl"
-              >
-                Profile
-              </Link>
-            ) : (
-              <Link
-                href="/signin"
-                onClick={() => setIsMenuOpen(false)}
-                className="mt-2 px-4 py-2 rounded-lg font-semibold text-white bg-earth-400 hover:bg-earth-500 transition-colors duration-200 border border-earth-300 text-lg xl:text-xl"
-              >
-                Sign In
-              </Link>
-            )}
+            <Link
+              href="/cart"
+              className="block font-['Oswald'] font-semibold text-sm tracking-[0.15em] uppercase px-4 py-3 text-[#2d2d2d] hover:text-[#E97B4A] transition-colors duration-300"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <FaShoppingCart className="inline-block mb-0.5 mr-1" />
+              Cart
+              {cartCount > 0 && (
+                <span className="ml-2 bg-[#E97B4A] text-white text-[10px] rounded-full px-2 py-0.5 font-bold">{cartCount}</span>
+              )}
+            </Link>
+            <div className="px-4 pt-2 pb-1">
+              {!userLoading && user ? (
+                <Link
+                  href="/profile"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full text-center px-6 py-3 rounded-full font-['Oswald'] font-semibold text-sm tracking-[0.15em] uppercase bg-[#E97B4A] text-white hover:bg-[#D4622E] transition-all duration-300"
+                >
+                  Profile
+                </Link>
+              ) : (
+                <Link
+                  href="/signin"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full text-center px-6 py-3 rounded-full font-['Oswald'] font-semibold text-sm tracking-[0.15em] uppercase bg-[#E97B4A] text-white hover:bg-[#D4622E] transition-all duration-300"
+                >
+                  Sign In
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </div>
     </nav>
   );
-} 
+}
