@@ -73,7 +73,7 @@ export default function Home() {
   return (
     <>
       <Navigation />
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-[#0F172A]">
         {/* ============ HERO SECTION ============ */}
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
           {/* Background Image */}
@@ -85,7 +85,7 @@ export default function Home() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#217a2b]/35 via-[#E97B4A]/15 to-[#1a1a1a]/50" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A]/20 via-transparent to-[#0F172A]/40" />
           </div>
 
           {/* Hero Content */}
@@ -99,12 +99,12 @@ export default function Home() {
               <h1 className="font-['Oswald'] font-bold text-white uppercase leading-[0.95] tracking-tight
                 text-4xl sm:text-5xl md:text-6xl lg:text-7xl
                 drop-shadow-2xl mb-6">
-                Discover the Gift of Faith with Sadra Lindsay
+                Sadra Madonna Lindsay
               </h1>
               <p className="text-base sm:text-lg md:text-xl text-white/90 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
-                God created you <em>on purpose</em>, with <em>purpose</em>.
+                Tangible Evidence of God&apos;s Enduring Grace...
                 <br className="hidden sm:block" />
-                Gospel Artist. Author. Entrepreneur.
+                Singer, Author, Speaker, Entrepreneur
               </p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -113,7 +113,7 @@ export default function Home() {
               >
                 <Link
                   href="./#about"
-                  className="inline-block px-10 py-4 rounded-full font-['Oswald'] font-semibold text-base tracking-[0.15em] uppercase bg-[#E97B4A] text-white hover:bg-[#D4622E] transition-all duration-300 hover:shadow-xl hover:shadow-[#E97B4A]/30 hover:-translate-y-1"
+                  className="inline-block px-10 py-4 rounded-full font-['Oswald'] font-semibold text-base tracking-[0.15em] uppercase bg-[#E11D48] text-white hover:bg-[#BE123C] transition-all duration-300 hover:shadow-xl hover:shadow-[#E11D48]/30 hover:-translate-y-1"
                 >
                   Learn More
                 </Link>
@@ -122,11 +122,11 @@ export default function Home() {
           </div>
 
           {/* Bottom gradient fade */}
-          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent z-10" />
+          <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0F172A] to-transparent z-10" />
         </section>
 
         {/* ============ CARDS SECTION ============ */}
-        <section className="py-16 sm:py-20 md:py-24 bg-white">
+        <section className="py-16 sm:py-20 md:py-24 bg-[#0F172A]">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-6xl mx-auto">
               {cards.map((card, index) => (
@@ -138,16 +138,16 @@ export default function Home() {
                   viewport={{ once: true }}
                 >
                   <Link href={card.href} className="group block text-center">
-                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 sm:mb-6 bg-gradient-to-br from-[#E97B4A]/10 to-[#217a2b]/10 shadow-sm group-hover:shadow-xl transition-all duration-500">
+                    <div className="relative aspect-[3/4] rounded-2xl overflow-hidden mb-4 sm:mb-6 bg-gradient-to-br from-[#E11D48]/10 to-[#0F172A]/10 shadow-sm group-hover:shadow-xl transition-all duration-500">
                       <Image
                         src={card.image}
                         alt={card.label}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#E97B4A]/0 to-transparent group-hover:from-[#E97B4A]/10 transition-all duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#E11D48]/0 to-transparent group-hover:from-[#E11D48]/20 transition-all duration-500" />
                     </div>
-                    <h3 className="card-label text-lg sm:text-xl md:text-2xl text-[#3a3a3a] group-hover:text-[#E97B4A] transition-colors duration-300 decoration-[#E97B4A]/60">
+                    <h3 className="card-label text-lg sm:text-xl md:text-2xl text-white group-hover:text-[#E11D48] transition-colors duration-300 decoration-[#E11D48]/60">
                       {card.label}
                     </h3>
                   </Link>
@@ -160,8 +160,8 @@ export default function Home() {
         {/* ============ HI FRIEND / ABOUT SECTION ============ */}
         <section id="about" className="relative">
           <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[600px]">
-            {/* Left: Green background with text */}
-            <div className="bg-gradient-to-br from-[#217a2b] via-[#2a8f35] to-[#1a6622] flex items-center justify-center p-8 sm:p-12 md:p-16 lg:p-20 order-2 lg:order-1">
+            {/* Left: Navy background with text */}
+            <div className="bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#020617] flex items-center justify-center p-8 sm:p-12 md:p-16 lg:p-20 order-2 lg:order-1">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -180,7 +180,7 @@ export default function Home() {
                 </p>
                 <Link
                   href="./#who-i-am"
-                  className="inline-block px-8 py-3.5 rounded-full font-['Oswald'] font-semibold text-sm tracking-[0.15em] uppercase bg-[#E97B4A] text-white hover:bg-[#D4622E] transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                  className="inline-block px-8 py-3.5 rounded-full font-['Oswald'] font-semibold text-sm tracking-[0.15em] uppercase bg-[#E11D48] text-white hover:bg-[#BE123C] transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
                   Read More
                 </Link>
@@ -200,7 +200,7 @@ export default function Home() {
         </section>
 
         {/* ============ WHO I AM SECTION ============ */}
-        <section id="who-i-am" className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-[#faf8f6] to-[#f5f0eb]">
+        <section id="who-i-am" className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-[#0F172A] to-[#1E293B]">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -220,43 +220,43 @@ export default function Home() {
                 />
               </div>
 
-              <h2 className="font-['Oswald'] font-bold text-[#2d2d2d] uppercase text-3xl sm:text-4xl md:text-5xl text-center mb-10 tracking-wide">
+              <h2 className="font-['Oswald'] font-bold text-white uppercase text-3xl sm:text-4xl md:text-5xl text-center mb-10 tracking-wide">
                 Who I Am
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mb-10">
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <span className="w-2 h-2 rounded-full bg-[#E97B4A] mt-2.5 flex-shrink-0" />
-                    <p className="text-[#444] leading-relaxed">
-                      <strong className="text-[#2d2d2d]">Faith-Driven Excellence:</strong> Committed to producing work that reflects a spirit of excellence, rooted in biblical principles, and uplifting others in faith and purpose.
+                    <span className="w-2 h-2 rounded-full bg-[#E11D48] mt-2.5 flex-shrink-0" />
+                    <p className="text-white/80 leading-relaxed">
+                      <strong className="text-white">Faith-Driven Excellence:</strong> Committed to producing work that reflects a spirit of excellence, rooted in biblical principles, and uplifting others in faith and purpose.
                     </p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="w-2 h-2 rounded-full bg-[#217a2b] mt-2.5 flex-shrink-0" />
-                    <p className="text-[#444] leading-relaxed">
-                      <strong className="text-[#2d2d2d]">Strategic Stewardship:</strong> Encouraging intentional living and business success through structured, biblically guided planning.
+                    <span className="w-2 h-2 rounded-full bg-[#E11D48] mt-2.5 flex-shrink-0" />
+                    <p className="text-white/80 leading-relaxed">
+                      <strong className="text-white">Strategic Stewardship:</strong> Encouraging intentional living and business success through structured, biblically guided planning.
                     </p>
                   </div>
                 </div>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
-                    <span className="w-2 h-2 rounded-full bg-[#E97B4A] mt-2.5 flex-shrink-0" />
-                    <p className="text-[#444] leading-relaxed">
-                      <strong className="text-[#2d2d2d]">Empowerment Through Wisdom:</strong> Providing educational and spiritual insights that equip individuals to take charge of their lives with clarity and confidence.
+                    <span className="w-2 h-2 rounded-full bg-[#E11D48] mt-2.5 flex-shrink-0" />
+                    <p className="text-white/80 leading-relaxed">
+                      <strong className="text-white">Empowerment Through Wisdom:</strong> Providing educational and spiritual insights that equip individuals to take charge of their lives with clarity and confidence.
                     </p>
                   </div>
                   <div className="flex items-start gap-3">
-                    <span className="w-2 h-2 rounded-full bg-[#217a2b] mt-2.5 flex-shrink-0" />
-                    <p className="text-[#444] leading-relaxed">
-                      <strong className="text-[#2d2d2d]">Purposeful Impact:</strong> Focused on inspiring transformation, guiding individuals to walk in their God-given purpose.
+                    <span className="w-2 h-2 rounded-full bg-[#E11D48] mt-2.5 flex-shrink-0" />
+                    <p className="text-white/80 leading-relaxed">
+                      <strong className="text-white">Purposeful Impact:</strong> Focused on inspiring transformation, guiding individuals to walk in their God-given purpose.
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 sm:p-8 md:p-10 shadow-sm border-l-4 border-l-[#E97B4A]/40 border border-transparent">
-                <p className="text-[#444] leading-relaxed text-sm sm:text-base">
+              <div className="bg-[#1E293B] rounded-2xl p-6 sm:p-8 md:p-10 shadow-sm border-l-4 border-l-[#E11D48] border border-transparent">
+                <p className="text-white/90 leading-relaxed text-sm sm:text-base">
                   Sadra Madonna Lindsay is a Minister of the Gospel, an Award Winning Gospel Recording Artist and Author, she is a wife, mother, entrepreneur, motivational speaker, Worship Leader, a student of Theology and a student of Law.
                   She is an enthusiastic creative who believes in using her talents and gifts for the furthering of the Gospel. She is married to Pastor Sherwayen Lindsay, and together they serve as Ministers within The Assemblies of the First Born Church International Jamaica.
                   She is the mother of two sons, Micah and Joshua. She stands firmly by the scripture, as written in Matt. 14:28 &quot;Lord bid me to come and I will walk upon water&quot;. She holds a Bachelor of Arts Degree in Literatures in English and Philosophy, a Bachelor of Laws Degree,
@@ -269,8 +269,12 @@ export default function Home() {
         </section>
 
         {/* ============ CONNECT SECTION ============ */}
-        <section id="connect" className="py-16 sm:py-20 md:py-24 bg-gradient-to-br from-[#1a1a1a] via-[#1e2a1e] to-[#1a1a1a]">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="connect" className="py-16 sm:py-20 md:py-24 bg-[#0F172A] relative overflow-hidden">
+          {/* Subtle background decoration */}
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#E11D48]/5 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#D4A24C]/5 rounded-full blur-[100px] pointer-events-none" />
+
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -278,37 +282,34 @@ export default function Home() {
               viewport={{ once: true }}
               className="max-w-4xl mx-auto text-center"
             >
-              <h2 className="font-['Oswald'] font-bold text-white uppercase text-3xl sm:text-4xl md:text-5xl mb-4 tracking-wide">
+              <h2 className="font-['Oswald'] font-bold text-white uppercase text-3xl sm:text-4xl md:text-5xl mb-4 tracking-wide relative inline-block">
                 Connect With Me
+                <span className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-12 h-1 bg-[#E11D48] rounded-full"></span>
               </h2>
-              <p className="text-white/60 mb-12 text-base sm:text-lg">
-                Find me on your favorite platform
+              <p className="text-white/60 mt-8 mb-12 text-base sm:text-lg">
+                Stay updated and join the community across all platforms
               </p>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 mb-12">
                 {[
-                  { name: 'YouTube', href: 'https://www.youtube.com/@sadramadonna8549', color: '#FF0000', icon: FaYoutube },
-                  { name: 'Spotify', href: 'https://open.spotify.com/album/4K1uoz0QbmSbAXdkmlrQ33', color: '#1DB954', icon: FaSpotify },
-                  { name: 'Apple Music', href: 'https://music.apple.com/ru/artist/sadra-madonna-lindsay/1017438133', color: '#FA57C1', icon: FaApple },
-                  { name: 'Boomplay', href: 'https://www.boomplay.com/share/artist/2463934', color: '#FFDD00', icon: FaMusic },
-                  { name: 'Instagram', href: 'https://www.instagram.com/sadramadonna/?hl=en', color: '#E1306C', icon: FaInstagram },
-                  { name: 'Facebook', href: 'https://www.facebook.com/SadraMadonna/', color: '#1877F3', icon: FaFacebook },
-                  { name: 'TikTok', href: 'https://www.tiktok.com/@sadramadonna', color: '#fff', icon: FaTiktok },
+                  { name: 'YouTube', href: 'https://www.youtube.com/@sadramadonna8549', color: 'hover:text-[#FF0000]', icon: FaYoutube },
+                  { name: 'Spotify', href: 'https://open.spotify.com/album/4K1uoz0QbmSbAXdkmlrQ33', color: 'hover:text-[#1DB954]', icon: FaSpotify },
+                  { name: 'Apple Music', href: 'https://music.apple.com/ru/artist/sadra-madonna-lindsay/1017438133', color: 'hover:text-[#FA57C1]', icon: FaApple },
+                  { name: 'Boomplay', href: 'https://www.boomplay.com/share/artist/2463934', color: 'hover:text-[#FFDD00]', icon: FaMusic },
+                  { name: 'Instagram', href: 'https://www.instagram.com/sadramadonna/?hl=en', color: 'hover:text-[#E1306C]', icon: FaInstagram },
+                  { name: 'Facebook', href: 'https://www.facebook.com/SadraMadonna/', color: 'hover:text-[#1877F3]', icon: FaFacebook },
+                  { name: 'TikTok', href: 'https://www.tiktok.com/@sadramadonna', color: 'hover:text-white', icon: FaTiktok },
                 ].map((platform) => (
                   <motion.a
                     key={platform.name}
                     href={platform.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05, y: -4 }}
-                    whileTap={{ scale: 0.97 }}
-                    className="flex flex-col items-center gap-2 rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm px-4 py-5 transition-all duration-300 hover:border-white/30 hover:bg-white/10 group"
+                    whileHover={{ y: -4 }}
+                    className="flex flex-col items-center justify-center gap-3 rounded-2xl bg-[#1E293B]/50 hover:bg-[#1E293B] border border-white/5 hover:border-white/10 px-4 py-8 transition-all duration-300 group shadow-lg shadow-black/20"
                   >
-                    <platform.icon size={24} style={{ color: platform.color }} />
-                    <span
-                      className="font-['Oswald'] font-semibold text-xs tracking-[0.1em] uppercase transition-colors duration-300"
-                      style={{ color: platform.color }}
-                    >
+                    <platform.icon size={28} className={`text-white/60 transition-colors duration-300 ${platform.color}`} />
+                    <span className="font-[inter] font-medium text-sm text-white/70 group-hover:text-white transition-colors duration-300">
                       {platform.name}
                     </span>
                   </motion.a>
@@ -318,16 +319,14 @@ export default function Home() {
                 <motion.a
                   href="#"
                   onClick={handleMailingListSubscribe}
-                  whileHover={{ scale: 1.05, y: -4 }}
-                  whileTap={{ scale: 0.97 }}
-                  className={`flex flex-col items-center gap-2 rounded-xl border px-4 py-5 transition-all duration-300 group ${
-                    isSubscribing
-                      ? 'border-[#E97B4A]/50 bg-[#E97B4A]/20'
-                      : 'border-[#E97B4A]/30 bg-[#E97B4A]/10 hover:border-[#E97B4A]/60 hover:bg-[#E97B4A]/20'
-                  }`}
+                  whileHover={{ y: -4 }}
+                  className={`flex flex-col items-center justify-center gap-3 rounded-2xl px-4 py-8 transition-all duration-300 group shadow-lg shadow-black/20 border ${isSubscribing
+                    ? 'border-[#E11D48] bg-[#E11D48]/10'
+                    : 'border-[#E11D48]/20 bg-gradient-to-br from-[#E11D48]/10 to-[#1E293B]/50 hover:border-[#E11D48]/40 hover:from-[#E11D48]/20 hover:to-[#1E293B]'
+                    }`}
                 >
-                  <FaEnvelope size={24} className="text-[#E97B4A]" />
-                  <span className="font-['Oswald'] font-semibold text-xs tracking-[0.1em] uppercase text-[#E97B4A]">
+                  <FaEnvelope size={28} className={`transition-colors duration-300 ${isSubscribing ? 'text-[#E11D48]' : 'text-[#E11D48]/80 group-hover:text-[#E11D48]'}`} />
+                  <span className={`font-[inter] font-medium text-sm transition-colors duration-300 ${isSubscribing ? 'text-[#E11D48]' : 'text-white/80 group-hover:text-white'}`}>
                     {isSubscribing ? 'Subscribing...' : 'Mailing List'}
                   </span>
                 </motion.a>

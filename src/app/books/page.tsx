@@ -52,7 +52,7 @@ function BooksPageContent() {
   return (
     <>
       <Navigation />
-      <main className="min-h-screen bg-white">
+      <main className="min-h-screen bg-[#020617]">
         {/* Hero Section */}
         <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
@@ -63,7 +63,7 @@ function BooksPageContent() {
               className="object-cover object-top"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#217a2b]/40 via-[#E97B4A]/15 to-[#1a1a1a]/60" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A]/20 via-transparent to-[#0F172A]/40" />
           </div>
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <motion.div
@@ -77,7 +77,7 @@ function BooksPageContent() {
               </h1>
             </motion.div>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-10" />
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#020617] to-transparent z-10" />
         </section>
 
         {/* SML Books Logo */}
@@ -93,7 +93,7 @@ function BooksPageContent() {
         </div>
 
         {/* About the Books Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-white to-[#faf8f6]">
+        <section className="py-12 sm:py-16 md:py-20 bg-[#020617]">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -102,7 +102,7 @@ function BooksPageContent() {
               viewport={{ once: true }}
               className="max-w-6xl mx-auto"
             >
-              <h2 className="font-['Oswald'] font-bold text-[#2d2d2d] uppercase text-3xl sm:text-4xl md:text-5xl text-center mb-10 tracking-wide">
+              <h2 className="font-['Oswald'] font-bold text-white uppercase text-3xl sm:text-4xl md:text-5xl text-center mb-10 tracking-wide">
                 About the Books
               </h2>
               <div className="flex flex-col gap-10 sm:gap-14">
@@ -119,7 +119,7 @@ function BooksPageContent() {
                       />
                     </div>
                   </div>
-                  <div className="w-full lg:w-1/2 bg-gradient-to-br from-[#217a2b] to-[#1a6622] rounded-2xl p-6 sm:p-8">
+                  <div className="w-full lg:w-1/2 bg-gradient-to-br from-[#0F172A] to-[#020617] rounded-2xl p-6 sm:p-8">
                     <p className="text-white/90 text-sm sm:text-base leading-relaxed">
                       To This Day Let Me Write:
                       When I am writing on paper, in a planner or in a journal, I feel like I am peeling from the walls of my soul. There is this sense of pulling from a part of me that could only manifest if I sit down to write. Somehow, words tend to flow differently when I write things down. The written word transcends into a greater more defined revelation to the meaning of life and existence. Consequently I am allowed greater understanding of many of life&apos;s mysteries and can in-turn enlighten someone else.
@@ -140,8 +140,8 @@ function BooksPageContent() {
                       />
                     </div>
                   </div>
-                  <div className="w-full lg:w-1/2 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border-l-4 border-[#E97B4A]/40">
-                    <p className="text-[#444] text-sm sm:text-base leading-relaxed">
+                  <div className="w-full lg:w-1/2 bg-[#1E293B] rounded-2xl p-6 sm:p-8 shadow-sm border-l-4 border-[#E11D48]/40">
+                    <p className="text-white/90 text-sm sm:text-base leading-relaxed">
                       To This Day Let Me Write is a prophetic movement where Sadra Madonna Lindsay writes from a place of speaking into the current days of this generation. It speaks to life and its various seasons and along the way helping those who might have been struggling to compose themselves along this journey. This movement inspires persons to write purposefully and with intention to their days. In this current series she has authored three books namely:
                       To This Day Let Me Write: An Inspired Poetic Memoir,
                       To This Day Let Me Write, The Biblically Guided Planner: Redeeming the Time, Planning Strategically for the Days Ahead,
@@ -155,7 +155,7 @@ function BooksPageContent() {
         </section>
 
         {/* Books Grid Section */}
-        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-[#217a2b] via-[#2a8f35] to-[#1a6622]">
+        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#020617]">
           <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
