@@ -1,14 +1,5 @@
 import * as emailjs from '@emailjs/browser';
-import { getEmailJsConfig } from '@/lib/env';
-
-function getEmailJsConstants() {
-  const { publicKey, serviceId, templateId } = getEmailJsConfig();
-  return {
-    EMAILJS_PUBLIC_KEY: publicKey,
-    EMAILJS_SERVICE_ID: serviceId,
-    EMAILJS_TEMPLATE_ID: templateId,
-  };
-}
+import { getEmailJsConfig, getEmailJsFallbackConfig, type EmailJsConfig } from '@/lib/env';
 
 export interface OrderItem {
   id: string;
@@ -57,11 +48,17 @@ export const sendOrderConfirmationEmails = async (
     // Check if EmailJS is properly initialized
     if (!emailjs.send) return false;
 
-    const { EMAILJS_PUBLIC_KEY, EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID } =
-      getEmailJsConstants();
-
-    // Validate EmailJS configuration
-    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) return false;
+    const primaryConfig = getEmailJsConfig();
+    const fallbackConfig = getEmailJsFallbackConfig();
+    const configs: EmailJsConfig[] = [primaryConfig];
+    if (
+      fallbackConfig &&
+      (fallbackConfig.publicKey !== primaryConfig.publicKey ||
+        fallbackConfig.serviceId !== primaryConfig.serviceId ||
+        fallbackConfig.templateId !== primaryConfig.templateId)
+    ) {
+      configs.push(fallbackConfig);
+    }
     
     // Use provided order ID and date so email matches Firestore
     const orderIdFinal = orderId;
@@ -128,34 +125,44 @@ export const sendOrderConfirmationEmails = async (
       item_prices: formattedOrders.map(item => item.total_price).join(', ')
     };
 
-    // Send email to customer
-    // Send to customer (ignore response object)
-    try {
-      // First try with alternative parameter names
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        alternativeTemplateParams,
-        EMAILJS_PUBLIC_KEY
-      );
-    } catch {
-      // try fallback with original params
+    for (const cfg of configs) {
       try {
-        // Fallback to original template parameters
         await emailjs.send(
-          EMAILJS_SERVICE_ID,
-          EMAILJS_TEMPLATE_ID,
-          templateParams,
-          EMAILJS_PUBLIC_KEY
+          cfg.serviceId,
+          cfg.templateId,
+          alternativeTemplateParams,
+          cfg.publicKey
         );
-      } catch (fallbackError) {
-        // propagate error
-        throw fallbackError;
+        return true;
+      } catch (firstError) {
+        try {
+          await emailjs.send(
+            cfg.serviceId,
+            cfg.templateId,
+            templateParams,
+            cfg.publicKey
+          );
+          return true;
+        } catch (fallbackError) {
+          const firstErrorData = (firstError as { status?: number; text?: string }) || {};
+          const fallbackErrorData = (fallbackError as { status?: number; text?: string }) || {};
+          console.error('[EmailJS] Send failed for config', {
+            serviceId: cfg.serviceId,
+            templateId: cfg.templateId,
+            publicKeySuffix: cfg.publicKey.slice(-6),
+            firstAttempt: {
+              status: firstErrorData.status,
+              text: firstErrorData.text,
+            },
+            fallbackAttempt: {
+              status: fallbackErrorData.status,
+              text: fallbackErrorData.text,
+            },
+          });
+        }
       }
     }
-
-
-    return true;
+    return false;
   } catch {
     return false;
   }

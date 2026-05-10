@@ -2,16 +2,19 @@
 
 import { useEffect } from 'react';
 import * as emailjs from '@emailjs/browser';
-import { getEmailJsConfig } from '@/lib/env';
+import { getEmailJsConfig, getEmailJsFallbackConfig } from '@/lib/env';
 
 export default function EmailJSInitializer() {
   useEffect(() => {
     try {
       if (!emailjs.init) return;
-      const { publicKey } = getEmailJsConfig();
+      const primary = getEmailJsConfig();
+      const fallback = getEmailJsFallbackConfig();
+      const publicKey = primary.publicKey || fallback?.publicKey;
+      if (!publicKey) return;
       emailjs.init(publicKey);
-    } catch {
-      // Missing env (e.g. misconfigured deploy) — checkout email send still attempts with key in send()
+    } catch (error) {
+      console.error('[EmailJS] Initialization failed:', error);
     }
   }, []);
 

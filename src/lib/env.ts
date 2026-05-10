@@ -44,6 +44,30 @@ export function getEmailJsConfig() {
   };
 }
 
+export interface EmailJsConfig {
+  publicKey: string;
+  serviceId: string;
+  templateId: string;
+}
+
+function maybe(value: string | undefined): string | null {
+  const trimmed = value?.trim();
+  return trimmed ? trimmed : null;
+}
+
+/**
+ * Optional fallback config for migrations between EmailJS service/template IDs.
+ * If provided, checkout will try primary first, then fallback tuple.
+ */
+export function getEmailJsFallbackConfig(): EmailJsConfig | null {
+  const publicKey = maybe(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY_FALLBACK);
+  const serviceId = maybe(process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID_FALLBACK);
+  const templateId = maybe(process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_FALLBACK);
+
+  if (!publicKey || !serviceId || !templateId) return null;
+  return { publicKey, serviceId, templateId };
+}
+
 /** Public contact email for BUSINESS_CONFIG; optional so CI does not need a separate “secret” for it. */
 export function getBusinessPublicEmail(): string {
   return process.env.NEXT_PUBLIC_BUSINESS_EMAIL?.trim() ?? '';
