@@ -6,13 +6,33 @@
  * like `process.env[name]` is not inlined into client bundles, so it is undefined in the browser.
  */
 
+function normalize(value: string): string {
+  let v = value.trim();
+  // Tolerate common copy/paste mistakes from .env examples into GitHub secrets.
+  if (v.endsWith(',')) v = v.slice(0, -1).trim();
+  if (
+    (v.startsWith('"') && v.endsWith('"')) ||
+    (v.startsWith("'") && v.endsWith("'")) ||
+    (v.startsWith('`') && v.endsWith('`'))
+  ) {
+    v = v.slice(1, -1).trim();
+  }
+  return v;
+}
+
 function req(value: string | undefined, name: string): string {
-  if (value === undefined || value.trim() === '') {
+  if (value === undefined) {
     throw new Error(
       `Missing required environment variable: ${name}. Copy .env.example to .env.local and add your values.`
     );
   }
-  return value.trim();
+  const normalized = normalize(value);
+  if (normalized === '') {
+    throw new Error(
+      `Missing required environment variable: ${name}. Copy .env.example to .env.local and add your values.`
+    );
+  }
+  return normalized;
 }
 
 export function getFirebaseConfig() {
@@ -51,7 +71,7 @@ export interface EmailJsConfig {
 }
 
 function maybe(value: string | undefined): string | null {
-  const trimmed = value?.trim();
+  const trimmed = value ? normalize(value) : undefined;
   return trimmed ? trimmed : null;
 }
 
@@ -70,5 +90,6 @@ export function getEmailJsFallbackConfig(): EmailJsConfig | null {
 
 /** Public contact email for BUSINESS_CONFIG; optional so CI does not need a separate “secret” for it. */
 export function getBusinessPublicEmail(): string {
-  return process.env.NEXT_PUBLIC_BUSINESS_EMAIL?.trim() ?? '';
+  const raw = process.env.NEXT_PUBLIC_BUSINESS_EMAIL;
+  return raw ? normalize(raw) : '';
 }

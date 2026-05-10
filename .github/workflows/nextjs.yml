@@ -116,6 +116,14 @@ jobs:
               echo "::error::Secret '$name' is missing or empty. Add it under Settings → Secrets and variables → Actions (repository or github-pages environment), matching .env.example names exactly."
               fail=1
             fi
+            # Catch very common malformed secret values copied from bad .env syntax:
+            #   KEY= "value",   or   KEY=`value`
+            if [[ "$val" =~ ^[[:space:]]*['\"\`].*[,][[:space:]]*$ ]]; then
+              echo "::error::Secret '$name' appears malformed (quoted + trailing comma). Use value only, e.g. Invoices (no quotes/comma)."
+              fail=1
+            elif [[ "$val" =~ ^[[:space:]]*['\"\`].*['\"\`][[:space:]]*$ ]]; then
+              echo "::warning::Secret '$name' appears wrapped in quotes/backticks. It may still work, but should be saved as raw value only."
+            fi
           done
           exit "$fail"
       
