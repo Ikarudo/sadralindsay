@@ -7,13 +7,12 @@ import Footer from '@/components/Footer';
 import Image from 'next/image';
 import BookCard from '@/components/BookCard';
 
-// Sample book data - replace with actual data from your database
 const sampleBooks = [
   {
     id: '1',
     title: 'Biblically Guided Planner',
     author: 'Sadra Madonna Lindsay',
-    coverImage: './GuidedPlanner.jpg',
+    coverImage: '/GuidedPlanner.jpg',
     price: 60.00,
     description: [
       'A faith-based strategic planner that helps individuals redeem time and plan purposefully, blending biblical wisdom with practical strategies and offering a scriptural blueprint for success in business and life.',
@@ -25,7 +24,7 @@ const sampleBooks = [
     id: '2',
     title: 'Biblically Guided Journal',
     author: 'Sadra Madonna Lindsay',
-    coverImage: './guidedjournal.png',
+    coverImage: '/guidedjournal.png',
     price: 35.00,
     description: [
       'A teaching tool for purposeful living, emphasizing gratitude\'s impact on life outcomes and promoting reflection, acceptance, and appreciation of all life stages with a balanced perspective.',
@@ -37,7 +36,7 @@ const sampleBooks = [
     id: '3',
     title: 'An Inspired Poetic Memoir',
     author: 'Sadra Madonna Lindsay',
-    coverImage: './PoeticMemoir.png',
+    coverImage: '/poeticmemoir.png',
     price: 15.00,
     description: [
       'A Life guiding tool which focuses on five specific areas of life and living',
@@ -45,7 +44,6 @@ const sampleBooks = [
       'Promotes acceptance and appreciation of all life stages'
     ],
   },
-  // Add more books here
 ];
 
 function BooksPageContent() {
@@ -54,53 +52,49 @@ function BooksPageContent() {
   return (
     <>
       <Navigation />
-      <main className="min-h-screen bg-earth-100">
+      <main className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-b from-rust-200 via-earth-100 to-green-100 border-b-4 border-rust-400">
-          {/* Background Image */}
+        <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
           <div className="absolute inset-0 z-0">
-            <div className="absolute w-full h-full">
-              <Image
-                src="./aboutbookspic.jpg"
-                alt="Bookstore Background"
-                fill
-                className="object-cover object-top"
-                priority
-              />
-            </div>
+            <Image
+              src="/aboutbookspic.jpg"
+              alt="Bookstore Background"
+              fill
+              className="object-cover object-top"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#217a2b]/40 via-[#E97B4A]/15 to-[#1a1a1a]/60" />
           </div>
-          {/* Hero Content */}
-          <div className="container mx-auto px-4 sm:px-6 md:px-8 relative z-10 flex flex-col items-center justify-center h-full min-h-[60vh] md:min-h-[70vh]">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
             <motion.div
-              initial={{ opacity: 0, x: -40 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="w-full flex flex-col items-center justify-center pt-20 md:pt-0 px-4"
+              className="pt-20"
             >
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-heading font-bold text-white drop-shadow-xl tracking-tight text-center break-words max-w-full leading-tight">
+              <h1 className="font-['Oswald'] font-bold text-white uppercase text-5xl sm:text-6xl md:text-7xl tracking-tight drop-shadow-2xl">
                 Books
               </h1>
             </motion.div>
           </div>
+          <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent z-10" />
         </section>
-        {/* Accent Bar */}
-        <div className="w-full h-4 bg-rust-400" />
 
         {/* SML Books Logo */}
-        <div className="flex justify-center items-center mt-8 sm:mt-12 md:mt-16 my-6 sm:my-8 px-4">
+        <div className="flex justify-center items-center py-10 sm:py-14 px-4">
           <Image
-            src="./SMLBooksLogo.jpg"
+            src="/SMLBooksLogo.jpg"
             alt="SML Books Logo"
             width={384}
             height={384}
-            className="w-64 sm:w-72 md:w-80 lg:w-96 border-[3px] border-earth-700 rounded-lg shadow-sm bg-white h-auto"
+            className="w-56 sm:w-64 md:w-72 lg:w-80 rounded-2xl shadow-md h-auto"
             priority
           />
         </div>
 
-        {/* Intro/Overview Section */}
-        <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-earth-100 border-b-4 border-rust-300">
-          <div className="container mx-auto px-4 sm:px-6 md:px-8">
+        {/* About the Books Section */}
+        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-b from-white to-[#faf8f6]">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -108,48 +102,50 @@ function BooksPageContent() {
               viewport={{ once: true }}
               className="max-w-6xl mx-auto"
             >
-              <h2 className="section-title !text-black mb-8 sm:mb-10 text-center">About the Books</h2>
-              <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 lg:gap-16">
-                {/* Section 1: Image Left, Text Right */}
-                <div className="flex flex-col lg:flex-row items-center gap-6 sm:gap-8">
+              <h2 className="font-['Oswald'] font-bold text-[#2d2d2d] uppercase text-3xl sm:text-4xl md:text-5xl text-center mb-10 tracking-wide">
+                About the Books
+              </h2>
+              <div className="flex flex-col gap-10 sm:gap-14">
+                {/* Section 1 */}
+                <div className="flex flex-col lg:flex-row items-center gap-8">
                   <div className="w-full lg:w-1/2 flex justify-center">
-                    <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg">
+                    <div className="relative w-full max-w-md overflow-hidden rounded-2xl">
                       <Image
-                        src="./aboutbookspic2.jpg"
+                        src="/aboutbookspic2.jpg"
                         alt="About Books"
                         width={500}
                         height={300}
-                        className="rounded-lg shadow-lg w-full h-auto"
+                        className="rounded-2xl shadow-md w-full h-auto"
                       />
                     </div>
                   </div>
-                  <div className="w-full lg:w-1/2 border border-black p-4 sm:p-6 md:p-8 bg-cream">
-                    <p className="text-sm sm:text-base md:text-lg text-earth-800 leading-relaxed">
-                      To This Day Let Me Write:         
+                  <div className="w-full lg:w-1/2 bg-gradient-to-br from-[#217a2b] to-[#1a6622] rounded-2xl p-6 sm:p-8">
+                    <p className="text-white/90 text-sm sm:text-base leading-relaxed">
+                      To This Day Let Me Write:
                       When I am writing on paper, in a planner or in a journal, I feel like I am peeling from the walls of my soul. There is this sense of pulling from a part of me that could only manifest if I sit down to write. Somehow, words tend to flow differently when I write things down. The written word transcends into a greater more defined revelation to the meaning of life and existence. Consequently I am allowed greater understanding of many of life&apos;s mysteries and can in-turn enlighten someone else.
                       Written words, unlike the spoken, gives the added benefit of peace and calm as you sit to quietly to go over what was before-written, not just by yourself, but by many others. Those who would have likewise pulled from their soul and left words on paper that you could touch, feel and appreciate the intimacy of the author alone with himself, alone with his maker.
                     </p>
                   </div>
                 </div>
-                {/* Section 2: Image Right, Text Left */}
-                <div className="flex flex-col lg:flex-row-reverse items-center gap-6 sm:gap-8">
+                {/* Section 2 */}
+                <div className="flex flex-col lg:flex-row-reverse items-center gap-8">
                   <div className="w-full lg:w-1/2 flex justify-center">
-                    <div className="relative w-full max-w-sm sm:max-w-md md:max-w-lg">
+                    <div className="relative w-full max-w-md overflow-hidden rounded-2xl">
                       <Image
-                        src="./bookstorebg.png"
+                        src="/bookstorebg.png"
                         alt="About Books 2"
                         width={500}
                         height={300}
-                        className="rounded-lg shadow-lg w-full h-auto"
+                        className="rounded-2xl shadow-md w-full h-auto"
                       />
                     </div>
                   </div>
-                  <div className="w-full lg:w-1/2 border border-black p-4 sm:p-6 md:p-8 bg-cream">
-                    <p className="text-sm sm:text-base md:text-lg text-earth-800 leading-relaxed">
-                      To This Day Let Me Write is a prophetic movement where Sadra Madonna Lindsay writes from a place of speaking into the current days of this generation. It speaks to life and its various seasons and along the way helping those who might have been struggling to compose themselves along this journey. This movement inspires persons to write purposefully and with intention to their days. In this current series she has authored three books namely: 
-                      To This Day Let Me Write: An Inspired Poetic Memoir
-                      To This Day Let Me Write, The Biblically Guided Planner: Redeeming the Time, Planning Strategically for the Days Ahead
-                      To This Day Let Me Write, the Guided Journal: Life, Love, Gratitude and Growing in Grace: A Practical Guide to Writing your Days, Safely in the Abiding Presence of the Lord
+                  <div className="w-full lg:w-1/2 bg-white rounded-2xl p-6 sm:p-8 shadow-sm border-l-4 border-[#E97B4A]/40">
+                    <p className="text-[#444] text-sm sm:text-base leading-relaxed">
+                      To This Day Let Me Write is a prophetic movement where Sadra Madonna Lindsay writes from a place of speaking into the current days of this generation. It speaks to life and its various seasons and along the way helping those who might have been struggling to compose themselves along this journey. This movement inspires persons to write purposefully and with intention to their days. In this current series she has authored three books namely:
+                      To This Day Let Me Write: An Inspired Poetic Memoir,
+                      To This Day Let Me Write, The Biblically Guided Planner: Redeeming the Time, Planning Strategically for the Days Ahead,
+                      To This Day Let Me Write, the Guided Journal: Life, Love, Gratitude and Growing in Grace: A Practical Guide to Writing your Days, Safely in the Abiding Presence of the Lord.
                     </p>
                   </div>
                 </div>
@@ -159,15 +155,17 @@ function BooksPageContent() {
         </section>
 
         {/* Books Grid Section */}
-        <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-green-300">
-          <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
+        <section className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-[#217a2b] via-[#2a8f35] to-[#1a6622]">
+          <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
             >
-              <h2 className="section-title !text-black text-center mb-8 sm:mb-10">All Books</h2>
+              <h2 className="font-['Oswald'] font-bold text-white uppercase text-3xl sm:text-4xl md:text-5xl text-center mb-10 tracking-wide">
+                All Books
+              </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 {sampleBooks.map((book) => (
                   <BookCard
@@ -197,4 +195,4 @@ function BooksPageContent() {
   );
 }
 
-export default BooksPageContent; 
+export default BooksPageContent;

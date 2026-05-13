@@ -1,15 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Nunito:wght@400;600&family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=Great+Vibes&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #F5E2C4; /* Creamy beige from poster */
-  --foreground: #222222; /* Rich black from poster */
+  --background: #FFFFFF;
+  --foreground: #222222;
 
-  --color-earth-100: #F5E2C4; /* Creamy beige */
-  --color-earth-200: #EFCBA9; /* Light tan (harmonizes with beige) */
-  --color-earth-300: #E3B07A; /* Warm tan */
+  --color-earth-100: #FFFFFF; /* White background */
+  --color-earth-200: #F5F5F5; /* Light gray */
+  --color-earth-300: #E5E5E5; /* Mid gray */
   --color-earth-400: #E97B4A; /* Terracotta/Orange (main accent) */
-  --color-earth-500: #B71C1C; /* Deep Red (LIVE banner) */
+  --color-earth-500: #D4622E; /* Deeper orange */
   --color-earth-600: #D4A24C; /* Accent Gold */
   --color-earth-700: #222222; /* Rich black */
   --color-earth-800: #FFFFFF; /* White */
@@ -17,7 +17,7 @@
 
   --color-rust-100: #FFE7D1; /* Light orange */
   --color-rust-200: #E97B4A; /* Terracotta/Orange */
-  --color-rust-300: #B71C1C; /* Deep Red */
+  --color-rust-300: #D4622E; /* Deeper orange */
   --color-rust-400: #D4A24C; /* Gold accent */
   --color-rust-500: #222222; /* Black for text */
   --color-rust-600: #FFFFFF; /* White for text */
@@ -28,7 +28,7 @@
   --color-gold: #D4A24C; /* Accent gold */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-heading: 'Playfair Display', serif;
+  --font-heading: 'Oswald', sans-serif;
   --font-body: 'Nunito', Arial, Helvetica, sans-serif;
 
   --color-green-100: #e6f2e6; /* Light green */
@@ -36,13 +36,10 @@
   --color-green-300: #5a8b5d; /* Vibrant green */
   --color-green-400: #217a2b; /* Deep forest green */
   --color-green-500: #14521b; /* Rich forest green */
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #222222;
-    --foreground: #F5E2C4;
-  }
+  --color-accent: #E97B4A; /* Primary accent - orange */
+  --color-accent-hover: #D4622E; /* Darker orange on hover */
+  --color-accent-green: #217a2b; /* Green accent */
 }
 
 body {
@@ -52,9 +49,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-}
-
-body {
   background-color: var(--color-earth-100);
   color: var(--color-earth-700);
 }
@@ -119,85 +113,101 @@ body {
 }
 
 .btn-primary {
-  background-color: var(--color-rust-500);
+  background-color: var(--color-accent);
   color: #fff;
   font-family: var(--font-heading);
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.875rem 2.5rem;
   border-radius: 9999px;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-duration: 150ms;
+  transition: all 0.3s ease;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.95rem;
 }
 .btn-primary:hover {
-  background-color: var(--color-rust-700);
+  background-color: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(233, 123, 74, 0.4);
 }
 
 .btn-secondary {
-  background-color: var(--color-green-400);
+  background-color: var(--color-accent-green);
   color: #fff;
   font-family: var(--font-heading);
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.875rem 2.5rem;
   border-radius: 9999px;
-  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
-  transition-duration: 150ms;
+  transition: all 0.3s ease;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-size: 0.95rem;
 }
 .btn-secondary:hover {
   background-color: var(--color-green-500);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(33, 122, 43, 0.4);
 }
 
 .section-title {
-  font-size: 2rem; /* Mobile first */
+  font-size: 2rem;
   font-family: var(--font-heading);
   font-weight: 700;
   text-align: center;
+  text-transform: uppercase;
   margin-bottom: 2rem;
-  color: var(--color-earth-800);
-  letter-spacing: 0.01em;
-  line-height: 1.2;
+  color: var(--color-earth-700);
+  letter-spacing: 0.05em;
+  line-height: 1.1;
 }
 
-/* Responsive section title */
 @media (min-width: 640px) {
   .section-title {
-    font-size: 2.25rem;
+    font-size: 2.5rem;
     margin-bottom: 2.5rem;
   }
 }
 
 @media (min-width: 768px) {
   .section-title {
-    font-size: 2.5rem;
+    font-size: 3rem;
     margin-bottom: 3rem;
   }
 }
 
 .card {
-  background-color: var(--color-earth-100);
-  border-radius: 0.75rem;
-  box-shadow: 0 10px 15px -3px rgba(76, 60, 40, 0.08), 0 4px 6px -4px rgba(76, 60, 40, 0.08);
+  background-color: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  transition-property: transform, box-shadow;
-  transition-duration: 300ms;
+  transition: all 0.4s ease;
 }
 .card:hover {
-  box-shadow: 0 20px 25px -5px rgba(76, 60, 40, 0.12), 0 8px 10px -6px rgba(76, 60, 40, 0.12);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .font-cursive {
   font-family: 'Great Vibes', cursive;
+}
+
+/* Nona Jones inspired card label style */
+.card-label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(233, 123, 74, 0.5);
 }
 
 /* Additional mobile optimizations */
@@ -252,5 +262,6 @@ textarea:focus {
 }
 
 .text-border {
-  -webkit-text-stroke: 0.4px rgba(0, 0, 0, 0.8);
+  -webkit-text-stroke: none;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
